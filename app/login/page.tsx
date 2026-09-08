@@ -1,4 +1,4 @@
-import { AuthPage } from "@/components/Pages/AuthPage";
+import { AuthPage } from "@/components/Elements/AuthPage";
 
 export default function RegisterRoute() {
   return <AuthPage />;

@@ -1,0 +1,61 @@
+import { mapAssets } from "@/lib/assets/map-assets";
+import Image from "next/image";
+
+const filters = ["Golden Hour", "Quiet", "Panorama", "High Peak"];
+const filterIcons = [
+  mapAssets.goldenHour,
+  mapAssets.quiet,
+  mapAssets.panorama,
+  mapAssets.peak,
+];
+
+export default function NavDashboard({
+  onFilterChange,
+  activeFilter,
+}: {
+  onFilterChange: (filter: string) => void;
+  activeFilter: string;
+}) {
+  return (
+    <div className="absolute top-0 left-0 flex shrink-0 flex-col gap-2 pb-2 pt-3 z-10">
+      <label className="flex h-12 items-center gap-3 rounded-full bg-[#2a2a2a]/80 px-3 mx-4 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+        <Image alt="" height={17} src={mapAssets.search} width={25} />
+        <input
+          aria-label="Search scenic viewpoints"
+          className="min-w-0 flex-1 bg-transparent text-[13px] text-altalaya-text outline-none placeholder:text-altalaya-muted"
+          placeholder="Search scenic viewpoints, secret miradors..."
+        />
+        <button
+          aria-label="Filter settings"
+          className="flex size-8 items-center justify-center rounded-full bg-[#353534]/60"
+          type="button"
+        >
+          <Image alt="" height={14} src={mapAssets.tune} width={14} />
+        </button>
+      </label>
+      <div
+        className="flex gap-2 overflow-x-auto overflow-y-visible pb-1 px-4"
+        role="list"
+        aria-label="Quick filters"
+      >
+        {filters.map((filter, index) => (
+          <button
+            className={`flex shrink-0 items-center rounded-full px-3 py-1.5 text-[11px] font-bold tracking-[0.55px] transition ${activeFilter === filter ? "bg-altalaya-accent text-[#522300] shadow-[0_4px_8px_rgba(255,122,0,0.35)]" : "bg-[#2a2a2a]/75 text-altalaya-muted backdrop-blur-md"}`}
+            key={filter}
+            onClick={() => onFilterChange(filter)}
+            type="button"
+          >
+            <Image
+              alt=""
+              className="h-auto"
+              height={12}
+              src={filterIcons[index]}
+              width={13}
+            />{" "}
+            {filter}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
