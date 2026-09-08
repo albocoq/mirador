@@ -1,5 +1,5 @@
 import { AuthPage } from "@/components/Pages/AuthPage";
 
-export default function Page() {
+export default function RegisterRoute() {
   return <AuthPage />;
 }
