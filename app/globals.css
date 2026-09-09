@@ -13,3 +13,9 @@
   --color-altalaya-overlay: rgba(14, 14, 14, 0.8);
   --color-altalaya-border: rgba(224, 192, 175, 0.24);
 }
+
+@layer components {
+  .form-input {
+    @apply w-full rounded-2xl border border-white/10 bg-white/[0.06] px-3 py-3 text-sm text-white outline-none transition placeholder:text-neutral-500 focus:border-orange-300/70 focus:ring-2 focus:ring-orange-300/20;
+  }
+}

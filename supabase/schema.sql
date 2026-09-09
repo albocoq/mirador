@@ -1,5 +1,54 @@
 -- Altalaya: spots schema and row-level security
 
+-- Public profile data linked to the Supabase Auth user.
+create table if not exists public.profiles (
+  id uuid primary key references auth.users(id) on delete cascade,
+  created_at timestamptz not null default now(),
+  username text unique,
+  avatar_url text,
+  bio text
+);
+
+alter table public.profiles enable row level security;
+
+drop policy if exists "Anyone can read profiles" on public.profiles;
+create policy "Anyone can read profiles"
+  on public.profiles
+  for select
+  to anon, authenticated
+  using (true);
+
+drop policy if exists "Users can update their own profile" on public.profiles;
+create policy "Users can update their own profile"
+  on public.profiles
+  for update
+  to authenticated
+  using ((select auth.uid()) = id)
+  with check ((select auth.uid()) = id);
+
+grant select on table public.profiles to anon, authenticated;
+grant update on table public.profiles to authenticated;
+
+-- The function is security definer so it can insert the profile during signup,
+-- before the new user's authenticated session exists.
+create or replace function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer set search_path = public
+as $$
+begin
+  insert into public.profiles (id)
+  values (new.id)
+  on conflict (id) do nothing;
+  return new;
+end;
+$$;
+
+drop trigger if exists on_auth_user_created on auth.users;
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute procedure public.handle_new_user();
+
 create table if not exists public.spots (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz not null default now(),

@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
+import { ensureCurrentUserUsername } from "@/app/actions/users";
 
 export type AuthActionState = {
   error?: string;
@@ -42,6 +43,8 @@ export async function signIn(
 
   if (error) return { error: "Unable to sign in. Check your credentials." };
 
+  await ensureCurrentUserUsername();
+
   redirect("/dashboard");
 }
 
@@ -69,7 +72,10 @@ export async function signUp(
 
   if (error)
     return { error: "Unable to create your account. Please try again." };
-  if (data.session) redirect("/dashboard");
+  if (data.session) {
+    await ensureCurrentUserUsername();
+    redirect("/dashboard");
+  }
 
   return { message: "Check your email to confirm your account." };
 }

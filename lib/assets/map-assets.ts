@@ -39,4 +39,14 @@ export const mapAssets = {
   sunAngle:
     "https://www.figma.com/api/mcp/asset/7c41c069-89e9-4b9c-9ca8-dcf262785d1a.svg",
   add: "https://www.figma.com/api/mcp/asset/80c9e1ae-545e-4153-a405-924955cdbd5b.svg",
+  createSpotMap:
+    "https://www.figma.com/api/mcp/asset/1918e5c3-732b-4e97-92b4-ac6867d2eb0b.png",
+  createSpotPreviewOne:
+    "https://www.figma.com/api/mcp/asset/41987af7-3bd7-4d8f-9864-1a1800c8b841.png",
+  createSpotPreviewTwo:
+    "https://www.figma.com/api/mcp/asset/8dc0821c-52ce-4031-9d0e-b6f7c5c005b0.png",
+  createSpotLogo:
+    "https://www.figma.com/api/mcp/asset/cc512006-1ffb-4840-94a5-f51961ed4f4a.png",
+  createSpotProfile:
+    "https://www.figma.com/api/mcp/asset/4b26e1e7-0857-46de-bcd7-f153f4245e08.png",
 } as const;

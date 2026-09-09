@@ -3,7 +3,7 @@
 import { Map as MapboxMap, Marker } from "react-map-gl/mapbox";
 import type { MapRef } from "react-map-gl/mapbox";
 import { useSpotPreview } from "@/components/context/useSpotPreview";
-import type { UserLocation } from "@/components/Pages/Map/MapCanvas";
+import type { UserLocation } from "@/components/Pages/Map/MapDashboard/MapCanvas";
 import type { Spot } from "@/types/database";
 
 const MALAGA = {
@@ -60,7 +60,9 @@ export default function Map({
         mapStyle="mapbox://styles/mapbox/dark-v11"
         mapboxAccessToken={token}
         reuseMaps
-        onClick={() => handleClosePreview()}
+        onClick={() => {
+          handleClosePreview();
+        }}
         onLoad={centerOnUserLocation}
       >
         {userLocation && (

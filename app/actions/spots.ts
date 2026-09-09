@@ -8,6 +8,8 @@ type ActionResult<T> = {
   error: string | null;
 };
 
+export type SpotActionResult = ActionResult<Spot>;
+
 type SpotInsert = Omit<Spot, "id" | "created_at">;
 
 function getText(formData: FormData, name: string): string {
@@ -99,6 +101,7 @@ export async function getSpotById(id: string): Promise<ActionResult<Spot>> {
 }
 
 export async function createSpot(
+  _state: SpotActionResult,
   formData: FormData,
 ): Promise<ActionResult<Spot>> {
   const title = getText(formData, "title");
