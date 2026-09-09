@@ -60,7 +60,9 @@ export default function Map({
         mapStyle="mapbox://styles/mapbox/dark-v11"
         mapboxAccessToken={token}
         reuseMaps
-        onClick={() => handleClosePreview()}
+        onClick={() => {
+          handleClosePreview();
+        }}
         onLoad={centerOnUserLocation}
       >
         {userLocation && (

@@ -1,6 +1,5 @@
 import { useSpotPreview } from "@/components/context/useSpotPreview";
-import { mapAssets } from "@/lib/assets/map-assets";
-import Image from "next/image";
+import { LocateFixed } from "lucide-react";
 
 export default function BtnRound({
   activeFilter,
@@ -37,13 +36,7 @@ export default function BtnRound({
           onClick={onLocate}
           type="button"
         >
-          <Image
-            alt=""
-            className={isLocating ? "animate-pulse" : undefined}
-            height={18}
-            src={mapAssets.locate}
-            width={18}
-          />
+          <LocateFixed />
         </button>
       </div>
     </div>

@@ -96,6 +96,7 @@ export async function getSpotById(id: string): Promise<ActionResult<Spot>> {
 }
 
 export async function createSpot(
+  _state: SpotActionResult,
   formData: FormData,
 ): Promise<ActionResult<Spot>> {
   const title = getText(formData, "title");

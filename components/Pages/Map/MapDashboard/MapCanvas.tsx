@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { MapRef } from "react-map-gl/mapbox";
-import { SpotPreview } from "@/components/Pages/Map/MapCanvas/SpotPreview";
+import { SpotPreview } from "@/components/Pages/Map/MapDashboard/MapCanvas/SpotPreview";
 import BtnRound from "./MapCanvas/BtnRound";
 import NavDashboard from "./MapCanvas/NavDashboard";
 import Map from "@/components/Pages/Map/MapCanvas/Map";
@@ -37,16 +37,9 @@ function clearStoredUserLocation() {
   }
 }
 
-export function MapCanvas({
-  activeFilter,
-  onFilterChange,
-  spots,
-}: {
-  activeFilter: string;
-  onFilterChange: (filter: string) => void;
-  spots: Spot[];
-}) {
+export function MapCanvas({ spots }: { spots: Spot[] }) {
   const mapRef = useRef<MapRef>(null);
+  const [activeFilter, setActiveFilter] = useState("Golden Hour");
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [isLocating, setIsLocating] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
@@ -158,7 +151,7 @@ export function MapCanvas({
   return (
     <section className="relative flex min-h-0 flex-1 flex-col overflow-hidden bg-[#0e0e0e]">
       <NavDashboard
-        onFilterChange={onFilterChange}
+        setActiveFilter={setActiveFilter}
         activeFilter={activeFilter}
       />
 

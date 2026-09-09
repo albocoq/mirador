@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 import { failure, success, type ActionResult } from "@/lib/action-result";
 import { createClient } from "@/lib/supabase/server";
+import { ensureCurrentUserUsername } from "@/app/actions/users";
 
 export type AuthActionState = ActionResult<string>;
 

@@ -1,19 +1,15 @@
 import { mapAssets } from "@/lib/assets/map-assets";
 import Image from "next/image";
+import { Binoculars, MountainSnow, SunMedium, Trees } from "lucide-react";
 
 const filters = ["Golden Hour", "Quiet", "Panorama", "High Peak"];
-const filterIcons = [
-  mapAssets.goldenHour,
-  mapAssets.quiet,
-  mapAssets.panorama,
-  mapAssets.peak,
-];
+const filterIcons = [SunMedium, Trees, Binoculars, MountainSnow];
 
 export default function NavDashboard({
-  onFilterChange,
+  setActiveFilter,
   activeFilter,
 }: {
-  onFilterChange: (filter: string) => void;
+  setActiveFilter: (filter: string) => void;
   activeFilter: string;
 }) {
   return (
@@ -38,23 +34,25 @@ export default function NavDashboard({
         role="list"
         aria-label="Quick filters"
       >
-        {filters.map((filter, index) => (
-          <button
-            className={`flex shrink-0 items-center rounded-full px-3 py-1.5 text-[11px] font-bold tracking-[0.55px] transition ${activeFilter === filter ? "bg-altalaya-accent text-[#522300] shadow-[0_4px_8px_rgba(255,122,0,0.35)]" : "bg-[#2a2a2a]/75 text-altalaya-muted backdrop-blur-md"}`}
-            key={filter}
-            onClick={() => onFilterChange(filter)}
-            type="button"
-          >
-            <Image
-              alt=""
-              className="h-auto"
-              height={12}
-              src={filterIcons[index]}
-              width={13}
-            />{" "}
-            {filter}
-          </button>
-        ))}
+        {filters.map((filter, index) => {
+          const FilterIcon = filterIcons[index];
+
+          return (
+            <button
+              className={`flex shrink-0 items-center rounded-full px-3 py-1.5 text-[11px] font-bold tracking-[0.55px] transition gap-2 ${
+                activeFilter === filter
+                  ? "bg-altalaya-accent text-[#522300] shadow-[0_4px_8px_rgba(255,122,0,0.35)]"
+                  : "bg-[#2a2a2a]/75 text-altalaya-muted backdrop-blur-md"
+              }`}
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              type="button"
+            >
+              <FilterIcon size={16} />
+              {filter}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { ensureCurrentUserUsername } from "@/app/actions/users";
 import { createClient } from "@/lib/supabase/server";
 
 export async function GET(request: Request) {
