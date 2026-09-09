@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 
-import { AuthForm } from "@/components/Pages/Auth/AuthForm";
 import { AuthActions } from "@/components/Pages/Auth/AuthActions";
 import { AuthStats } from "@/components/Pages/Auth/AuthStats";
 import { AuthHero } from "@/components/Pages/Auth/AuthHero";
+import { AuthForm } from "../Pages/Auth/AuthForm";
 
 type AuthPageProps = {
   initialMode?: "landing" | "login" | "register";

@@ -67,8 +67,14 @@ export async function signUp(
     },
   });
 
+  console.log("signUp data:", data);
+  console.log("signUp error:", error);
+
   if (error) return failure("Unable to create your account. Please try again.");
-  if (data.session) redirect("/dashboard");
+  if (data.session) {
+    await ensureCurrentUserUsername();
+    redirect("/dashboard");
+  }
 
   return success("Check your email to confirm your account.");
 }

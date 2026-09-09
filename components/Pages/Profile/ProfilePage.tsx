@@ -6,11 +6,7 @@ import { ProfileSummary } from "./ProfileSummary";
 import { FilterBar } from "./ProfileControls";
 import { SpotGrid } from "./SpotGrid";
 import { profileFilters } from "./profile-data";
-import type {
-  DisplaySpot,
-  ProfilePageProps,
-  ProfileView,
-} from "../../../types/profile";
+import type { DisplaySpot, ProfilePageProps } from "../../../types/profile";
 import Link from "next/link";
 import { BottomNav } from "@/components/Elements/BottomNav";
 export type { ProfilePageProps } from "../../../types/profile";
@@ -21,6 +17,7 @@ type ProfileData = {
 
 function getDisplaySpots({ spots }: Pick<ProfileData, "spots">): DisplaySpot[] {
   return spots.slice(0, 4).map((spot, index) => ({
+    id: spot.id,
     title: spot.title,
     location: `${spot.latitude.toFixed(2)}°, ${spot.longitude.toFixed(2)}°`,
     rating: spot.rating.toFixed(1),
@@ -31,7 +28,6 @@ function getDisplaySpots({ spots }: Pick<ProfileData, "spots">): DisplaySpot[] {
 }
 
 export function ProfilePage({ spots }: ProfilePageProps) {
-  const [activeView, setActiveView] = useState<ProfileView>("saved");
   const [activeFilter, setActiveFilter] = useState(profileFilters[0]);
   const displaySpots = useMemo(() => getDisplaySpots({ spots }), [spots]);
 
@@ -40,7 +36,6 @@ export function ProfilePage({ spots }: ProfilePageProps) {
       <div className="min-h-0 flex-1 overflow-y-auto pb-20 py-5">
         <div className="flex flex-col gap-5 px-4">
           <ProfileSummary />
-          {/* <ViewSwitcher activeView={activeView} onChange={setActiveView} /> */}
           <FilterBar activeFilter={activeFilter} onChange={setActiveFilter} />
           {displaySpots.length === 0 ? (
             <div className="flex flex-col items-center justify-center gap-2 w-full">

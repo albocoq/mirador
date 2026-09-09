@@ -9,6 +9,8 @@ import {
 import { createClient } from "@/lib/supabase/server";
 import type { Spot, SpotInsert } from "@/types/database";
 
+export type SpotActionResult = ActionResult<Spot>;
+
 function getText(formData: FormData, name: string): string {
   const value = formData.get(name);
   return typeof value === "string" ? value.trim() : "";

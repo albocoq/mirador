@@ -31,6 +31,26 @@ export type Database = {
         Update: Partial<Database["public"]["Tables"]["spots"]["Insert"]>;
         Relationships: [];
       };
+      profiles: {
+        Row: {
+          id: string;
+          created_at: string;
+          user: string | null;
+          username: string;
+          avatar_url: string | null;
+          bio: string | null;
+          email: string;
+        };
+        Insert: {
+          id: string;
+          created_at?: string;
+          username?: string | null;
+          avatar_url?: string | null;
+          bio?: string | null;
+        };
+        Update: Partial<Database["public"]["Tables"]["profiles"]["Insert"]>;
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
@@ -41,3 +61,18 @@ export type Database = {
 
 export type Spot = Database["public"]["Tables"]["spots"]["Row"];
 export type SpotInsert = Database["public"]["Tables"]["spots"]["Insert"];
+
+export type MapCoordinates = {
+  latitude: number;
+  longitude: number;
+};
+
+export type UserProfile = {
+  id: string;
+  created_at: string;
+  user: string | null;
+  username: string;
+  avatar_url: string | null;
+  bio: string | null;
+  email: string;
+};

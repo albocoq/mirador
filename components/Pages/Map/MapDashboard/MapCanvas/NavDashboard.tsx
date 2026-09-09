@@ -1,6 +1,11 @@
-import { mapAssets } from "@/lib/assets/map-assets";
-import Image from "next/image";
-import { Binoculars, MountainSnow, SunMedium, Trees } from "lucide-react";
+import {
+  Binoculars,
+  Filter,
+  MountainSnow,
+  Search,
+  SunMedium,
+  Trees,
+} from "lucide-react";
 
 const filters = ["Golden Hour", "Quiet", "Panorama", "High Peak"];
 const filterIcons = [SunMedium, Trees, Binoculars, MountainSnow];
@@ -13,9 +18,9 @@ export default function NavDashboard({
   activeFilter: string;
 }) {
   return (
-    <div className="absolute top-0 left-0 flex shrink-0 flex-col gap-2 pb-2 pt-3 z-10">
-      <label className="flex h-12 items-center gap-3 rounded-full bg-[#2a2a2a]/80 px-3 mx-4 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl">
-        <Image alt="" height={17} src={mapAssets.search} width={25} />
+    <div className="absolute top-0 left-0 flex shrink-0 max-w-screen flex-col gap-2 pb-2 pt-3 z-10">
+      <label className="flex h-12 items-center gap-3  rounded-full bg-[#2a2a2a]/80 px-3 mx-4 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+        <Search size={25} />
         <input
           aria-label="Search scenic viewpoints"
           className="min-w-0 flex-1 bg-transparent text-[13px] text-altalaya-text outline-none placeholder:text-altalaya-muted"
@@ -26,7 +31,7 @@ export default function NavDashboard({
           className="flex size-8 items-center justify-center rounded-full bg-[#353534]/60"
           type="button"
         >
-          <Image alt="" height={14} src={mapAssets.tune} width={14} />
+          <Filter size={14} />
         </button>
       </label>
       <div

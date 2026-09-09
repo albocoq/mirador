@@ -12,9 +12,10 @@ import {
 import { updateProfile as updateProfileAction } from "@/app/actions/users";
 import type { UserActionResult } from "@/app/actions/users";
 import type { UserProfile } from "@/types/database";
+import { useRouter } from "next/router";
 
 type ProfileContextValue = {
-  profile: UserProfile | null;
+  profile: UserProfile;
   isUpdating: boolean;
   error: string | null;
   updateProfile: (formData: FormData) => Promise<UserActionResult>;
@@ -29,7 +30,10 @@ export function ProfileProvider({
   children: ReactNode;
   initialProfile: UserProfile | null;
 }) {
-  const [profile, setProfile] = useState<UserProfile | null>(initialProfile);
+  if (!initialProfile) {
+    throw new Error("ProfileProvider requires an initialProfile");
+  }
+  const [profile, setProfile] = useState<UserProfile>(initialProfile);
   const [isUpdating, setIsUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

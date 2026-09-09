@@ -3,6 +3,7 @@ export type ProfilePageProps = {
 };
 
 export type DisplaySpot = {
+  id?: string;
   title: string;
   location: string;
   rating: string;

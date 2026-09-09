@@ -1,13 +1,16 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import type { User } from "@supabase/supabase-js";
 
 import { createClient } from "@/lib/supabase/server";
 import type { UserProfile } from "@/types/database";
+import { redirect } from "next/navigation";
 
 type ActionResult<T> = {
   data: T | null;
   error: string | null;
+  code?: string;
 };
 
 export type UserActionResult = ActionResult<UserProfile>;
@@ -16,7 +19,8 @@ export type UsernameSyncResult = {
   error: string | null;
 };
 
-const PROFILE_COLUMNS = "id, created_at, username, avatar_url, bio";
+const PROFILE_COLUMNS =
+  "id, created_at, user, username, avatar_url, bio, email";
 
 function getText(formData: FormData, name: string): string {
   const value = formData.get(name);
@@ -33,10 +37,6 @@ function getErrorMessage(error: unknown, fallback: string): string {
   return error instanceof Error ? error.message : fallback;
 }
 
-/**
- * Initializes the username from the authenticated user's email without
- * replacing a username that the user has already customized.
- */
 export async function ensureCurrentUserUsername(): Promise<UsernameSyncResult> {
   try {
     const supabase = await createClient();
@@ -48,16 +48,31 @@ export async function ensureCurrentUserUsername(): Promise<UsernameSyncResult> {
     if (userError) return { error: userError.message };
     if (!user?.email) return { error: null };
 
-    const username = user.email.split("@", 1)[0]?.trim();
-    if (!username || username.length > 50) return { error: null };
+    const base = user.email
+      .split("@", 1)[0]
+      ?.trim()
+      .replace(/[^a-zA-Z0-9_]+/g, "_")
+      .slice(0, 42);
+    if (!base) return { error: null };
 
-    const { error } = await supabase
-      .from("profiles")
-      .update({ username })
-      .eq("id", user.id)
-      .is("username", null);
+    for (let attempt = 0; attempt < 5; attempt += 1) {
+      const username =
+        attempt === 0
+          ? base
+          : `${base}${Math.floor(100000 + Math.random() * 900000)}`;
+      const { error } = await supabase
+        .from("profiles")
+        .update({ username })
+        .eq("id", user.id)
+        .is("username", null);
 
-    return { error: error?.message ?? null };
+      if (!error) return { error: null };
+      if (!error.message.toLowerCase().includes("duplicate")) {
+        return { error: error.message };
+      }
+    }
+
+    return { error: "Unable to generate a unique username." };
   } catch (error) {
     return {
       error: getErrorMessage(error, "Unable to initialize the username."),
@@ -66,16 +81,24 @@ export async function ensureCurrentUserUsername(): Promise<UsernameSyncResult> {
 }
 
 export async function getCurrentUserProfile(): Promise<UserActionResult> {
+  let supabase: Awaited<ReturnType<typeof createClient>>;
+  let user: User | null = null;
+
   try {
-    const supabase = await createClient();
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser();
+    supabase = await createClient();
+    const result = await supabase.auth.getUser();
+    if (result.error) return { data: null, error: result.error.message };
+    user = result.data.user;
+  } catch (error) {
+    return {
+      data: null,
+      error: getErrorMessage(error, "Unable to load your profile."),
+    };
+  }
 
-    if (userError) return { data: null, error: userError.message };
-    if (!user) return { data: null, error: "You must be signed in." };
+  if (!user) redirect("/");
 
+  try {
     const { data, error } = await supabase
       .from("profiles")
       .select(PROFILE_COLUMNS)

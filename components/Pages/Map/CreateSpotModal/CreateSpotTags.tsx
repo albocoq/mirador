@@ -1,30 +1,11 @@
-import { Check } from "lucide-react";
-
 import { SectionHeading } from "./SectionHeading";
-import { DEFAULT_TAGS } from "@/types/tags";
+import { SpotTagIcon } from "@/components/ui/SpotTag";
+import { DEFAULT_TAGS, TAG_CATEGORY_STYLES } from "@/types/tags";
 
 type CreateSpotTagsProps = {
   selectedTags: string[];
   onToggleTag: (tag: string) => void;
 };
-
-const categoryStyles = {
-  vibe: {
-    selected: "bg-amber-500/20 text-amber-400 border-amber-500/40",
-    unselected:
-      "bg-[#2a2a2a] text-neutral-400 hover:bg-[#353534] border-transparent",
-  },
-  access: {
-    selected: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
-    unselected:
-      "bg-[#2a2a2a] text-neutral-400 hover:bg-[#353534] border-transparent",
-  },
-  media: {
-    selected: "bg-purple-500/20 text-purple-400 border-purple-500/40",
-    unselected:
-      "bg-[#2a2a2a] text-neutral-400 hover:bg-[#353534] border-transparent",
-  },
-} as const;
 
 export function CreateSpotTags({
   selectedTags,
@@ -39,9 +20,7 @@ export function CreateSpotTags({
       <div className="flex flex-wrap gap-2">
         {DEFAULT_TAGS.map((tag) => {
           const selected = selectedTags.includes(tag.id);
-          const styles =
-            categoryStyles[tag.category as keyof typeof categoryStyles] ||
-            categoryStyles.vibe;
+          const styles = TAG_CATEGORY_STYLES[tag.category];
           return (
             <button
               aria-pressed={selected}
@@ -52,7 +31,9 @@ export function CreateSpotTags({
               onClick={() => onToggleTag(tag.id)}
               type="button"
             >
-              {selected && <Check className="mr-1 inline size-3" />}
+              <span className="mr-1 inline-flex align-middle">
+                <SpotTagIcon definition={tag} />
+              </span>
               {tag.label}
             </button>
           );

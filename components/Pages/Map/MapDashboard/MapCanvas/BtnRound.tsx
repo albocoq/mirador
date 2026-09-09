@@ -18,10 +18,10 @@ export default function BtnRound({
     <div
       className={`absolute right-0 left-0 flex shrink-0 items-end justify-between px-4 pb-2 transition-all duration-200 ${isOpen ? "bottom-35" : "bottom-20"}`}
     >
-      <span className="rounded-full bg-[#201f1f]/75 px-3 py-1.5 font-mono text-[11px] text-altalaya-muted backdrop-blur-xl">
+      <span className="rounded-full  bg-[#201f1f]/75 px-3 py-1.5 font-mono text-[11px] text-altalaya-muted backdrop-blur-xl">
         Selected: {activeFilter}
       </span>
-      <div className="flex flex-col items-end gap-2">
+      <div className="flex flex-col flex-1 items-end gap-2">
         {locationError && (
           <p className="max-w-56 rounded-xl bg-[#2a2a2a]/95 px-3 py-2 text-right text-xs text-red-200 shadow-lg backdrop-blur-xl">
             {locationError}

@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { useSpotPreview } from "@/components/context/useSpotPreview";
+import { SpotTag } from "@/components/ui/SpotTag";
 import { useSpotPreviewDrag } from "@/hooks/useSpotPreviewDrag";
 import { mapAssets } from "@/lib/assets/map-assets";
-import { ArrowRight, Map, Sun, Telescope } from "lucide-react";
+import { ArrowRight, Map } from "lucide-react";
 
 export function SpotPreview() {
   const { isOpen, handleClosePreview, selectedSpot } = useSpotPreview();
@@ -80,29 +82,20 @@ export function SpotPreview() {
             <span className="truncate flex-1">{selectedSpot.description}</span>
           </p>
         </div>
-        <button
+        <Link
           aria-label="View spot details"
           className="flex size-11 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-altalaya-accent to-[#ffb955] shadow-[0_4px_9px_rgba(255,122,0,0.32)]"
-          type="button"
+          href={`/spots/${selectedSpot.id}`}
         >
           <ArrowRight size={18} />
-        </button>
+        </Link>
       </div>
       <div className="flex items-center justify-between gap-2 pt-1 font-mono text-[11px] text-altalaya-muted">
         <div className="flex flex-wrap gap-2">
-          {selectedSpot.tags[0] && (
-            <span className="flex items-center gap-1">
-              <Telescope size={13} />
-              {selectedSpot.tags[0] ?? ""}
-            </span>
-          )}
-          {selectedSpot.tags[1] && (
-            <span className="flex items-center gap-1">
-              <Sun size={13} />
-              {selectedSpot.tags[1] ?? ""}
-            </span>
-          )}
-          {selectedSpot.tags.length - 2}+
+          {selectedSpot.tags.slice(0, 2).map((tag) => (
+            <SpotTag compact key={tag} tag={tag} />
+          ))}
+          {selectedSpot.tags.length > 2 && `+${selectedSpot.tags.length - 2}`}
         </div>
         <span className="shrink-0 font-sans font-bold tracking-[0.55px] text-altalaya-peach">
           ALTALAYA PICK

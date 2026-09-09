@@ -1,28 +1,6 @@
 import { useProfile } from "@/components/context/useProfile";
 import Image from "next/image";
-
-function Stat({
-  value,
-  label,
-  accent,
-}: {
-  value: string;
-  label: string;
-  accent?: boolean;
-}) {
-  return (
-    <div>
-      <p
-        className={`text-lg font-semibold ${accent ? "text-altalaya-peach" : "text-altalaya-text"}`}
-      >
-        {value}
-      </p>
-      <p className="mt-1 text-[11px] font-bold tracking-[0.88px] text-altalaya-muted">
-        {label}
-      </p>
-    </div>
-  );
-}
+import Link from "next/link";
 
 export function ProfileSummary() {
   const { profile } = useProfile();
@@ -30,7 +8,10 @@ export function ProfileSummary() {
   return (
     <section className="relative flex flex-col items-center overflow-hidden rounded-4xl bg-[#201f1f]/75 px-5 pt-5 shadow-[0_20px_25px_rgba(0,0,0,0.1)] backdrop-blur-xl py-3">
       <div className="pointer-events-none absolute -top-16 size-48 rounded-full bg-altalaya-accent/20 blur-3xl" />
-      <div className="relative rounded-full bg-linear-to-br from-altalaya-accent via-[#ffb955] to-[#ffdbc8] p-0.75 shadow-[0_0_18px_rgba(255,122,0,0.55)]">
+      <Link
+        href="/profile/edit"
+        className="relative rounded-full bg-linear-to-br from-altalaya-accent via-[#ffb955] to-[#ffdbc8] p-0.75 shadow-[0_0_18px_rgba(255,122,0,0.55)]"
+      >
         {profile?.avatar_url ? (
           <Image
             alt=""
@@ -48,7 +29,7 @@ export function ProfileSummary() {
         <span className="absolute -bottom-1 -right-1 flex size-6 items-center justify-center rounded-full bg-[#0e0e0e] text-xs">
           ✦
         </span>
-      </div>
+      </Link>
       <h2 className="mt-3 text-[22px] font-semibold tracking-tight">
         {profile?.username}
       </h2>

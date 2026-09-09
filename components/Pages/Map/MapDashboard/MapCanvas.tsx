@@ -5,9 +5,9 @@ import type { MapRef } from "react-map-gl/mapbox";
 import { SpotPreview } from "@/components/Pages/Map/MapDashboard/MapCanvas/SpotPreview";
 import BtnRound from "./MapCanvas/BtnRound";
 import NavDashboard from "./MapCanvas/NavDashboard";
-import Map from "@/components/Pages/Map/MapCanvas/Map";
 import type { Spot } from "@/types/database";
 import type { UserLocation } from "@/types/map";
+import Map from "./MapCanvas/Map";
 
 const USER_LOCATION_STORAGE_KEY = "mirador:user-location";
 

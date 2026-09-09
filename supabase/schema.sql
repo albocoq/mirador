@@ -4,10 +4,63 @@
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   created_at timestamptz not null default now(),
+  "user" text,
   username text unique,
   avatar_url text,
-  bio text
+  bio text,
+  email text
 );
+
+alter table public.profiles add column if not exists "user" text;
+alter table public.profiles add column if not exists email text;
+alter table public.profiles alter column username drop not null;
+alter table public.profiles alter column avatar_url drop not null;
+alter table public.profiles alter column bio drop not null;
+alter table public.profiles alter column "user" drop not null;
+alter table public.profiles alter column email drop not null;
+
+-- Fill usernames for profiles created before the username became mandatory.
+do $$
+declare
+  profile_record record;
+  username_base text;
+  username_candidate text;
+begin
+  for profile_record in
+    select p.id, coalesce(nullif(p.email, ''), u.email) as email
+    from public.profiles p
+    left join auth.users u on u.id = p.id
+    where p.username is null
+  loop
+    username_base := left(
+      regexp_replace(
+        split_part(coalesce(profile_record.email, ''), '@', 1),
+        '[^a-zA-Z0-9_]+',
+        '_',
+        'g'
+      ),
+      42
+    );
+    if username_base = '' then
+      username_base := 'user';
+    end if;
+
+    username_candidate := username_base;
+    loop
+      begin
+        update public.profiles
+        set username = username_candidate
+        where id = profile_record.id;
+        exit;
+      exception when unique_violation then
+        username_candidate := username_base || floor(random() * 900000 + 100000)::text;
+      end;
+    end loop;
+  end loop;
+end;
+$$;
+
+alter table public.profiles alter column username set not null;
 
 alter table public.profiles enable row level security;
 
@@ -36,10 +89,37 @@ returns trigger
 language plpgsql
 security definer set search_path = public
 as $$
+declare
+  username_base text;
+  username_candidate text;
 begin
-  insert into public.profiles (id)
-  values (new.id)
-  on conflict (id) do nothing;
+  username_base := left(
+    regexp_replace(
+      split_part(coalesce(new.email, ''), '@', 1),
+      '[^a-zA-Z0-9_]+',
+      '_',
+      'g'
+    ),
+    42
+  );
+  if username_base = '' then
+    username_base := 'user';
+  end if;
+
+  username_candidate := username_base;
+
+  loop
+    insert into public.profiles (id, username, email)
+    values (new.id, username_candidate, new.email)
+    on conflict (username) do nothing;
+
+    if found then
+      exit;
+    end if;
+
+    username_candidate := username_base || floor(random() * 900000 + 100000)::text;
+  end loop;
+
   return new;
 end;
 $$;

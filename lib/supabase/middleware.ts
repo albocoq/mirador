@@ -2,6 +2,28 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import type { Database } from "@/types/database";
 
+const AUTH_COOKIE_PREFIX = "sb-";
+
+function isMissingSessionError(error: unknown) {
+  return error instanceof Error && error.name === "AuthSessionMissingError";
+}
+
+function clearAuthCookies(request: NextRequest, response: NextResponse) {
+  request.cookies
+    .getAll()
+    .filter(
+      ({ name }) =>
+        name.startsWith(AUTH_COOKIE_PREFIX) && name.includes("-auth-token"),
+    )
+    .forEach(({ name }) => response.cookies.delete(name));
+}
+
+function redirectWithCookies(url: URL, response: NextResponse) {
+  return NextResponse.redirect(url, {
+    headers: new Headers(response.headers),
+  });
+}
+
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
 
@@ -30,17 +52,39 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let user;
+  let userError;
 
-  const isPrivateRoute = request.nextUrl.pathname.startsWith("/dashboard");
+  try {
+    const result = await supabase.auth.getUser();
+    user = result.data.user;
+    userError = result.error;
+  } catch (error) {
+    if (isMissingSessionError(error)) {
+      user = null;
+      userError = null;
+    } else {
+      clearAuthCookies(request, response);
+      return redirectWithCookies(new URL("/", request.url), response);
+    }
+  }
 
-  if (!user && isPrivateRoute) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    url.searchParams.set("next", request.nextUrl.pathname);
-    return NextResponse.redirect(url);
+  const isPublicRoute = ["/", "/login", "/register"].includes(
+    request.nextUrl.pathname,
+  );
+  const isAuthCallback = request.nextUrl.pathname === "/auth/callback";
+
+  if (userError && !isMissingSessionError(userError)) {
+    clearAuthCookies(request, response);
+    return redirectWithCookies(new URL("/", request.url), response);
+  }
+
+  if (!user && !isPublicRoute && !isAuthCallback) {
+    return redirectWithCookies(new URL("/", request.url), response);
+  }
+
+  if (user && isPublicRoute) {
+    return redirectWithCookies(new URL("/dashboard", request.url), response);
   }
 
   return response;
