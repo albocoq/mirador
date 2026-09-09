@@ -12,7 +12,11 @@ export default async function DashboardPage() {
 
   if (!user) redirect("/login");
 
-  const { data: spots } = await getSpots();
+  const { data: spots, error } = await getSpots();
 
-  return <MapDashboard spots={spots ?? []} />;
+  if (error || !spots) {
+    throw new Error(error ?? "Unable to load spots.");
+  }
+
+  return <MapDashboard spots={spots} />;
 }

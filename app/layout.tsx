@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import type { ReactNode } from "react";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,11 +14,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Login | Altalaya Discovery",
-  description: "Sign in to find your quiet corner.",
+  title: {
+    default: "Altalaya Discovery",
+    template: "%s | Altalaya Discovery",
+  },
+  description: "Discover quiet sunset viewpoints and connect with skywatchers.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"

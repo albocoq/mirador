@@ -1,14 +1,13 @@
 "use server";
 
+import {
+  failure,
+  getErrorMessage,
+  success,
+  type ActionResult,
+} from "@/lib/action-result";
 import { createClient } from "@/lib/supabase/server";
-import type { Spot } from "@/types/database";
-
-type ActionResult<T> = {
-  data: T | null;
-  error: string | null;
-};
-
-type SpotInsert = Omit<Spot, "id" | "created_at">;
+import type { Spot, SpotInsert } from "@/types/database";
 
 function getText(formData: FormData, name: string): string {
   const value = formData.get(name);
@@ -39,7 +38,9 @@ function getStringArray(formData: FormData, name: string): string[] {
               typeof item === "string" && item.trim() !== "",
           );
         }
-      } catch {}
+      } catch {
+        // Fall back to comma-separated values.
+      }
 
       return trimmed
         .split(",")
@@ -64,37 +65,33 @@ export async function getSpots(): Promise<ActionResult<Spot[]>> {
       )
       .order("created_at", { ascending: false });
 
-    if (error) return { data: null, error: error.message };
-    return { data: (data ?? []) as Spot[], error: null };
+    if (error) return failure("Unable to load spots.");
+    return success(data ?? []);
   } catch (error) {
-    return {
-      data: null,
-      error: error instanceof Error ? error.message : "Unable to load spots.",
-    };
+    console.error("getSpots failed", error);
+    return failure(getErrorMessage(error, "Unable to load spots."));
   }
 }
 
 export async function getSpotById(id: string): Promise<ActionResult<Spot>> {
-  if (!id.trim()) return { data: null, error: "A spot ID is required." };
+  if (!id.trim()) return failure("A spot ID is required.");
 
   try {
     const supabase = await createClient();
     const { data, error } = await supabase
       .from("spots")
-      .select("*")
+      .select(
+        "id, created_at, user_id, title, description, latitude, longitude, image_urls, tags, rating, is_hidden_gem",
+      )
       .eq("id", id)
       .maybeSingle();
 
-    if (error) return { data: null, error: error.message };
-    if (!data) return { data: null, error: "Spot not found." };
-
-    return { data: data as Spot, error: null };
+    if (error) return failure("Unable to load the spot.");
+    if (!data) return failure("Spot not found.");
+    return success(data);
   } catch (error) {
-    return {
-      data: null,
-      error:
-        error instanceof Error ? error.message : "Unable to load the spot.",
-    };
+    console.error("getSpotById failed", error);
+    return failure(getErrorMessage(error, "Unable to load the spot."));
   }
 }
 
@@ -105,20 +102,21 @@ export async function createSpot(
   const description = getText(formData, "description");
   const latitude = getNumber(formData, "latitude");
   const longitude = getNumber(formData, "longitude");
-  const rating = getNumber(formData, "rating") ?? 5;
+  const ratingText = getText(formData, "rating");
+  const rating = ratingText ? Number(ratingText) : 5;
 
-  if (!title) return { data: null, error: "A title is required." };
+  if (!title) return failure("A title is required.");
   if (title.length > 200) {
-    return { data: null, error: "The title cannot exceed 200 characters." };
+    return failure("The title cannot exceed 200 characters.");
   }
   if (latitude === null || latitude < -90 || latitude > 90) {
-    return { data: null, error: "Latitude must be between -90 and 90." };
+    return failure("Latitude must be between -90 and 90.");
   }
   if (longitude === null || longitude < -180 || longitude > 180) {
-    return { data: null, error: "Longitude must be between -180 and 180." };
+    return failure("Longitude must be between -180 and 180.");
   }
-  if (rating < 0 || rating > 5) {
-    return { data: null, error: "Rating must be between 0 and 5." };
+  if (!Number.isFinite(rating) || rating < 0 || rating > 5) {
+    return failure("Rating must be between 0 and 5.");
   }
 
   try {
@@ -128,9 +126,8 @@ export async function createSpot(
       error: userError,
     } = await supabase.auth.getUser();
 
-    if (userError) return { data: null, error: userError.message };
-    if (!user)
-      return { data: null, error: "You must be signed in to create a spot." };
+    if (userError) return failure("Unable to verify your session.");
+    if (!user) return failure("You must be signed in to create a spot.");
 
     const spot: SpotInsert = {
       user_id: user.id,
@@ -147,16 +144,15 @@ export async function createSpot(
     const { data, error } = await supabase
       .from("spots")
       .insert(spot)
-      .select()
+      .select(
+        "id, created_at, user_id, title, description, latitude, longitude, image_urls, tags, rating, is_hidden_gem",
+      )
       .single();
 
-    if (error) return { data: null, error: error.message };
-    return { data: data as Spot, error: null };
+    if (error) return failure("Unable to create the spot.");
+    return success(data);
   } catch (error) {
-    return {
-      data: null,
-      error:
-        error instanceof Error ? error.message : "Unable to create the spot.",
-    };
+    console.error("createSpot failed", error);
+    return failure(getErrorMessage(error, "Unable to create the spot."));
   }
 }

@@ -3,16 +3,15 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
+import { failure, success, type ActionResult } from "@/lib/action-result";
 import { createClient } from "@/lib/supabase/server";
 
-export type AuthActionState = {
-  error?: string;
-  message?: string;
-};
+export type AuthActionState = ActionResult<string>;
 
-function textValue(formData: FormData, name: string) {
+function textValue(formData: FormData, name: string, trim = true): string {
   const value = formData.get(name);
-  return typeof value === "string" ? value.trim() : "";
+  if (typeof value !== "string") return "";
+  return trim ? value.trim() : value;
 }
 
 function validateCredentials(email: string, password: string) {
@@ -32,15 +31,15 @@ export async function signIn(
   formData: FormData,
 ): Promise<AuthActionState> {
   const email = textValue(formData, "email");
-  const password = textValue(formData, "password");
+  const password = textValue(formData, "password", false);
   const validationError = validateCredentials(email, password);
 
-  if (validationError) return { error: validationError };
+  if (validationError) return failure(validationError);
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-  if (error) return { error: "Unable to sign in. Check your credentials." };
+  if (error) return failure("Unable to sign in. Check your credentials.");
 
   redirect("/dashboard");
 }
@@ -50,12 +49,12 @@ export async function signUp(
   formData: FormData,
 ): Promise<AuthActionState> {
   const email = textValue(formData, "email");
-  const password = textValue(formData, "password");
-  const confirmation = textValue(formData, "confirm-password");
+  const password = textValue(formData, "password", false);
+  const confirmation = textValue(formData, "confirm-password", false);
   const validationError = validateCredentials(email, password);
 
-  if (validationError) return { error: validationError };
-  if (password !== confirmation) return { error: "Passwords do not match." };
+  if (validationError) return failure(validationError);
+  if (password !== confirmation) return failure("Passwords do not match.");
 
   const origin = (await headers()).get("origin") ?? "http://localhost:3000";
   const supabase = await createClient();
@@ -67,11 +66,10 @@ export async function signUp(
     },
   });
 
-  if (error)
-    return { error: "Unable to create your account. Please try again." };
+  if (error) return failure("Unable to create your account. Please try again.");
   if (data.session) redirect("/dashboard");
 
-  return { message: "Check your email to confirm your account." };
+  return success("Check your email to confirm your account.");
 }
 
 export async function signInWithGoogle(
@@ -91,7 +89,7 @@ export async function signInWithGoogle(
   });
 
   if (error || !data.url) {
-    return { error: "Google sign-in is unavailable right now." };
+    return failure("Google sign-in is unavailable right now.");
   }
 
   redirect(data.url);

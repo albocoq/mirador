@@ -1,6 +1,6 @@
 "use client";
 
-import { Spot } from "@/types/database";
+import type { Spot } from "@/types/database";
 import {
   createContext,
   useCallback,
@@ -12,9 +12,7 @@ import {
 
 type SpotPreviewContextValue = {
   isOpen: boolean;
-  toggle: () => void;
   selectedSpot: Spot | null;
-  setSelectedSpot: (spot: Spot | null) => void;
   handleClosePreview: () => void;
   handleSelectedSpot: (spot: Spot | null) => void;
 };
@@ -24,8 +22,6 @@ const SpotPreviewContext = createContext<SpotPreviewContextValue | null>(null);
 export function SpotPreviewProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSpot, setSelectedSpot] = useState<Spot | null>(null);
-
-  const toggle = useCallback(() => setIsOpen((current) => !current), []);
 
   const handleSelectedSpot = useCallback((spot: Spot | null) => {
     setSelectedSpot(spot);
@@ -40,20 +36,11 @@ export function SpotPreviewProvider({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       isOpen,
-      toggle,
       selectedSpot,
       handleSelectedSpot,
       handleClosePreview,
-      setSelectedSpot,
     }),
-    [
-      isOpen,
-      toggle,
-      selectedSpot,
-      handleSelectedSpot,
-      handleClosePreview,
-      setSelectedSpot,
-    ],
+    [isOpen, selectedSpot, handleSelectedSpot, handleClosePreview],
   );
 
   return (

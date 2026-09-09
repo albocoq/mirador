@@ -15,7 +15,7 @@ export function useGoogleAuth() {
   const [googleState, googleAction, googlePending] = useActionState<
     AuthActionState,
     FormData
-  >(signInWithGoogle, {});
+  >(signInWithGoogle, { data: null, error: null });
 
   return {
     googleState,
@@ -28,12 +28,11 @@ export function useAuth(mode: AuthMode) {
   const [state, formAction, pending] = useActionState<
     AuthActionState,
     FormData
-  >(mode === "register" ? signUp : signIn, {});
+  >(mode === "register" ? signUp : signIn, { data: null, error: null });
 
   return {
     state,
     formAction,
     pending,
-    ...useGoogleAuth(),
   };
 }

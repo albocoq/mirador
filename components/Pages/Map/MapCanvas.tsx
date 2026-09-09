@@ -7,11 +7,7 @@ import BtnRound from "./MapCanvas/BtnRound";
 import NavDashboard from "./MapCanvas/NavDashboard";
 import Map from "@/components/Pages/Map/MapCanvas/Map";
 import type { Spot } from "@/types/database";
-
-export type UserLocation = {
-  latitude: number;
-  longitude: number;
-};
+import type { UserLocation } from "@/types/map";
 
 const USER_LOCATION_STORAGE_KEY = "mirador:user-location";
 
@@ -84,11 +80,14 @@ export function MapCanvas({
       }
     };
 
+    let isCancelled = false;
+
     navigator.permissions
       ?.query({ name: "geolocation" })
       .then((status) => {
+        if (isCancelled) return;
         permissionStatus = status;
-        handlePermissionChange();
+        if (status.state === "denied") handlePermissionChange();
         status.addEventListener("change", handlePermissionChange);
       })
       .catch(() => {
@@ -96,6 +95,7 @@ export function MapCanvas({
       });
 
     return () => {
+      isCancelled = true;
       permissionStatus?.removeEventListener("change", handlePermissionChange);
     };
   }, []);
@@ -130,10 +130,14 @@ export function MapCanvas({
 
         setUserLocation(location);
         setIsLocating(false);
-        localStorage.setItem(
-          USER_LOCATION_STORAGE_KEY,
-          JSON.stringify(location),
-        );
+        try {
+          localStorage.setItem(
+            USER_LOCATION_STORAGE_KEY,
+            JSON.stringify(location),
+          );
+        } catch {
+          // La carte reste utilisable même si le stockage est indisponible.
+        }
       },
       (error) => {
         setIsLocating(false);

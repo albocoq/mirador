@@ -3,8 +3,8 @@
 import { Map as MapboxMap, Marker } from "react-map-gl/mapbox";
 import type { MapRef } from "react-map-gl/mapbox";
 import { useSpotPreview } from "@/components/context/useSpotPreview";
-import type { UserLocation } from "@/components/Pages/Map/MapCanvas";
 import type { Spot } from "@/types/database";
+import type { UserLocation } from "@/types/map";
 
 const MALAGA = {
   latitude: 36.72016,
@@ -53,7 +53,7 @@ export default function Map({
   };
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-neutral-950">
+    <div className="relative h-full w-full overflow-hidden bg-neutral-950">
       <MapboxMap
         initialViewState={{ ...MALAGA, zoom: 13.5 }}
         ref={mapRef}
