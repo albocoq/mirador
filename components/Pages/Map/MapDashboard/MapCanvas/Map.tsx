@@ -11,7 +11,7 @@ const MALAGA = {
   latitude: 36.72016,
   longitude: -4.42034,
 };
-function Map({
+export default memo(function Map({
   mapRef,
   spots,
   userLocation,
@@ -111,6 +111,4 @@ function Map({
       </MapboxMap>
     </div>
   );
-}
-
-export default memo(Map);
+});

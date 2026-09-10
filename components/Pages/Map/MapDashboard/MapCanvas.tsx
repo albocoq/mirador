@@ -5,7 +5,7 @@ import type { MapRef } from "react-map-gl/mapbox";
 import { SpotPreview } from "@/components/Pages/Map/MapDashboard/MapCanvas/SpotPreview";
 import BtnRound from "./MapCanvas/BtnRound";
 import NavDashboard from "./MapCanvas/NavDashboard";
-import type { MapSpot, Spot } from "@/types/database";
+import type { MapSpot } from "@/types/database";
 import type { UserLocation } from "@/types/map";
 import Map from "./MapCanvas/Map";
 
