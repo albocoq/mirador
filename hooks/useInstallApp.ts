@@ -14,16 +14,13 @@ export function useInstallApp() {
   const [isInstallable, setIsInstallable] = useState(false);
 
   useEffect(() => {
-    // 1. Détection iOS sécurisée après le montage (évite l'hydratation mismatch)
     const userAgent = window.navigator.userAgent.toLowerCase();
     setIsIOS(/iphone|ipad|ipod/.test(userAgent));
 
-    // 2. Vérification si déjà installé en mode standalone
     if (window.matchMedia("(display-mode: standalone)").matches) {
       setIsInstallable(false);
     }
 
-    // 3. Écouteur de l'événement d'installation natif
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);

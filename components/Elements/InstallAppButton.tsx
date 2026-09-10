@@ -5,7 +5,7 @@ import { Download, Share, PlusSquare, X } from "lucide-react";
 import { useInstallApp } from "@/hooks/useInstallApp";
 
 export function InstallAppButton() {
-  const { canPrompt, installApp, isIOS, isInstalled } = useInstallApp();
+  const { isIOS } = useInstallApp();
   const [showHint, setShowHint] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
@@ -17,7 +17,7 @@ export function InstallAppButton() {
     });
   }, []);
 
-  if (isInstalled || dismissed) return null;
+  if (dismissed) return null;
 
   const onClick = async () => {
     if (isIOS) {
@@ -25,8 +25,7 @@ export function InstallAppButton() {
       return;
     }
 
-    const prompted = await installApp();
-    if (!prompted) setShowHint((open) => !open);
+    setShowHint((open) => !open);
   };
 
   return (
@@ -70,7 +69,7 @@ export function InstallAppButton() {
                   </li>
                 </ol>
               </>
-            ) : canPrompt ? null : (
+            ) : (
               <p>
                 Dans le menu du navigateur, choisis{" "}
                 <b className="text-white">Installer l&apos;application</b> (ou
