@@ -55,9 +55,9 @@ export function SpotPreview() {
           )}
           {/* TODO */}
 
-          {/* <span className="absolute bottom-1 left-1 rounded-full bg-[#0e0e0e]/80 px-1.5 py-1 font-mono text-[11px] text-altalaya-peach backdrop-blur-sm">
+          <span className="absolute bottom-1 left-1 rounded-full bg-[#0e0e0e]/80 px-1.5 py-1 font-mono text-[11px] text-altalaya-peach backdrop-blur-sm">
             130m
-          </span> */}
+          </span>
         </div>
         <div className="min-w-0 flex-1 space-y-0.5">
           <div className="flex flex-wrap items-center gap-1 font-mono text-[11px]">

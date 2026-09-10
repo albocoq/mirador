@@ -11,6 +11,7 @@ import { CreateSpotIntro } from "./CreateSpotModal/CreateSpotIntro";
 import { CreateSpotLocation } from "./CreateSpotModal/CreateSpotLocation";
 import { CreateSpotMedia } from "./CreateSpotModal/CreateSpotMedia";
 import { CreateSpotTags } from "./CreateSpotModal/CreateSpotTags";
+import { uploadImageToSupabase } from "@/lib/upload";
 
 type CreateSpotModalProps = {
   onClose: () => void;
@@ -27,10 +28,7 @@ const initialState: SpotActionResult = { data: null, error: null };
 export function CreateSpotModal({ onClose, onCreated }: CreateSpotModalProps) {
   const [spotCoordinates, setSpotCoordinates] =
     useState<MapCoordinates>(DEFAULT_COORDINATES);
-  const [selectedTags, setSelectedTags] = useState<string[]>([
-    "Sunset view",
-    "Quiet",
-  ]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
   const imagePreviewsRef = useRef<string[]>([]);
   const [descriptionLength, setDescriptionLength] = useState(0);
@@ -38,6 +36,37 @@ export function CreateSpotModal({ onClose, onCreated }: CreateSpotModalProps) {
     createSpot,
     initialState,
   );
+
+  const [isUploadingImages, setIsUploadingImages] = useState(false);
+
+  const handleImageChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const files = Array.from(event.target.files ?? []).slice(
+      0,
+      5 - imagePreviewsRef.current.length,
+    );
+    if (!files.length) return;
+
+    setIsUploadingImages(true);
+
+    try {
+      const uploadPromises = files.map((file) =>
+        uploadImageToSupabase(file, "spots"),
+      );
+      const newUrls = await Promise.all(uploadPromises);
+
+      const nextPreviews = [...imagePreviewsRef.current, ...newUrls];
+      imagePreviewsRef.current = nextPreviews;
+      setImagePreviews(nextPreviews);
+    } catch (error) {
+      console.error("Upload failed", error);
+      alert("Une erreur est survenue lors de l'envoi des images.");
+    } finally {
+      setIsUploadingImages(false);
+      event.target.value = "";
+    }
+  };
 
   useEffect(() => {
     if (state.data) {
@@ -62,20 +91,6 @@ export function CreateSpotModal({ onClose, onCreated }: CreateSpotModalProps) {
     );
   };
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(event.target.files ?? []).slice(
-      0,
-      5 - imagePreviewsRef.current.length,
-    );
-    if (!files.length) return;
-
-    const newPreviews = files.map((file) => URL.createObjectURL(file));
-    const nextPreviews = [...imagePreviewsRef.current, ...newPreviews];
-    imagePreviewsRef.current = nextPreviews;
-    setImagePreviews(nextPreviews);
-    event.target.value = "";
-  };
-
   return (
     <div
       aria-labelledby="create-spot-title"
@@ -97,6 +112,7 @@ export function CreateSpotModal({ onClose, onCreated }: CreateSpotModalProps) {
           />
           <CreateSpotMedia
             imagePreviews={imagePreviews}
+            isUploading={isUploadingImages}
             onImageChange={handleImageChange}
           />
           <CreateSpotLocation

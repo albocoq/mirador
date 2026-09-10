@@ -20,6 +20,7 @@ export function ProfileSummary() {
             src={profile?.avatar_url}
             width={80}
             unoptimized={profile?.avatar_url.startsWith("blob:")}
+            loading="eager"
           />
         ) : (
           <div className="size-20 rounded-full flex items-center justify-center text-2xl text-altalaya-text font-black bg-altalaya-night">

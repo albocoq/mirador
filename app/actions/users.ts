@@ -151,6 +151,13 @@ export async function updateProfile(
   const bio = getText(formData, "bio");
   const avatarUrl = getText(formData, "avatar_url");
 
+  console.log("Updating profile with:", {
+    username,
+    userRealName,
+    bio,
+    avatarUrl,
+  });
+
   if (username.length > 50) {
     return {
       data: null,

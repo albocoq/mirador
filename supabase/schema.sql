@@ -177,3 +177,28 @@ grant insert, update, delete on table public.spots to authenticated;
 
 create index if not exists spots_created_at_idx on public.spots (created_at desc);
 create index if not exists spots_user_id_idx on public.spots (user_id);
+
+-- Public image bucket used by the client-side ImageUpload component.
+insert into storage.buckets (id, name, public)
+values ('altalaya-images', 'altalaya-images', true)
+on conflict (id) do update set public = true;
+
+drop policy if exists "Authenticated users can upload Altalaya images" on storage.objects;
+create policy "Authenticated users can upload Altalaya images"
+  on storage.objects
+  for insert
+  to authenticated
+  with check (
+    bucket_id = 'altalaya-images'
+    and (storage.foldername(name))[2] = (select auth.uid())::text
+  );
+
+drop policy if exists "Users can delete their Altalaya images" on storage.objects;
+create policy "Users can delete their Altalaya images"
+  on storage.objects
+  for delete
+  to authenticated
+  using (
+    bucket_id = 'altalaya-images'
+    and (storage.foldername(name))[2] = (select auth.uid())::text
+  );

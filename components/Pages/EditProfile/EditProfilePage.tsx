@@ -12,6 +12,9 @@ import { updateProfile } from "@/app/actions/users";
 export default function EditProfilePage() {
   const { profile } = useProfile();
 
+  const [uploadedAvatarUrl, setUploadedAvatarUrl] = useState<string | null>(
+    null,
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<{
     type: "success" | "error";
@@ -25,6 +28,9 @@ export default function EditProfilePage() {
 
     try {
       const formData = new FormData(e.currentTarget);
+      if (uploadedAvatarUrl) {
+        formData.set("avatar_url", uploadedAvatarUrl);
+      }
       const res = await updateProfile(formData);
 
       if (res.error) {
@@ -57,6 +63,7 @@ export default function EditProfilePage() {
         <EditProfileAvatar
           AvatarUrl={profile.avatar_url}
           username={profile.username}
+          setUploadedAvatarUrl={setUploadedAvatarUrl}
         />
         <Input
           id="user"
