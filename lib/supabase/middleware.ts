@@ -69,17 +69,20 @@ export async function updateSession(request: NextRequest) {
     }
   }
 
-  const isPublicRoute = ["/", "/login", "/register"].includes(
-    request.nextUrl.pathname,
-  );
-  const isAuthCallback = request.nextUrl.pathname === "/auth/callback";
+  const pathname = request.nextUrl.pathname;
+  const isPublicRoute = ["/", "/login", "/register"].includes(pathname);
+  const isAuthCallback = pathname === "/auth/callback";
+  const isPwaAsset =
+    pathname === "/manifest.json" ||
+    pathname === "/manifest.webmanifest" ||
+    pathname === "/sw.js";
 
   if (userError && !isMissingSessionError(userError)) {
     clearAuthCookies(request, response);
     return redirectWithCookies(new URL("/", request.url), response);
   }
 
-  if (!user && !isPublicRoute && !isAuthCallback) {
+  if (!user && !isPublicRoute && !isAuthCallback && !isPwaAsset) {
     return redirectWithCookies(new URL("/", request.url), response);
   }
 

@@ -1,60 +1,88 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+
+type BeforeInstallPromptEvent = Event & {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+};
+
+declare global {
+  interface Window {
+    deferredPWAInstall?: BeforeInstallPromptEvent | null;
+  }
+}
+
+function isStandaloneDisplay() {
+  return (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.matchMedia("(display-mode: fullscreen)").matches ||
+    ("standalone" in navigator &&
+      Boolean((navigator as Navigator & { standalone?: boolean }).standalone))
+  );
+}
 
 export function useInstallApp() {
-  // On utilise 'any' ici pour éviter les erreurs TypeScript avec notre variable globale
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
   const [isIOS, setIsIOS] = useState(false);
-  const [isInstallable, setIsInstallable] = useState(false);
+  const [isInstalled, setIsInstalled] = useState(false);
 
   useEffect(() => {
-    const timerId = setTimeout(() => {
-      const userAgent = window.navigator.userAgent.toLowerCase();
-      setIsIOS(/iphone|ipad|ipod/.test(userAgent));
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    const ios = /iphone|ipad|ipod/.test(userAgent);
+    setIsIOS(ios);
+    setIsInstalled(isStandaloneDisplay());
 
-      if (window.matchMedia("(display-mode: standalone)").matches) {
-        setIsInstallable(false);
-      }
-    }, 0);
-
-    // 1. LA MAGIE EST ICI : On regarde si le filet global a attrapé l'événement
-    if (typeof window !== "undefined" && (window as any).deferredPWAInstall) {
-      setDeferredPrompt((window as any).deferredPWAInstall);
-      setIsInstallable(true);
+    if (window.deferredPWAInstall) {
+      setDeferredPrompt(window.deferredPWAInstall);
     }
 
-    // 2. On garde quand même l'écouteur classique au cas où
-    const handleBeforeInstallPrompt = (e: Event) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-      setIsInstallable(true);
+    const handleBeforeInstallPrompt = (event: Event) => {
+      event.preventDefault();
+      const promptEvent = event as BeforeInstallPromptEvent;
+      window.deferredPWAInstall = promptEvent;
+      setDeferredPrompt(promptEvent);
+    };
+
+    const handleAppInstalled = () => {
+      window.deferredPWAInstall = null;
+      setDeferredPrompt(null);
+      setIsInstalled(true);
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    window.addEventListener("appinstalled", handleAppInstalled);
 
     return () => {
-      clearTimeout(timerId);
       window.removeEventListener(
         "beforeinstallprompt",
         handleBeforeInstallPrompt,
       );
+      window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, []);
 
-  const installApp = async () => {
-    if (!deferredPrompt) return;
+  const installApp = useCallback(async () => {
+    if (!deferredPrompt) return false;
+
     await deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
 
     if (outcome === "accepted") {
       setDeferredPrompt(null);
-      setIsInstallable(false);
-      if (typeof window !== "undefined") {
-        (window as any).deferredPWAInstall = null; // On vide le filet
-      }
+      setIsInstalled(true);
+      window.deferredPWAInstall = null;
+      return true;
     }
-  };
 
-  return { isInstallable, installApp, isIOS };
+    return false;
+  }, [deferredPrompt]);
+
+  return {
+    canPrompt: Boolean(deferredPrompt),
+    installApp,
+    isIOS,
+    isInstalled,
+  };
 }
