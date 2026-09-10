@@ -1,13 +1,14 @@
-import { getSpots } from "@/app/actions/spots";
+import { getMapSpots } from "@/app/actions/spots";
 import { MapDashboard } from "@/components/Pages/Map/MapDashboard";
-import { getCurrentUserId } from "@/lib/auth/get-current-user";
-import { redirect } from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  const userId = await getCurrentUserId();
-  if (!userId) redirect("/");
+  console.time("dashboard:getSpots");
 
-  const { data: spots, error } = await getSpots();
+  const { data: spots, error } = await getMapSpots();
+
+  console.timeEnd("dashboard:getSpots");
 
   if (error || !spots) {
     throw new Error(error ?? "Unable to load spots.");

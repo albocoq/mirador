@@ -16,7 +16,7 @@ type ProfileData = {
 };
 
 function getDisplaySpots({ spots }: Pick<ProfileData, "spots">): DisplaySpot[] {
-  return spots.slice(0, 4).map((spot, index) => ({
+  return spots.map((spot, index) => ({
     id: spot.id,
     title: spot.title,
     location: `${spot.latitude.toFixed(2)}°, ${spot.longitude.toFixed(2)}°`,

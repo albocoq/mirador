@@ -63,6 +63,11 @@ export type Database = {
 export type Spot = Database["public"]["Tables"]["spots"]["Row"];
 export type SpotInsert = Database["public"]["Tables"]["spots"]["Insert"];
 
+export type MapSpot = Pick<
+  Spot,
+  "id" | "title" | "latitude" | "longitude" | "rating" | "is_hidden_gem"
+>;
+
 export type MapCoordinates = {
   latitude: number;
   longitude: number;

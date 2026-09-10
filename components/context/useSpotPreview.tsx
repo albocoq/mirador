@@ -1,6 +1,6 @@
 "use client";
 
-import type { Spot } from "@/types/database";
+import type { MapSpot, Spot } from "@/types/database";
 import {
   createContext,
   useCallback,
@@ -12,18 +12,18 @@ import {
 
 type SpotPreviewContextValue = {
   isOpen: boolean;
-  selectedSpot: Spot | null;
+  selectedSpot: MapSpot | null;
   handleClosePreview: () => void;
-  handleSelectedSpot: (spot: Spot | null) => void;
+  handleSelectedSpot: (spot: MapSpot | null) => void;
 };
 
 const SpotPreviewContext = createContext<SpotPreviewContextValue | null>(null);
 
 export function SpotPreviewProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedSpot, setSelectedSpot] = useState<Spot | null>(null);
+  const [selectedSpot, setSelectedSpot] = useState<MapSpot | null>(null);
 
-  const handleSelectedSpot = useCallback((spot: Spot | null) => {
+  const handleSelectedSpot = useCallback((spot: MapSpot | null) => {
     setSelectedSpot(spot);
     setIsOpen(true);
   }, []);

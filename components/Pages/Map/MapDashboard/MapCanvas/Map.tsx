@@ -3,20 +3,21 @@
 import { Map as MapboxMap, Marker } from "react-map-gl/mapbox";
 import type { MapRef } from "react-map-gl/mapbox";
 import { useSpotPreview } from "@/components/context/useSpotPreview";
-import type { Spot } from "@/types/database";
+import type { MapSpot } from "@/types/database";
 import type { UserLocation } from "@/types/map";
+import { memo } from "react";
 
 const MALAGA = {
   latitude: 36.72016,
   longitude: -4.42034,
 };
-export default function Map({
+function Map({
   mapRef,
   spots,
   userLocation,
 }: {
   mapRef: React.RefObject<MapRef | null>;
-  spots: Spot[];
+  spots: MapSpot[];
   userLocation: UserLocation | null;
 }) {
   const token = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
@@ -111,3 +112,5 @@ export default function Map({
     </div>
   );
 }
+
+export default memo(Map);

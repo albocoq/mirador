@@ -8,7 +8,7 @@ import {
 } from "@/lib/action-result";
 import { getCurrentUserId } from "@/lib/auth/get-current-user";
 import { createClient } from "@/lib/supabase/server";
-import type { Spot, SpotInsert } from "@/types/database";
+import type { MapSpot, Spot, SpotInsert } from "@/types/database";
 
 export type SpotActionResult = ActionResult<Spot>;
 
@@ -59,20 +59,54 @@ function getBoolean(formData: FormData, name: string): boolean {
 }
 
 export async function getSpots(): Promise<ActionResult<Spot[]>> {
+  console.time("getSpots");
+
   try {
     const supabase = await createClient();
+
     const { data, error } = await supabase
       .from("spots")
       .select(
         "id, created_at, user_id, title, description, latitude, longitude, image_urls, tags, rating, is_hidden_gem",
       )
-      .order("created_at", { ascending: false });
+      .order("created_at", { ascending: false })
+      .limit(10);
 
-    if (error) return failure("Unable to load spots.");
+    if (error) {
+      console.timeEnd("getSpots");
+      return failure("Unable to load spots.");
+    }
+
+    console.timeEnd("getSpots");
+
     return success(data ?? []);
   } catch (error) {
+    console.timeEnd("getSpots");
+
     console.error("getSpots failed", error);
+
     return failure(getErrorMessage(error, "Unable to load spots."));
+  }
+}
+
+export async function getMapSpots(): Promise<ActionResult<MapSpot[]>> {
+  try {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+      .from("spots")
+      .select(
+        "id, title, latitude, longitude, rating, is_hidden_gem",
+      )
+      .order("created_at", { ascending: false })
+      .limit(10);
+
+    if (error) return failure("Unable to load spots.");
+
+    return success(data ?? []);
+  } catch (error) {
+    console.error("getMapSpots failed", error);
+    return failure(getErrorMessage(error, "Unable to load map spots."));
   }
 }
 
@@ -95,6 +129,27 @@ export async function getSpotById(id: string): Promise<ActionResult<Spot>> {
   } catch (error) {
     console.error("getSpotById failed", error);
     return failure(getErrorMessage(error, "Unable to load the spot."));
+  }
+}
+
+export async function getRecentSpots(limit = 4): Promise<ActionResult<Spot[]>> {
+  try {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+      .from("spots")
+      .select(
+        "id, created_at, user_id, title, description, latitude, longitude, image_urls, tags, rating, is_hidden_gem",
+      )
+      .order("created_at", { ascending: false })
+      .limit(limit);
+
+    if (error) return failure("Unable to load spots.");
+
+    return success(data ?? []);
+  } catch (error) {
+    console.error("getRecentSpots failed", error);
+    return failure(getErrorMessage(error, "Unable to load spots."));
   }
 }
 

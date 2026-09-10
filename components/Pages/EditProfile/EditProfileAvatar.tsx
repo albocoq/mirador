@@ -52,7 +52,7 @@ export default function EditProfileAvatar({
               alt="Profile"
               className="size-full object-cover"
               unoptimized
-              loading="eager"
+              priority
             />
           ) : (
             <div className="size-full flex items-center justify-center bg-neutral-700 text-neutral-400">
