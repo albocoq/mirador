@@ -6,7 +6,7 @@ import { Download, Share, PlusSquare, X } from "lucide-react";
 import { useInstallApp } from "@/hooks/useInstallApp";
 
 export function InstallAppButton() {
-  const { installApp, isIOS, hasPrompt } = useInstallApp();
+  const { installApp, isIOS, hasPrompt, isInstallable } = useInstallApp();
   const [showHint, setShowHint] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
@@ -18,7 +18,7 @@ export function InstallAppButton() {
     });
   }, []);
 
-  if (dismissed) return null;
+  if (dismissed || !isInstallable) return null;
 
   const onClick = async () => {
     if (isIOS) {

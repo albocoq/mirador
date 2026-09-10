@@ -17,14 +17,21 @@ export function useInstallApp() {
     useState<BeforeInstallPromptEvent | null>(null);
   const [isIOS, setIsIOS] = useState(false);
   const [isInstallable, setIsInstallable] = useState(false);
+  const [isStandalone, setIsStandalone] = useState(false);
 
   useEffect(() => {
+    const checkStandalone = () => {
+      const isStandaloneMode =
+        window.matchMedia("(display-mode: standalone)").matches ||
+        (window.navigator as any).standalone === true;
+
+      setIsStandalone(isStandaloneMode);
+    };
+
+    checkStandalone();
+
     const userAgent = window.navigator.userAgent.toLowerCase();
     setIsIOS(/iphone|ipad|ipod/.test(userAgent));
-
-    if (window.matchMedia("(display-mode: standalone)").matches) {
-      setIsInstallable(false);
-    }
 
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
@@ -50,9 +57,15 @@ export function useInstallApp() {
     if (outcome === "accepted") {
       setDeferredPrompt(null);
       setIsInstallable(false);
+      setIsStandalone(true);
     }
     return true;
   };
 
-  return { isInstallable, installApp, isIOS, hasPrompt: !!deferredPrompt };
+  return {
+    isInstallable: isStandalone ? false : isInstallable,
+    installApp,
+    isIOS,
+    hasPrompt: !!deferredPrompt,
+  };
 }
