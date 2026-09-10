@@ -4,12 +4,15 @@ import { Map, Plus, User } from "lucide-react";
 import Link from "next/link";
 import { CreateSpotModal } from "../Pages/Map/CreateSpotModal";
 import { useCallback, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export function BottomNav() {
   const router = useRouter();
+  const pathname = usePathname();
   const [isCreateSpotOpen, setIsCreateSpotOpen] = useState(false);
   const refreshSpots = useCallback(() => router.refresh(), [router]);
+
+  const isMapPage = pathname === "/dashboard";
 
   return (
     <>
@@ -25,7 +28,7 @@ export function BottomNav() {
         >
           <div className="flex h-16 items-center justify-between rounded-full px-4 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl">
             <Link
-              className="flex min-w-11 flex-1 flex-col items-center gap-1 text-altalaya-peach"
+              className={`flex min-w-11 flex-1 flex-col items-center gap-1 ${isMapPage ? "text-altalaya-accent" : "text-altalaya-muted"}`}
               href="/dashboard"
             >
               <Map size={20} />
@@ -42,7 +45,7 @@ export function BottomNav() {
               <Plus size={22} />
             </button>
             <Link
-              className="flex min-w-11 flex-1 flex-col items-center gap-1 text-altalaya-muted"
+              className={`flex min-w-11 flex-1 flex-col items-center gap-1 ${!isMapPage ? "text-altalaya-accent" : "text-altalaya-muted"}`}
               href="/profile"
             >
               <User size={20} />
