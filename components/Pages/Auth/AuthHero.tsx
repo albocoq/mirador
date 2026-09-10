@@ -42,7 +42,9 @@ export function AuthHero({ compact = false }: AuthHeroProps) {
           <span>ALTALAYA DISCOVERY</span>
         </div>
 
-        <button
+        {/* TODO: Implement language switcher */}
+
+        {/* <button
           className="flex cursor-pointer items-center gap-1.5 rounded-full bg-altalaya-glass px-3 py-1.5 text-[11px] font-bold tracking-wider text-altalaya-muted shadow-md backdrop-blur-md"
           type="button"
           aria-label="Change language"
@@ -55,7 +57,7 @@ export function AuthHero({ compact = false }: AuthHeroProps) {
             src={authAssets.chevronIcon}
             alt="Language menu"
           />
-        </button>
+        </button> */}
       </nav>
 
       <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between sm:bottom-6">

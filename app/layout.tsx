@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { InstallAppButton } from "@/components/Elements/InstallAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,6 @@ export const metadata: Metadata = {
     template: "%s | Altalaya Discovery",
   },
   description: "Discover quiet sunset viewpoints and connect with skywatchers.",
-  manifest: "/manifest.json", // <-- Ajoute juste cette ligne
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -36,6 +36,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full bg-altalaya-night antialiased`}
     >
       <body className="m-0 flex min-h-full flex-col bg-altalaya-night font-sans text-altalaya-text">
+        <InstallAppButton />
         {children}
       </body>
     </html>

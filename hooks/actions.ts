@@ -40,6 +40,7 @@ export async function signIn(
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
+  console.log("Sign-in error:", error);
   if (error) return failure("Unable to sign in. Check your credentials.");
 
   redirect("/dashboard");
