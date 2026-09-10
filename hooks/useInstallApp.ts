@@ -2,18 +2,9 @@
 
 import { useState, useEffect } from "react";
 
-interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: string[];
-  readonly userChoice: Promise<{
-    outcome: "accepted" | "dismissed";
-    platform: string;
-  }>;
-  prompt(): Promise<void>;
-}
-
 export function useInstallApp() {
-  const [deferredPrompt, setDeferredPrompt] =
-    useState<BeforeInstallPromptEvent | null>(null);
+  // On utilise 'any' ici pour éviter les erreurs TypeScript avec notre variable globale
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [isIOS, setIsIOS] = useState(false);
   const [isInstallable, setIsInstallable] = useState(false);
 
@@ -27,9 +18,16 @@ export function useInstallApp() {
       }
     }, 0);
 
+    // 1. LA MAGIE EST ICI : On regarde si le filet global a attrapé l'événement
+    if (typeof window !== "undefined" && (window as any).deferredPWAInstall) {
+      setDeferredPrompt((window as any).deferredPWAInstall);
+      setIsInstallable(true);
+    }
+
+    // 2. On garde quand même l'écouteur classique au cas où
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
-      setDeferredPrompt(e as BeforeInstallPromptEvent);
+      setDeferredPrompt(e);
       setIsInstallable(true);
     };
 
@@ -48,9 +46,13 @@ export function useInstallApp() {
     if (!deferredPrompt) return;
     await deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
+
     if (outcome === "accepted") {
       setDeferredPrompt(null);
       setIsInstallable(false);
+      if (typeof window !== "undefined") {
+        (window as any).deferredPWAInstall = null; // On vide le filet
+      }
     }
   };
 
