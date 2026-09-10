@@ -6,6 +6,7 @@ import {
   success,
   type ActionResult,
 } from "@/lib/action-result";
+import { getCurrentUserId } from "@/lib/auth/get-current-user";
 import { createClient } from "@/lib/supabase/server";
 import type { Spot, SpotInsert } from "@/types/database";
 
@@ -124,16 +125,11 @@ export async function createSpot(
 
   try {
     const supabase = await createClient();
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser();
+    const userId = await getCurrentUserId();
 
-    if (userError) return failure("Unable to verify your session.");
-    if (!user) return failure("You must be signed in to create a spot.");
-
+    if (!userId) return failure("You must be signed in to create a spot.");
     const spot: SpotInsert = {
-      user_id: user.id,
+      user_id: userId,
       title,
       description: description || null,
       latitude,

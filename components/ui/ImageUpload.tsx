@@ -76,13 +76,13 @@ export function ImageUpload({
 
     try {
       const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) throw new Error("Utilisateur non authentifié.");
+      const { data } = await supabase.auth.getClaims();
+      const userId = data?.claims?.sub;
+
+      if (!userId) throw new Error("Utilisateur non authentifié.");
 
       for (const file of selectedFiles) {
-        const path = `${folder.replace(/^\/+|\/+$/g, "")}/${user.id}/${crypto.randomUUID()}.${extensionFor(file)}`;
+        const path = `${folder.replace(/^\/+|\/+$/g, "")}/${userId}/${crypto.randomUUID()}.${extensionFor(file)}`;
         const { error: uploadError } = await supabase.storage
           .from(BUCKET)
           .upload(path, file, { cacheControl: "3600", upsert: false });
@@ -116,7 +116,11 @@ export function ImageUpload({
             <Image
               src={url}
               alt="Image envoyée"
-              className={multiple ? "size-16 rounded-xl object-cover" : "size-24 rounded-full object-cover"}
+              className={
+                multiple
+                  ? "size-16 rounded-xl object-cover"
+                  : "size-24 rounded-full object-cover"
+              }
               width={multiple ? 64 : 96}
               height={multiple ? 64 : 96}
               unoptimized
@@ -145,7 +149,11 @@ export function ImageUpload({
             <LoaderCircle className="size-7 animate-spin text-amber-400" />
           ) : (
             <span className="flex size-10 items-center justify-center rounded-full bg-amber-400/10 text-amber-400">
-              {multiple ? <ImagePlus className="size-5" /> : <UploadCloud className="size-5" />}
+              {multiple ? (
+                <ImagePlus className="size-5" />
+              ) : (
+                <UploadCloud className="size-5" />
+              )}
             </span>
           )}
           <span className="text-sm font-medium text-white">

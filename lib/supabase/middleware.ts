@@ -52,21 +52,25 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  let user;
-  let userError;
+  let hasValidUser = false;
+  let hardError = false;
 
   try {
-    const result = await supabase.auth.getUser();
-    user = result.data.user;
-    userError = result.error;
-  } catch (error) {
-    if (isMissingSessionError(error)) {
-      user = null;
-      userError = null;
-    } else {
-      clearAuthCookies(request, response);
-      return redirectWithCookies(new URL("/", request.url), response);
+    const { data, error } = await supabase.auth.getClaims();
+    hasValidUser = Boolean(data?.claims) && !error;
+
+    if (error && !isMissingSessionError(error)) {
+      hardError = true;
     }
+  } catch (error) {
+    if (!isMissingSessionError(error)) {
+      hardError = true;
+    }
+  }
+
+  if (hardError) {
+    clearAuthCookies(request, response);
+    return redirectWithCookies(new URL("/", request.url), response);
   }
 
   const pathname = request.nextUrl.pathname;
@@ -77,16 +81,11 @@ export async function updateSession(request: NextRequest) {
     pathname === "/manifest.webmanifest" ||
     pathname === "/sw.js";
 
-  if (userError && !isMissingSessionError(userError)) {
-    clearAuthCookies(request, response);
+  if (!hasValidUser && !isPublicRoute && !isAuthCallback && !isPwaAsset) {
     return redirectWithCookies(new URL("/", request.url), response);
   }
 
-  if (!user && !isPublicRoute && !isAuthCallback && !isPwaAsset) {
-    return redirectWithCookies(new URL("/", request.url), response);
-  }
-
-  if (user && isPublicRoute) {
+  if (hasValidUser && isPublicRoute) {
     return redirectWithCookies(new URL("/dashboard", request.url), response);
   }
 

@@ -6,6 +6,11 @@ import type { User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 import type { UserProfile } from "@/types/database";
 import { redirect } from "next/navigation";
+import {
+  getCurrentUserClaims,
+  getCurrentUserId,
+  getCurrentUserId,
+} from "@/lib/auth/get-current-user";
 
 type ActionResult<T> = {
   data: T | null;
@@ -40,15 +45,12 @@ function getErrorMessage(error: unknown, fallback: string): string {
 export async function ensureCurrentUserUsername(): Promise<UsernameSyncResult> {
   try {
     const supabase = await createClient();
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser();
+    const { claims, error } = await getCurrentUserClaims();
 
-    if (userError) return { error: userError.message };
-    if (!user?.email) return { error: null };
+    if (error) return { error: error.message };
+    if (!claims?.email) return { error: null };
 
-    const base = user.email
+    const base = claims?.email
       .split("@", 1)[0]
       ?.trim()
       .replace(/[^a-zA-Z0-9_]+/g, "_")
@@ -63,7 +65,7 @@ export async function ensureCurrentUserUsername(): Promise<UsernameSyncResult> {
       const { error } = await supabase
         .from("profiles")
         .update({ username })
-        .eq("id", user.id)
+        .eq("id", claims?.sub)
         .is("username", null);
 
       if (!error) return { error: null };
@@ -81,28 +83,15 @@ export async function ensureCurrentUserUsername(): Promise<UsernameSyncResult> {
 }
 
 export async function getCurrentUserProfile(): Promise<UserActionResult> {
-  let supabase: Awaited<ReturnType<typeof createClient>>;
-  let user: User | null = null;
+  const userId = await getCurrentUserId();
+  if (!userId) redirect("/");
 
   try {
-    supabase = await createClient();
-    const result = await supabase.auth.getUser();
-    if (result.error) return { data: null, error: result.error.message };
-    user = result.data.user;
-  } catch (error) {
-    return {
-      data: null,
-      error: getErrorMessage(error, "Unable to load your profile."),
-    };
-  }
-
-  if (!user) redirect("/");
-
-  try {
+    const supabase = await createClient();
     const { data, error } = await supabase
       .from("profiles")
       .select(PROFILE_COLUMNS)
-      .eq("id", user.id)
+      .eq("id", userId)
       .maybeSingle();
 
     if (error) return { data: null, error: error.message };
@@ -151,13 +140,6 @@ export async function updateProfile(
   const bio = getText(formData, "bio");
   const avatarUrl = getText(formData, "avatar_url");
 
-  console.log("Updating profile with:", {
-    username,
-    userRealName,
-    bio,
-    avatarUrl,
-  });
-
   if (username.length > 50) {
     return {
       data: null,
@@ -183,13 +165,9 @@ export async function updateProfile(
 
   try {
     const supabase = await createClient();
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser();
+    const userId = await getCurrentUserId();
 
-    if (userError) return { data: null, error: userError.message };
-    if (!user) return { data: null, error: "You must be signed in." };
+    if (!userId) return { data: null, error: "You must be signed in." };
 
     const { data, error } = await supabase
       .from("profiles")
@@ -199,7 +177,7 @@ export async function updateProfile(
         bio: bio || null,
         avatar_url: avatarUrl || null,
       })
-      .eq("id", user.id)
+      .eq("id", userId)
       .select(PROFILE_COLUMNS)
       .single();
 

@@ -10,15 +10,22 @@ function extensionFor(file: File) {
   return extension && /^[a-z0-9]+$/.test(extension) ? extension : "jpg";
 }
 
-export async function uploadImageToSupabase(file: File, folder: string): Promise<string> {
-  if (!ACCEPTED_TYPES.includes(file.type)) throw new Error("Format non pris en charge.");
-  if (file.size > MAX_FILE_SIZE) throw new Error("Fichier trop volumineux (10 Mo max).");
+export async function uploadImageToSupabase(
+  file: File,
+  folder: string,
+): Promise<string> {
+  if (!ACCEPTED_TYPES.includes(file.type))
+    throw new Error("Format non pris en charge.");
+  if (file.size > MAX_FILE_SIZE)
+    throw new Error("Fichier trop volumineux (10 Mo max).");
 
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Utilisateur non authentifié.");
+  const { data: dataUser } = await supabase.auth.getClaims();
+  const userId = dataUser?.claims?.sub;
 
-  const path = `${folder}/${user.id}/${crypto.randomUUID()}.${extensionFor(file)}`;
+  if (!userId) throw new Error("Utilisateur non authentifié.");
+
+  const path = `${folder}/${userId}/${crypto.randomUUID()}.${extensionFor(file)}`;
 
   const { error } = await supabase.storage
     .from(BUCKET)
