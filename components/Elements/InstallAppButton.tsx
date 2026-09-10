@@ -5,7 +5,7 @@ import { Download, Share, PlusSquare, X } from "lucide-react";
 import { useInstallApp } from "@/hooks/useInstallApp";
 
 export function InstallAppButton() {
-  const { isIOS } = useInstallApp();
+  const { installApp, isIOS, isInstallable } = useInstallApp();
   const [showHint, setShowHint] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
@@ -17,7 +17,7 @@ export function InstallAppButton() {
     });
   }, []);
 
-  if (dismissed) return null;
+  if (isInstallable || dismissed) return null;
 
   const onClick = async () => {
     if (isIOS) {
@@ -25,7 +25,8 @@ export function InstallAppButton() {
       return;
     }
 
-    setShowHint((open) => !open);
+    // const prompted = await installApp();
+    // if (!prompted) setShowHint((open) => !open);
   };
 
   return (
