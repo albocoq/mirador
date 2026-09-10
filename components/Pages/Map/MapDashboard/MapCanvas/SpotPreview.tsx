@@ -22,7 +22,6 @@ export function SpotPreview() {
 
   if (!isOpen || !selectedSpot) return null;
 
-  console.log("SpotPreview rendered with selectedSpot:", selectedSpot);
   return (
     <article
       className={`absolute inset-x-0 -bottom-10 mx-4 mb-2 flex shrink-0 flex-col gap-2 rounded-4xl bg-[#201f1f]/90 p-3 shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-xl will-change-transform ${isDragging ? "select-none" : "transition-transform duration-400 ease-out"}`}

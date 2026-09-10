@@ -45,6 +45,7 @@ export type Database = {
           id: string;
           created_at?: string;
           username?: string | null;
+          user?: string | null;
           avatar_url?: string | null;
           bio?: string | null;
         };

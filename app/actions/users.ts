@@ -147,6 +147,7 @@ export async function updateProfile(
   formData: FormData,
 ): Promise<UserActionResult> {
   const username = getText(formData, "username");
+  const userRealName = getText(formData, "user");
   const bio = getText(formData, "bio");
   const avatarUrl = getText(formData, "avatar_url");
 
@@ -154,6 +155,12 @@ export async function updateProfile(
     return {
       data: null,
       error: "The username cannot exceed 50 characters.",
+    };
+  }
+  if (userRealName.length > 50) {
+    return {
+      data: null,
+      error: "The display name cannot exceed 50 characters.",
     };
   }
   if (bio.length > 500) {
@@ -180,7 +187,8 @@ export async function updateProfile(
     const { data, error } = await supabase
       .from("profiles")
       .update({
-        username: username || null,
+        username: username,
+        user: userRealName || null,
         bio: bio || null,
         avatar_url: avatarUrl || null,
       })

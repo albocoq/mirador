@@ -67,9 +67,6 @@ export async function signUp(
     },
   });
 
-  console.log("signUp data:", data);
-  console.log("signUp error:", error);
-
   if (error) return failure("Unable to create your account. Please try again.");
   if (data.session) {
     await ensureCurrentUserUsername();
