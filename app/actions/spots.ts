@@ -96,7 +96,7 @@ export async function getMapSpots(): Promise<ActionResult<MapSpot[]>> {
     const { data, error } = await supabase
       .from("spots")
       .select(
-        "id, title, latitude, longitude, rating, is_hidden_gem",
+        "id, title, latitude, longitude, rating, is_hidden_gem, image_urls, tags, description",
       )
       .order("created_at", { ascending: false })
       .limit(10);

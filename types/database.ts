@@ -65,7 +65,15 @@ export type SpotInsert = Database["public"]["Tables"]["spots"]["Insert"];
 
 export type MapSpot = Pick<
   Spot,
-  "id" | "title" | "latitude" | "longitude" | "rating" | "is_hidden_gem"
+  | "id"
+  | "title"
+  | "latitude"
+  | "longitude"
+  | "rating"
+  | "is_hidden_gem"
+  | "image_urls"
+  | "description"
+  | "tags"
 >;
 
 export type MapCoordinates = {
