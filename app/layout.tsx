@@ -49,11 +49,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full bg-altalaya-night antialiased`}
     >
       <body className="m-0 flex min-h-full flex-col bg-altalaya-night font-sans text-altalaya-text">
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.deferredPWAInstall=e;});`,
-          }}
-        />
         <InstallAppButton />
         {children}
       </body>
