@@ -1,15 +1,20 @@
+// hooks/useInstallApp.ts
 "use client";
 
 import { useState, useEffect } from "react";
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[];
-  readonly userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
+  readonly userChoice: Promise<{
+    outcome: "accepted" | "dismissed";
+    platform: string;
+  }>;
   prompt(): Promise<void>;
 }
 
 export function useInstallApp() {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
   const [isIOS, setIsIOS] = useState(false);
   const [isInstallable, setIsInstallable] = useState(false);
 
@@ -30,12 +35,15 @@ export function useInstallApp() {
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
     return () => {
-      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt,
+      );
     };
   }, []);
 
-  const installApp = async () => {
-    if (!deferredPrompt) return;
+  const installApp = async (): Promise<boolean> => {
+    if (!deferredPrompt) return false;
     await deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
 
@@ -43,7 +51,8 @@ export function useInstallApp() {
       setDeferredPrompt(null);
       setIsInstallable(false);
     }
+    return true;
   };
 
-  return { isInstallable, installApp, isIOS };
+  return { isInstallable, installApp, isIOS, hasPrompt: !!deferredPrompt };
 }

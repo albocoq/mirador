@@ -1,3 +1,4 @@
+// components/Elements/InstallAppButton.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -5,7 +6,7 @@ import { Download, Share, PlusSquare, X } from "lucide-react";
 import { useInstallApp } from "@/hooks/useInstallApp";
 
 export function InstallAppButton() {
-  const { installApp, isIOS, isInstallable } = useInstallApp();
+  const { installApp, isIOS, hasPrompt } = useInstallApp();
   const [showHint, setShowHint] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
@@ -17,7 +18,7 @@ export function InstallAppButton() {
     });
   }, []);
 
-  if (isInstallable || dismissed) return null;
+  if (dismissed) return null;
 
   const onClick = async () => {
     if (isIOS) {
@@ -25,12 +26,12 @@ export function InstallAppButton() {
       return;
     }
 
-    // const prompted = await installApp();
-    // if (!prompted) setShowHint((open) => !open);
+    const prompted = await installApp();
+    if (!prompted) setShowHint((open) => !open);
   };
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-[5.5rem] z-[10000] flex justify-center px-4 sm:bottom-6">
+    <div className="pointer-events-none fixed inset-x-0 bottom-22 z-10000 flex justify-center px-4 sm:bottom-6">
       <div className="pointer-events-auto flex w-full max-w-md flex-col gap-3">
         <div className="relative">
           <button
@@ -70,7 +71,7 @@ export function InstallAppButton() {
                   </li>
                 </ol>
               </>
-            ) : (
+            ) : hasPrompt ? null : (
               <p>
                 Dans le menu du navigateur, choisis{" "}
                 <b className="text-white">Installer l&apos;application</b> (ou
