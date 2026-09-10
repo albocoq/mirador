@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Altalaya Discovery",
   },
   description: "Discover quiet sunset viewpoints and connect with skywatchers.",
+  manifest: "/manifest.json", // <-- Ajoute juste cette ligne
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
