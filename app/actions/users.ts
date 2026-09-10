@@ -9,7 +9,6 @@ import { redirect } from "next/navigation";
 import {
   getCurrentUserClaims,
   getCurrentUserId,
-  getCurrentUserId,
 } from "@/lib/auth/get-current-user";
 
 type ActionResult<T> = {
