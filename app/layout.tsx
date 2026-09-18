@@ -1,45 +1,30 @@
-import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata } from "next";
+import { Fraunces, Source_Sans_3 } from "next/font/google";
 import type { ReactNode } from "react";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
-import { InstallAppButton } from "@/components/Elements/InstallAppButton";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const display = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sans = Source_Sans_3({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
-
-export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-  viewportFit: "cover",
-};
 
 export const metadata: Metadata = {
   title: {
-    default: "Altalaya Discovery",
-    template: "%s | Altalaya Discovery",
+    default: "Altalaya",
+    template: "%s · Altalaya",
   },
-  description: "Discover quiet sunset viewpoints and connect with skywatchers.",
-  manifest: "/manifest.webmanifest",
-  appleWebApp: {
-    capable: true,
-    title: "Altalaya",
-    statusBarStyle: "black-translucent",
-  },
+  description:
+    "Legal pages for Altalaya — privacy policy and terms of use for the community map of viewpoints.",
   icons: {
-    icon: [
-      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: "/apple-touch-icon.png",
+    icon: [{ url: "/logo.png", type: "image/png" }],
+    apple: "/logo.png",
   },
 };
 
@@ -47,11 +32,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full bg-altalaya-night antialiased`}
+      className={`${display.variable} ${sans.variable} h-full antialiased`}
     >
-      <body className="m-0 flex min-h-full flex-col bg-altalaya-night font-sans text-altalaya-text">
-        <InstallAppButton />
-        {children}
+      <body className="m-0 flex h-dvh flex-col overflow-hidden font-sans text-sand">
+        <SiteHeader />
+        <main className="relative z-10 min-h-0 flex-1 overflow-y-auto">
+          {children}
+        </main>
+        <SiteFooter />
       </body>
     </html>
   );

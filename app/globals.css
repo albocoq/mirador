@@ -1,21 +1,30 @@
 @import "tailwindcss";
-@import "mapbox-gl/dist/mapbox-gl.css";
 
 @theme {
-  --color-altalaya-night: #131313;
-  --color-altalaya-text: #e5e2e1;
-  --color-altalaya-muted: #e0c0af;
-  --color-altalaya-accent: #ff7a00;
-  --color-altalaya-peach: #ffb68b;
-  --color-altalaya-surface: #1c1b1b;
-  --color-altalaya-glass: rgba(42, 42, 42, 0.6);
-  --color-altalaya-glass-strong: rgba(42, 42, 42, 0.8);
-  --color-altalaya-overlay: rgba(14, 14, 14, 0.8);
-  --color-altalaya-border: rgba(224, 192, 175, 0.24);
+  --color-ink: #10100f;
+  --color-sand: #f3ebe2;
+  --color-mist: #c9bdb0;
+  --color-ember: #ff7a00;
+  --color-ridge: #1c1916;
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
-@layer components {
-  .form-input {
-    @apply w-full rounded-2xl border border-white/10 bg-white/[0.06] px-3 py-3 text-sm text-white outline-none transition placeholder:text-neutral-500 focus:border-orange-300/70 focus:ring-2 focus:ring-orange-300/20;
-  }
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(255, 122, 0, 0.18), transparent 55%),
+    radial-gradient(900px 500px at -10% 20%, rgba(224, 160, 96, 0.12), transparent 50%),
+    linear-gradient(180deg, #161411 0%, #10100f 45%, #0c0b0a 100%);
+  color: var(--color-sand);
+}
+
+.font-display {
+  font-family: var(--font-display);
 }
