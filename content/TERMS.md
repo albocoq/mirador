@@ -1,8 +1,10 @@
 # Altalaya Terms of Use
 
-**Last updated:** 18 September 2026
+**Last updated:** 21 September 2026
 
 Welcome to Altalaya. By creating an account or using the app, you agree to these Terms of Use (“Terms”). If you do not agree, do not use Altalaya.
+
+These Terms also apply to our public website (legal pages and related materials such as APK download links), except where a section clearly applies only to the mobile app.
 
 Altalaya is a community map of viewpoints (miradors). We believe in transparency: we do not sell your personal data, and we do not invent fake community statistics.
 
@@ -115,7 +117,9 @@ Refunds, if any, follow Stripe’s process and applicable consumer law. We may r
 
 ## 9. Third-party services
 
-Altalaya relies on third parties such as Supabase (auth, database, storage), Google (sign-in / maps), and Stripe (optional payments). Their own terms and privacy policies apply to their services. We are not responsible for outages or decisions made solely by those providers.
+Altalaya relies on third parties such as Supabase (auth, database, storage), Google (sign-in / maps; Analytics on the website only with consent), Stripe (optional payments), and our website host. Their own terms and privacy policies apply to their services. We are not responsible for outages or decisions made solely by those providers.
+
+Website analytics cookies are optional. See the Privacy Policy and the on-site cookie banner for details.
 
 ---
 

@@ -1,6 +1,6 @@
 # Altalaya Privacy Policy
 
-**Last updated:** 18 September 2026
+**Last updated:** 21 September 2026
 
 Altalaya (“we”, “us”, “the app”) is a community map of viewpoints (miradors). This policy explains what data we collect, why we collect it, and how you can control it.
 
@@ -10,9 +10,12 @@ Altalaya (“we”, “us”, “the app”) is a community map of viewpoints (m
 
 ## 1. Who this applies to
 
-This policy covers the Altalaya mobile app (iOS and Android) and the related backend services we operate.
+This policy covers:
 
-If you do not agree with this policy, please do not use the app.
+- The Altalaya mobile app (iOS and Android) and the related backend services we operate
+- This public website (legal pages, APK download links, and related web pages we operate for Altalaya)
+
+If you do not agree with this policy, please do not use the app or the website.
 
 ---
 
@@ -90,6 +93,30 @@ If you use “Enviar comentarios” in Settings, your device opens your email cl
 
 Map tiles and related map services are provided by Google Maps (via `react-native-maps`). When the map loads, Google may receive technical data according to [Google’s privacy policy](https://policies.google.com/privacy). We do not control Google’s independent processing.
 
+### This website — cookies and analytics
+
+This website is separate from the mobile app. On the website we may use:
+
+- **Strictly necessary storage** — for example remembering your analytics cookie choice in your browser (`localStorage`). This is required to respect your decision and does not track you across sites.
+- **Google Analytics 4 (GA4)** — **only if you accept** via the cookie banner. If you reject (or before you choose), we do **not** load Google Analytics scripts and we do **not** send analytics events.
+
+When analytics is accepted, Google may process data such as:
+
+- Pages viewed and approximate navigation paths on this site
+- Events we configure (for example opening the APK download menu, clicking the Drive or VirusTotal links, navigating to Privacy/Terms, or contacting us)
+- Approximate location derived from IP (country / region level), device / browser technical info, and referral source
+- Online identifiers (including cookie or similar client identifiers used by Google Analytics)
+
+**Purpose:** understand how visitors use this website (traffic, engagement, which links are useful) so we can improve it. We do **not** use Google Analytics on this site for personalized advertising.
+
+**Legal basis (EU/EEA/UK where applicable):** consent. You can withdraw consent at any time via **Cookie settings** in the website footer (or by clearing site data in your browser). Withdrawal does not affect the lawfulness of processing before withdrawal.
+
+**Retention:** Google Analytics retention follows the retention setting configured in our GA4 property (typically measured in months). Our consent choice is stored locally in your browser until you change or clear it.
+
+**International transfers:** Google may process analytics data on servers outside the EU/EEA (including the United States). Google’s processing is described in [Google’s privacy policy](https://policies.google.com/privacy) and Google Analytics terms. Where required, such transfers rely on appropriate safeguards offered by Google (for example Standard Contractual Clauses).
+
+**Your choices:** Accept or Reject in the banner; change later via Cookie settings; also use browser controls / opt-out extensions. Blocking analytics will not break core access to Privacy, Terms, or download links.
+
 ### Voluntary support (Early Founder)
 
 Optional support payments are processed by **Stripe** on Stripe’s hosted checkout. Stripe handles payment card data under its own privacy policy. We may receive confirmation that a payment succeeded and store a founder badge flag on your profile. We do not store full card numbers in Altalaya.
@@ -119,9 +146,10 @@ We use **Supabase** for authentication, database storage, and photo hosting. Dat
 
 We may also rely on:
 
-- **Google** — Google sign-in and Google Maps
+- **Google** — Google sign-in and Google Maps (app); Google Analytics 4 on this website **only with your consent**
 - **Stripe** — optional Early Founder support payments
 - **Apple / Google** — app distribution, crash reporting, and store services, as configured by those platforms
+- **Website hosting** — our web host (for example Vercel) may process technical connection logs (IP, user-agent, timestamps) as part of serving the site and securing infrastructure
 
 These providers process data only as needed to provide their services to us.
 
@@ -165,7 +193,7 @@ Depending on where you live (for example EU/EEA, UK, California), you may have r
 - Delete your data
 - Export data you provided
 - Object to or restrict certain processing
-- Withdraw consent (e.g. location or photo-library permission)
+- Withdraw consent (e.g. location or photo-library permission, or website analytics cookies)
 
 In the app you can already:
 
@@ -175,6 +203,12 @@ In the app you can already:
 - Sign out
 - Delete your account from Settings
 - Revoke location or media permissions in system settings
+
+On this website you can:
+
+- Accept or reject Google Analytics via the cookie banner
+- Change that choice anytime via **Cookie settings** in the footer
+- Read this Privacy Policy and the Terms of Use without accepting analytics
 
 To exercise other rights, email us at the contact address below. We may need to verify your identity first.
 

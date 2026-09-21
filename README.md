@@ -32,6 +32,8 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 
 Page views + custom events (`apk_menu_open`, `apk_download`, `virustotal_view`, `navigate`, `contact_email`) show up in GA4 → Reports / Explore. Leave empty to disable.
 
+GA loads **only after** the visitor accepts the cookie banner (consent stored in `localStorage`). Reject = no GA scripts.
+
 ## Dev
 
 ```bash
