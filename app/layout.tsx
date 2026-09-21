@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
 import type { ReactNode } from "react";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
         <SiteFooter />
+        <GoogleAnalytics />
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 import { APK_DRIVE_URL, VIRUSTOTAL_URL } from "@/lib/config";
 
 type Props = {
@@ -42,7 +43,13 @@ export function ApkDownload({ className = "" }: Props) {
         type="button"
         aria-expanded={open}
         aria-controls={menuId}
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => {
+          setOpen((value) => {
+            const next = !value;
+            if (next) trackEvent("apk_menu_open");
+            return next;
+          });
+        }}
         className="bg-ember px-6 py-3 text-sm font-semibold text-ink transition hover:brightness-110"
       >
         Download APK
@@ -75,7 +82,10 @@ export function ApkDownload({ className = "" }: Props) {
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex w-full items-center justify-center bg-ember px-4 py-2.5 text-sm font-semibold text-ink transition hover:brightness-110"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  trackEvent("apk_download", { method: "google_drive" });
+                  setOpen(false);
+                }}
               >
                 Open Google Drive
               </a>
@@ -92,7 +102,10 @@ export function ApkDownload({ className = "" }: Props) {
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex w-full items-center justify-center border border-white/15 px-4 py-2.5 text-sm font-semibold text-sand transition hover:border-ember/50 hover:text-ember"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  trackEvent("virustotal_view");
+                  setOpen(false);
+                }}
               >
                 View on VirusTotal
               </a>

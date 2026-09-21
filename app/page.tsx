@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ApkDownload } from "@/components/ApkDownload";
+import { TrackedLink } from "@/components/TrackedLink";
 
 export default function HomePage() {
   return (
@@ -22,18 +22,22 @@ export default function HomePage() {
       </p>
       <div className="mt-6 flex flex-wrap items-start gap-3">
         <ApkDownload />
-        <Link
+        <TrackedLink
           href="/privacy"
+          event="navigate"
+          eventParams={{ to: "/privacy", location: "home_cta" }}
           className="border border-white/15 px-6 py-3 text-sm font-semibold text-sand transition hover:border-ember/50 hover:text-ember"
         >
           Privacy Policy
-        </Link>
-        <Link
+        </TrackedLink>
+        <TrackedLink
           href="/terms"
+          event="navigate"
+          eventParams={{ to: "/terms", location: "home_cta" }}
           className="border border-white/15 px-6 py-3 text-sm font-semibold text-sand transition hover:border-ember/50 hover:text-ember"
         >
           Terms of Use
-        </Link>
+        </TrackedLink>
       </div>
     </section>
   );
