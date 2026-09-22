@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ApkDownload } from "@/components/ApkDownload";
+import { DiscordJoin } from "@/components/DiscordJoin";
 import { TrackedLink } from "@/components/TrackedLink";
 
 export default function HomePage() {
@@ -21,7 +21,7 @@ export default function HomePage() {
         community map of viewpoints.
       </p>
       <div className="mt-6 flex flex-wrap items-start gap-3">
-        <ApkDownload />
+        <DiscordJoin />
         <TrackedLink
           href="/privacy"
           event="navigate"
