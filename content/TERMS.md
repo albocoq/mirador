@@ -19,6 +19,7 @@ Altalaya lets you:
 - Save spots to a personal list
 - Use the map and sun / golden-hour helpers
 - Manage your profile and your own content
+- Report spots and block users that break community standards
 - Optionally support the project as an Early Founder (voluntary payment via Stripe)
 
 We may change, suspend, or discontinue features at any time. We are not obligated to keep every spot online forever.
@@ -86,9 +87,20 @@ We may remove Content or restrict accounts with or without prior notice when we 
 
 ---
 
-## 6. Reporting and moderation
+## 6. Reporting, blocking, and moderation
 
-If you see Content that breaks these Terms, report it through the contact channel listed below, via in-app feedback (Settings → Enviar comentarios), or any in-app report feature when available. We will review reports and act as reasonably appropriate.
+If you see Content that breaks these Terms, you can:
+
+- **Report** a spot from the mirador detail menu (⋯ → Reportar), optionally with a reason
+- **Block** a user (⋯ → Bloquear) so their spots are hidden on **your** map
+- Contact us by email or via in-app feedback (Settings → Enviar comentarios)
+
+**How it works:**
+
+- A **block** is personal: it filters that author’s spots from your map view. It does not delete their content for other users.
+- A **report** queues the spot for moderation review. Reporting does **not** automatically delete the spot for everyone.
+- We may remove Content, restrict accounts, or take other action we consider reasonably appropriate for safety, legality, or community standards.
+- Abuse of report/block features (harassment via false reports, evasion, etc.) may itself lead to restrictions.
 
 We do not pre-screen all Content. Presence of Content in the app does not mean we endorse it.
 
@@ -173,4 +185,4 @@ Questions about these Terms, content reports, or account issues:
 
 **Email:** privacy@altalaya.app  
 **App:** Altalaya  
-**In-app:** Profile → Privacidad y Términos, and Settings → Legal
+**In-app:** Profile → Privacidad y Términos, Settings → Legal, and mirador detail → ⋯ → Reportar / Bloquear

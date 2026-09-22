@@ -89,6 +89,24 @@ To keep the service reliable and secure, we may process:
 
 If you use “Enviar comentarios” in Settings, your device opens your email client. Whatever you write and send is processed as ordinary email correspondence. We do not silently scrape your mailbox.
 
+### Reports and blocks (UGC safety)
+
+When you report a spot or block another user in the app, we store the minimum data needed to apply your preference and to moderate the community:
+
+- **Spot reports:** `reporter_id`, `spot_id`, `reason` (optional free text), and a timestamp
+- **User blocks:** `blocker_id`, `blocked_id`, and a timestamp
+
+Access is protected with **row-level security (RLS)** on Supabase so that:
+
+- You can create and manage **your own** reports and blocks
+- Other users cannot read your private block list or your report submissions as a social graph
+- Operators / moderation tooling may review reports as needed to keep the community safe
+
+**How we use this data:**
+
+- **Blocks:** hide that user’s spots from **your** map view (and related surfaces that respect your block list)
+- **Reports:** queue for moderation review; a report does **not** by itself delete content for everyone
+
 ### Maps
 
 Map tiles and related map services are provided by Google Maps (via `react-native-maps`). When the map loads, Google may receive technical data according to [Google’s privacy policy](https://policies.google.com/privacy). We do not control Google’s independent processing.
@@ -133,6 +151,7 @@ We use your data to:
 - Calculate on-device / in-app solar helpers from location
 - Apply Early Founder status when you support the project
 - Moderate harmful or illegal content
+- Process spot reports and user blocks so you can hide content on your map and so we can review abuse
 - Fix bugs and improve reliability
 - Comply with law when required
 
@@ -142,7 +161,7 @@ We do **not** use your data for targeted advertising resale, and we do not sell 
 
 ## 4. Where data is stored and who processes it
 
-We use **Supabase** for authentication, database storage, and photo hosting. Data is processed on Supabase infrastructure under their terms and security practices.
+We use **Supabase** for authentication, database storage, photo hosting, and UGC-safety tables (including `spot_reports` and `user_blocks`) with RLS. Data is processed on Supabase infrastructure under their terms and security practices.
 
 We may also rely on:
 
@@ -164,7 +183,7 @@ We share personal data only when:
 - You publish content that is meant to be public (spots, photos, profile fields you choose to show)
 - A service provider needs it to run Altalaya (e.g. Supabase hosting, Stripe for voluntary payments)
 - The law requires it (valid legal request)
-- Needed to protect users, the public, or the integrity of the service (fraud, abuse, safety)
+- Needed to protect users, the public, or the integrity of the service (fraud, abuse, safety), including reviewing spot reports
 
 We do **not** sell your personal information.
 
@@ -175,10 +194,12 @@ We do **not** sell your personal information.
 - Account data: kept while your account is active
 - Public spots / photos: kept until you delete them, or until we remove them for policy violations
 - Saved-spot associations: kept until you unsaved them or delete your account
+- User blocks: kept until you unblock or delete your account
+- Spot reports: kept as reasonably needed for moderation, security, and dispute handling
 - Auth sessions / tokens: kept until you sign out or they expire
 - Logs: kept only as long as reasonably needed for security and debugging
 
-**In-app account deletion:** from Settings you can permanently delete your account. That process removes your profile, your spots, associated photos in storage (best effort), and signs you out. Residual backups may exist briefly for security and recovery. Some records may be retained where required for legal, security, or dispute reasons.
+**In-app account deletion:** from Settings you can permanently delete your account. That process removes your profile, your spots, associated photos in storage (best effort), your blocks, and signs you out. Spot reports you filed or that concern your content may be retained where required for legal, security, or dispute reasons. Residual backups may exist briefly for security and recovery.
 
 You can also email us (see below) to request deletion or other data rights.
 
@@ -200,6 +221,7 @@ In the app you can already:
 - Edit your profile (including avatar from the photo library)
 - Delete spots and photos you uploaded
 - Save / unsave spots
+- Report a spot or block a user from a mirador’s detail menu (⋯ → Reportar / Bloquear)
 - Sign out
 - Delete your account from Settings
 - Revoke location or media permissions in system settings
@@ -222,7 +244,7 @@ Altalaya is not directed at children under 13. We do not knowingly collect perso
 
 ## 9. Security
 
-We use industry-standard protections provided by our hosting and auth stack (encrypted transport, access controls, authenticated APIs, secure on-device session storage where available). No method of transmission or storage is 100% secure. Please use a strong password and protect your device.
+We use industry-standard protections provided by our hosting and auth stack (encrypted transport, access controls, authenticated APIs, Supabase RLS on sensitive tables such as reports and blocks, secure on-device session storage where available). No method of transmission or storage is 100% secure. Please use a strong password and protect your device.
 
 ---
 
@@ -244,4 +266,4 @@ Questions about privacy or data requests:
 
 **Email:** privacy@altalaya.app  
 **App:** Altalaya  
-**In-app:** Profile → Privacidad y Términos, and Settings → Legal
+**In-app:** Profile → Privacidad y Términos, Settings → Legal, and mirador detail → ⋯ → Reportar / Bloquear
