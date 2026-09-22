@@ -174,7 +174,3 @@ Questions about these Terms, content reports, or account issues:
 **Email:** privacy@altalaya.app  
 **App:** Altalaya  
 **In-app:** Profile → Privacidad y Términos, and Settings → Legal
-
----
-
-*This document is a practical starting point for App Store and Google Play compliance (especially UGC and outdoor-risk transparency). It is not a substitute for advice from a lawyer licensed in your jurisdiction.*
