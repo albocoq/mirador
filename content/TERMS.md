@@ -1,6 +1,6 @@
 # Altalaya Terms of Use
 
-**Last updated:** 21 September 2026
+**Last updated:** 22 September 2026
 
 Welcome to Altalaya. By creating an account or using the app, you agree to these Terms of Use (“Terms”). If you do not agree, do not use Altalaya.
 
@@ -159,15 +159,11 @@ Account deletion removes your profile and associated user content as described i
 
 We may update these Terms. We will update the “Last updated” date and may notify you in the app. Continued use after changes means you accept the new Terms. If you do not agree, stop using the app and remove your Content.
 
-Full documents are mirrored as `PRIVACY.md` / `TERMS.md` and linked from Settings → Legal once public URLs are published.
-
 ---
 
 ## 14. Governing law
 
 These Terms are governed by the laws of the country where the Altalaya operator is established, without regard to conflict-of-law rules, except where mandatory consumer protections in your country of residence apply and cannot be waived.
-
-*(Replace this section with your actual country / company details before public launch.)*
 
 ---
 

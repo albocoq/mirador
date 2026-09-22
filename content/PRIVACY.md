@@ -1,8 +1,8 @@
 # Altalaya Privacy Policy
 
-**Last updated:** 21 September 2026
+**Last updated:** 22 September 2026
 
-Altalaya (“we”, “us”, “the app”) is a community map of viewpoints (miradors). This policy explains what data we collect, why we collect it, and how you can control it.
+Altalaya is a community map of viewpoints (miradors). This policy explains what data we collect, why we collect it, and how you can control it.
 
 **Our principle:** we do not sell your data. We do not invent fake statistics. We only use your information to run the app and keep the community safe.
 
@@ -216,7 +216,7 @@ To exercise other rights, email us at the contact address below. We may need to 
 
 ## 8. Children
 
-Altalaya is not directed at children under 13 (or the minimum age required in your country). We do not knowingly collect personal data from children. If you believe a child has created an account, contact us and we will take appropriate action.
+Altalaya is not directed at children under 13. We do not knowingly collect personal data from children. If you believe a child has created an account, contact us and we will take appropriate action.
 
 ---
 
@@ -236,8 +236,6 @@ Altalaya helps people discover real places in nature. Publishing a spot does not
 
 We may update this policy. When we do, we will change the “Last updated” date and, when appropriate, notify you in the app or by other reasonable means. Continued use after an update means you accept the revised policy.
 
-Full documents are also mirrored in the project as `PRIVACY.md` / `TERMS.md` and linked from Settings → Legal once public Notion (or web) URLs are published for App Store and Google Play.
-
 ---
 
 ## 12. Contact
@@ -247,9 +245,3 @@ Questions about privacy or data requests:
 **Email:** privacy@altalaya.app  
 **App:** Altalaya  
 **In-app:** Profile → Privacidad y Términos, and Settings → Legal
-
-Replace the email above with your real contact address before store submission if different.
-
----
-
-*This document is provided to help you ship transparently. It is not formal legal advice for every jurisdiction. Have a qualified lawyer review it for your country of establishment and your App Store / Play Console listings.*
