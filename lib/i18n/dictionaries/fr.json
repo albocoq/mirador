@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "description": "Pages légales d'Altalaya — politique de confidentialité et conditions d'utilisation de la carte communautaire des points de vue.",
+    "privacyTitle": "Politique de confidentialité",
+    "privacyDescription": "Politique de confidentialité d'Altalaya — quelles données nous collectons et comment nous les utilisons.",
+    "termsTitle": "Conditions d'utilisation",
+    "termsDescription": "Conditions d'utilisation d'Altalaya — règles d'usage de la carte communautaire des points de vue."
+  },
+  "nav": {
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "language": "Langue"
+  },
+  "home": {
+    "tagline": "Politique de confidentialité et conditions d'utilisation de l'application mobile Altalaya — la carte communautaire des points de vue.",
+    "privacyCta": "Politique de confidentialité",
+    "termsCta": "Conditions d'utilisation",
+    "followUs": "Suivez-nous",
+    "logoAlt": "Altalaya"
+  },
+  "footer": {
+    "tagline": "Carte communautaire des points de vue.",
+    "contact": "Contact :",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "cookieSettings": "Paramètres cookies"
+  },
+  "legal": {
+    "back": "← Retour",
+    "alsoSeeTerms": "Voir aussi nos",
+    "alsoSeePrivacy": "Voir aussi notre",
+    "termsLink": "Conditions d'utilisation",
+    "privacyLink": "Politique de confidentialité",
+    "period": "."
+  },
+  "cookies": {
+    "title": "Cookies et analytique",
+    "body": "Nous utilisons Google Analytics uniquement si vous acceptez — pour comprendre les visites et clics sur ce site. Pas de pubs. Vous pouvez changer d'avis à tout moment.",
+    "privacyLink": "Politique de confidentialité",
+    "reject": "Refuser",
+    "accept": "Accepter l'analytique"
+  },
+  "discord": {
+    "cta": "Rejoindre le Discord pour la Beta",
+    "close": "Fermer",
+    "title": "Discord · Beta",
+    "body": "Vous êtes sur le point d'entrer sur le serveur Discord d'Altalaya. Pour pouvoir télécharger l'application, écrivez-moi en message privé ou dans le canal général que vous souhaitez être « beta tester ». Ainsi je pourrai vous attribuer le bon rôle et vous donner accès à la zone de téléchargements.",
+    "cancel": "Annuler",
+    "confirm": "Compris, aller sur Discord"
+  }
+}

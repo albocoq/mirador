@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "description": "Páginas legales de Altalaya — política de privacidad y términos de uso del mapa comunitario de miradores.",
+    "privacyTitle": "Política de privacidad",
+    "privacyDescription": "Política de privacidad de Altalaya — qué datos recopilamos y cómo los usamos.",
+    "termsTitle": "Términos de uso",
+    "termsDescription": "Términos de uso de Altalaya — reglas para usar el mapa comunitario de miradores."
+  },
+  "nav": {
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "language": "Idioma"
+  },
+  "home": {
+    "tagline": "Política de privacidad y términos de uso de la app móvil Altalaya — el mapa comunitario de miradores.",
+    "privacyCta": "Política de privacidad",
+    "termsCta": "Términos de uso",
+    "followUs": "Síguenos",
+    "logoAlt": "Altalaya"
+  },
+  "footer": {
+    "tagline": "Mapa comunitario de miradores.",
+    "contact": "Contacto:",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "cookieSettings": "Ajustes de cookies"
+  },
+  "legal": {
+    "back": "← Volver",
+    "alsoSeeTerms": "Consulta también nuestros",
+    "alsoSeePrivacy": "Consulta también nuestra",
+    "termsLink": "Términos de uso",
+    "privacyLink": "Política de privacidad",
+    "period": "."
+  },
+  "cookies": {
+    "title": "Cookies y analítica",
+    "body": "Usamos Google Analytics solo si aceptas — para entender visitas y clics en este sitio. Sin anuncios. Puedes cambiar de opinión en cualquier momento.",
+    "privacyLink": "Política de privacidad",
+    "reject": "Rechazar",
+    "accept": "Aceptar analítica"
+  },
+  "discord": {
+    "cta": "Únete al Discord para la Beta",
+    "close": "Cerrar",
+    "title": "Discord · Beta",
+    "body": "Estás a punto de entrar al servidor de Discord de Altalaya. Para poder descargar la aplicación, por favor avísame por mensaje privado o en el canal general que quieres ser un 'beta tester'. Así podré asignarte el rol correcto y darte acceso a la zona de descargas.",
+    "cancel": "Cancelar",
+    "confirm": "Entendido, ir a Discord"
+  }
+}

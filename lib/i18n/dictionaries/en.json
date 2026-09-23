@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "description": "Legal pages for Altalaya — privacy policy and terms of use for the community map of viewpoints.",
+    "privacyTitle": "Privacy Policy",
+    "privacyDescription": "Altalaya Privacy Policy — what data we collect and how we use it.",
+    "termsTitle": "Terms of Use",
+    "termsDescription": "Altalaya Terms of Use — rules for using the community map of viewpoints."
+  },
+  "nav": {
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "language": "Language"
+  },
+  "home": {
+    "tagline": "Privacy policy and terms of use for the Altalaya mobile app — the community map of viewpoints.",
+    "privacyCta": "Privacy Policy",
+    "termsCta": "Terms of Use",
+    "followUs": "Follow us",
+    "logoAlt": "Altalaya"
+  },
+  "footer": {
+    "tagline": "Community map of viewpoints.",
+    "contact": "Contact:",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "cookieSettings": "Cookie settings"
+  },
+  "legal": {
+    "back": "← Back",
+    "alsoSeeTerms": "Also see our",
+    "alsoSeePrivacy": "Also see our",
+    "termsLink": "Terms of Use",
+    "privacyLink": "Privacy Policy",
+    "period": "."
+  },
+  "cookies": {
+    "title": "Cookies & analytics",
+    "body": "We use Google Analytics only if you accept — to understand visits and clicks on this site. No ads. You can change your mind anytime.",
+    "privacyLink": "Privacy Policy",
+    "reject": "Reject",
+    "accept": "Accept analytics"
+  },
+  "discord": {
+    "cta": "Join Discord for the Beta",
+    "close": "Close",
+    "title": "Discord · Beta",
+    "body": "You're about to join the Altalaya Discord server. To download the app, please DM me or post in the general channel that you want to be a 'beta tester'. That way I can assign the right role and give you access to the downloads area.",
+    "cancel": "Cancel",
+    "confirm": "Got it, go to Discord"
+  }
+}

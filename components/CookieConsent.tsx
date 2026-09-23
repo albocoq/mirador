@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useI18n } from "@/components/I18nProvider";
 import {
   clearConsent,
   readConsent,
   writeConsent,
   type ConsentStatus,
 } from "@/lib/consent";
+import { localePath } from "@/lib/i18n/config";
 
 type Props = {
   /** When true, force the banner open (cookie preferences). */
@@ -16,6 +18,7 @@ type Props = {
 };
 
 export function CookieConsent({ forceOpen = false, onClosePreferences }: Props) {
+  const { locale, dict } = useI18n();
   const [visible, setVisible] = useState(false);
   const [ready, setReady] = useState(false);
 
@@ -46,19 +49,18 @@ export function CookieConsent({ forceOpen = false, onClosePreferences }: Props) 
             id="cookie-consent-title"
             className="text-sm font-semibold text-sand"
           >
-            Cookies & analytics
+            {dict.cookies.title}
           </p>
           <p
             id="cookie-consent-desc"
             className="mt-1.5 text-sm leading-6 text-mist"
           >
-            We use Google Analytics only if you accept — to understand visits and
-            clicks on this site. No ads. You can change your mind anytime.{" "}
+            {dict.cookies.body}{" "}
             <Link
-              href="/privacy"
+              href={localePath(locale, "/privacy")}
               className="text-sand underline decoration-white/25 underline-offset-2 hover:text-ember"
             >
-              Privacy Policy
+              {dict.cookies.privacyLink}
             </Link>
           </p>
         </div>
@@ -68,14 +70,14 @@ export function CookieConsent({ forceOpen = false, onClosePreferences }: Props) 
             onClick={() => decide("denied")}
             className="border border-white/15 px-4 py-2.5 text-sm font-semibold text-sand transition hover:border-ember/50 hover:text-ember"
           >
-            Reject
+            {dict.cookies.reject}
           </button>
           <button
             type="button"
             onClick={() => decide("granted")}
             className="bg-ember px-4 py-2.5 text-sm font-semibold text-ink transition hover:brightness-110"
           >
-            Accept analytics
+            {dict.cookies.accept}
           </button>
         </div>
       </div>
@@ -89,6 +91,8 @@ export function CookieSettingsButton({
 }: {
   className?: string;
 }) {
+  const { dict } = useI18n();
+
   return (
     <button
       type="button"
@@ -100,7 +104,7 @@ export function CookieSettingsButton({
         );
       }}
     >
-      Cookie settings
+      {dict.footer.cookieSettings}
     </button>
   );
 }

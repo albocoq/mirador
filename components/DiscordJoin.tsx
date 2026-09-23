@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import { useI18n } from "@/components/I18nProvider";
 import { trackEvent } from "@/lib/analytics";
 import { DISCORD_INVITE_URL } from "@/lib/config";
 
@@ -9,6 +10,7 @@ type Props = {
 };
 
 export function DiscordJoin({ className = "" }: Props) {
+  const { dict } = useI18n();
   const [open, setOpen] = useState(false);
   const titleId = useId();
   const discordHref = DISCORD_INVITE_URL || "#";
@@ -34,7 +36,7 @@ export function DiscordJoin({ className = "" }: Props) {
         }}
         className="inline-flex items-center justify-center bg-[#5865F2] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#4752C4]"
       >
-        Únete al Discord para la Beta
+        {dict.discord.cta}
       </button>
 
       {open ? (
@@ -44,7 +46,7 @@ export function DiscordJoin({ className = "" }: Props) {
         >
           <button
             type="button"
-            aria-label="Cerrar"
+            aria-label={dict.discord.close}
             className="absolute inset-0 bg-ink/70 backdrop-blur-sm"
             onClick={() => setOpen(false)}
           />
@@ -59,14 +61,10 @@ export function DiscordJoin({ className = "" }: Props) {
               id={titleId}
               className="font-display text-xl tracking-tight text-sand sm:text-2xl"
             >
-              Discord · Beta
+              {dict.discord.title}
             </h2>
             <p className="mt-3 text-sm leading-6 text-mist sm:text-base sm:leading-7">
-              Estás a punto de entrar al servidor de Discord de Altalaya. Para
-              poder descargar la aplicación, por favor avísame por mensaje
-              privado o en el canal general que quieres ser un &apos;beta
-              tester&apos;. Así podré asignarte el rol correcto y darte acceso a
-              la zona de descargas.
+              {dict.discord.body}
             </p>
 
             <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3">
@@ -75,7 +73,7 @@ export function DiscordJoin({ className = "" }: Props) {
                 onClick={() => setOpen(false)}
                 className="inline-flex w-full items-center justify-center bg-white/10 px-4 py-2.5 text-sm font-semibold text-mist transition hover:bg-white/15 hover:text-sand sm:w-auto"
               >
-                Cancelar
+                {dict.discord.cancel}
               </button>
               <a
                 href={discordHref}
@@ -87,7 +85,7 @@ export function DiscordJoin({ className = "" }: Props) {
                   setOpen(false);
                 }}
               >
-                Entendido, ir a Discord
+                {dict.discord.confirm}
               </a>
             </div>
           </div>
