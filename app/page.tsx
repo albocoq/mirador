@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { DiscordJoin } from "@/components/DiscordJoin";
+import { SocialLinks } from "@/components/SocialLinks";
 import { TrackedLink } from "@/components/TrackedLink";
 
 export default function HomePage() {
@@ -38,6 +39,12 @@ export default function HomePage() {
         >
           Terms of Use
         </TrackedLink>
+      </div>
+      <div className="mt-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-mist/70">
+          Síguenos
+        </p>
+        <SocialLinks className="mt-3" />
       </div>
     </section>
   );

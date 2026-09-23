@@ -3,25 +3,12 @@
 import Link from "next/link";
 import { CookieSettingsButton } from "@/components/CookieConsent";
 import { trackEvent } from "@/lib/analytics";
-import { SOCIAL_LINKS } from "@/lib/config";
 
 export function SiteFooter() {
   return (
     <footer className="relative z-10 mx-auto w-full max-w-5xl shrink-0 px-6 py-4 text-sm text-mist/60">
       <p>© {new Date().getFullYear()} Altalaya. Community map of viewpoints.</p>
       <p className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1">
-        {SOCIAL_LINKS.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            target="_blank"
-            rel="noreferrer"
-            className="underline decoration-white/20 underline-offset-2 hover:text-sand"
-            onClick={() => trackEvent(link.event)}
-          >
-            {link.label}
-          </a>
-        ))}
         <span>
           Contact:{" "}
           <a
