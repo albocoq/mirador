@@ -17,7 +17,6 @@ html {
 
 body {
   height: 100dvh;
-  overflow: hidden;
   background:
     radial-gradient(1200px 600px at 80% -10%, rgba(255, 122, 0, 0.18), transparent 55%),
     radial-gradient(900px 500px at -10% 20%, rgba(224, 160, 96, 0.12), transparent 50%),
