@@ -1,0 +1,13 @@
+[
+    {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.altalaya.app",
+        "sha256_cert_fingerprints": [
+          "F5:46:E5:DF:A1:27:F5:6B:CA:B0:14:1B:83:00:FREPLACE_WITH_PLAY_APP_SIGNING_SHA256B:6B:19:D2:CA:DA:5D:7C:2B:40:AE:4E:B4:D1:E1:CA:BA:7C"
+        ]
+      }
+    }
+  ]
+  
