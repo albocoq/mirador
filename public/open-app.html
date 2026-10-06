@@ -4,10 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Altalaya</title>
-    <meta
-      http-equiv="refresh"
-      content="2;url=https://play.google.com/store/apps/details?id=com.altalaya.app"
-    />
     <style>
       body {
         margin: 0;
@@ -20,39 +16,104 @@
         text-align: center;
         padding: 24px;
       }
-      a {
+      h1 {
+        font-size: 1.4rem;
+        margin: 0 0 8px;
+      }
+      p {
+        color: #a8a29e;
+        margin: 0 0 20px;
+      }
+      .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+      }
+      a.btn {
+        display: inline-block;
+        background: #ff7a00;
+        color: #5c2800;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 999px;
+        padding: 12px 22px;
+      }
+      a.secondary {
         color: #ff7a00;
+        font-size: 0.95rem;
       }
     </style>
   </head>
   <body>
     <main>
-      <p>Opening Altalaya…</p>
-      <p>
+      <h1>Altalaya</h1>
+      <p id="status">Opening the viewpoint…</p>
+      <div class="actions">
+        <a class="btn" id="open-app" href="#">Open in Altalaya</a>
         <a
+          class="secondary"
+          id="play"
           href="https://play.google.com/store/apps/details?id=com.altalaya.app"
           >Get it on Google Play</a
         >
-      </p>
+      </div>
     </main>
     <script>
       (function () {
-        var play =
+        var PLAY =
           "https://play.google.com/store/apps/details?id=com.altalaya.app";
-        var path = location.pathname + location.search + location.hash;
-        var ua = navigator.userAgent || "";
-        if (/android/i.test(ua)) {
-          var intent =
-            "intent://" +
-            location.host +
-            path +
-            "#Intent;scheme=https;package=com.altalaya.app;S.browser_fallback_url=" +
-            encodeURIComponent(play) +
-            ";end";
-          location.replace(intent);
-          return;
+        var match = location.pathname.match(/^\/spot\/([^/]+)\/?$/);
+        var spotId = match ? decodeURIComponent(match[1]) : null;
+        var appPath = spotId ? "/spot/" + encodeURIComponent(spotId) : "/";
+        var customUrl = "altalaya://" + appPath.replace(/^\//, "");
+        var httpsUrl = "https://altalaya.app" + appPath;
+        var androidIntent =
+          "intent://" +
+          "altalaya.app" +
+          appPath +
+          "#Intent;scheme=https;package=com.altalaya.app;end";
+
+        var openBtn = document.getElementById("open-app");
+        var playLink = document.getElementById("play");
+        var statusEl = document.getElementById("status");
+        openBtn.href = customUrl;
+        playLink.href = PLAY;
+
+        var leftPage = false;
+        function markLeft() {
+          leftPage = true;
         }
-        location.replace(play);
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden) markLeft();
+        });
+        window.addEventListener("pagehide", markLeft);
+        window.addEventListener("blur", markLeft);
+
+        function tryOpenApp() {
+          var ua = navigator.userAgent || "";
+          if (/android/i.test(ua)) {
+            location.href = androidIntent;
+            setTimeout(function () {
+              if (!leftPage) location.href = customUrl;
+            }, 400);
+          } else {
+            location.href = customUrl;
+          }
+        }
+
+        openBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          tryOpenApp();
+        });
+
+        tryOpenApp();
+
+        setTimeout(function () {
+          if (leftPage) return;
+          statusEl.textContent =
+            "App not opening? Install it, then tap Open in Altalaya.";
+        }, 1600);
       })();
     </script>
   </body>
