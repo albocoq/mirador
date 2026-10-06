@@ -45,6 +45,19 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Deep links: serve open-app bridge (bypass locale redirect).
+  // /spot/:id and /:locale/spot/:id → public/open-app.html
+  const spotPath =
+    pathname.match(/^\/spot\/[^/]+\/?$/) ||
+    pathname.match(
+      new RegExp(`^\\/(?:${locales.join("|")})\\/spot\\/[^/]+\\/?$`),
+    );
+  if (spotPath) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/open-app.html";
+    return NextResponse.rewrite(url);
+  }
+
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   );
