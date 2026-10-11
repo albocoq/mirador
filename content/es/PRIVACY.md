@@ -116,22 +116,22 @@ Las teselas y servicios de mapa los proporciona Google Maps (vía `react-native-
 Este sitio es independiente de la app móvil. En el sitio podemos usar:
 
 - **Almacenamiento estrictamente necesario** — por ejemplo recordar tu elección de cookies de analítica en el navegador (`localStorage`). Sirve para respetar tu decisión y no te rastrea entre sitios.
-- **Google Analytics 4 (GA4)** — **solo si aceptas** mediante el banner de cookies. Si rechazas (o antes de elegir), **no** cargamos scripts de Google Analytics y **no** enviamos eventos de analítica.
+- **PostHog** — **solo si aceptas** mediante el banner de cookies. Si rechazas (o antes de elegir), **no** inicializamos PostHog y **no** enviamos eventos de analítica.
 
-Cuando se acepta la analítica, Google puede procesar datos como:
+Cuando se acepta la analítica, PostHog puede procesar datos como:
 
 - Páginas vistas y rutas de navegación aproximadas en este sitio
 - Eventos que configuramos (abrir el menú de descarga APK, clics en Drive o VirusTotal, navegar a Privacidad/Términos o contactarnos)
 - Ubicación aproximada derivada de la IP (país / región), info técnica de dispositivo / navegador y fuente de referencia
-- Identificadores en línea (incluidos cookies o identificadores de cliente similares usados por Google Analytics)
+- Identificadores en línea (incluidos cookies o identificadores de cliente similares usados por PostHog)
 
-**Finalidad:** entender cómo los visitantes usan este sitio (tráfico, engagement, qué enlaces son útiles) para mejorarlo. **No** usamos Google Analytics en este sitio para publicidad personalizada.
+**Finalidad:** entender cómo los visitantes usan este sitio (tráfico, engagement, qué enlaces son útiles) para mejorarlo. **No** usamos PostHog en este sitio para publicidad personalizada.
 
 **Base legal (UE/EEE/UK cuando aplique):** consentimiento. Puedes retirar el consentimiento en cualquier momento vía **Ajustes de cookies** en el pie (o borrando datos del sitio en el navegador). La retirada no afecta a la licitud del tratamiento anterior.
 
-**Conservación:** la retención de Google Analytics sigue el ajuste configurado en nuestra propiedad GA4 (normalmente en meses). Tu elección de consentimiento se guarda localmente en el navegador hasta que la cambies o la borres.
+**Conservación:** la retención de PostHog sigue el ajuste configurado en nuestro proyecto PostHog. Tu elección de consentimiento se guarda localmente en el navegador hasta que la cambies o la borres.
 
-**Transferencias internacionales:** Google puede procesar datos de analítica en servidores fuera de la UE/EEE (incluido Estados Unidos). El procesamiento de Google se describe en la [política de privacidad de Google](https://policies.google.com/privacy) y los términos de Google Analytics. Cuando se requiera, esas transferencias se basan en salvaguardas adecuadas ofrecidas por Google (p. ej. Cláusulas Contractuales Tipo).
+**Transferencias internacionales:** normalmente usamos PostHog Cloud en la región UE. Según la configuración, PostHog puede procesar datos de analítica como se describe en la [política de privacidad de PostHog](https://posthog.com/privacy). Si hay transferencias fuera de la UE/EEE, se basan en salvaguardas adecuadas ofrecidas por PostHog (p. ej. Cláusulas Contractuales Tipo).
 
 **Tus opciones:** Aceptar o Rechazar en el banner; cambiar después vía Ajustes de cookies; también controles del navegador / extensiones de exclusión. Bloquear la analítica no impide el acceso a Privacidad, Términos o enlaces de descarga.
 
@@ -165,7 +165,8 @@ Usamos **Supabase** para autenticación, base de datos, alojamiento de fotos y t
 
 También podemos apoyarnos en:
 
-- **Google** — inicio de sesión con Google y Google Maps (app); Google Analytics 4 en este sitio **solo con tu consentimiento**
+- **Google** — inicio de sesión con Google y Google Maps (app)
+- **PostHog** — analítica de producto del sitio **solo con tu consentimiento**
 - **Stripe** — pagos opcionales Early Founder
 - **Apple / Google** — distribución de la app, informes de fallos y servicios de las tiendas, según configuración de esas plataformas
 - **Alojamiento web** — nuestro host (p. ej. Vercel) puede procesar registros técnicos de conexión (IP, user-agent, marcas de tiempo) al servir el sitio y asegurar la infraestructura
@@ -228,7 +229,7 @@ En la app ya puedes:
 
 En este sitio puedes:
 
-- Aceptar o rechazar Google Analytics vía el banner de cookies
+- Aceptar o rechazar PostHog vía el banner de cookies
 - Cambiar esa elección en cualquier momento vía **Ajustes de cookies** en el pie
 - Leer esta Política de privacidad y los Términos de uso sin aceptar la analítica
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { ConsentProvider } from "@/components/ConsentProvider";
-import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { PostHogAnalytics } from "@/components/PostHogAnalytics";
 import { I18nProvider } from "@/components/I18nProvider";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -52,7 +52,7 @@ export default async function LangLayout({
         </main>
         <SiteFooter />
         <ConsentProvider />
-        <GoogleAnalytics />
+        <PostHogAnalytics />
       </I18nProvider>
     </div>
   );

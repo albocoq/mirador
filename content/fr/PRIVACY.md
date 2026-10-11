@@ -116,22 +116,22 @@ Les tuiles cartographiques et services associés sont fournis par Google Maps (v
 Ce site est distinct de l'application mobile. Sur le site, nous pouvons utiliser :
 
 - **Stockage strictement nécessaire** — par exemple mémoriser votre choix de cookies analytiques dans le navigateur (`localStorage`). Cela sert à respecter votre décision et ne vous suit pas sur d'autres sites.
-- **Google Analytics 4 (GA4)** — **uniquement si vous acceptez** via la bannière cookies. Si vous refusez (ou avant de choisir), nous ne chargeons **pas** les scripts Google Analytics et nous n'envoyons **pas** d'événements analytiques.
+- **PostHog** — **uniquement si vous acceptez** via la bannière cookies. Si vous refusez (ou avant de choisir), nous n'initialisons **pas** PostHog et nous n'envoyons **pas** d'événements analytiques.
 
-Lorsque l'analytique est acceptée, Google peut traiter des données telles que :
+Lorsque l'analytique est acceptée, PostHog peut traiter des données telles que :
 
 - Pages vues et parcours de navigation approximatifs sur ce site
 - Événements que nous configurons (ouverture du menu de téléchargement APK, clics Drive ou VirusTotal, navigation Confidentialité/Conditions, contact, etc.)
 - Localisation approximative dérivée de l'IP (pays / région), infos techniques appareil / navigateur, et source de référencement
-- Identifiants en ligne (y compris cookies ou identifiants clients similaires utilisés par Google Analytics)
+- Identifiants en ligne (y compris cookies ou identifiants clients similaires utilisés par PostHog)
 
-**Finalité :** comprendre comment les visiteurs utilisent ce site (trafic, engagement, liens utiles) pour l'améliorer. Nous n'utilisons **pas** Google Analytics sur ce site pour de la publicité personnalisée.
+**Finalité :** comprendre comment les visiteurs utilisent ce site (trafic, engagement, liens utiles) pour l'améliorer. Nous n'utilisons **pas** PostHog sur ce site pour de la publicité personnalisée.
 
 **Base légale (UE/EEE/UK le cas échéant) :** consentement. Vous pouvez retirer votre consentement à tout moment via **Paramètres cookies** dans le pied de page (ou en effaçant les données du site dans le navigateur). Le retrait n'affecte pas la licéité du traitement antérieur.
 
-**Conservation :** la rétention Google Analytics suit le réglage configuré dans notre propriété GA4 (généralement en mois). Votre choix de consentement est stocké localement dans le navigateur jusqu'à modification ou suppression.
+**Conservation :** la rétention PostHog suit le réglage configuré dans notre projet PostHog. Votre choix de consentement est stocké localement dans le navigateur jusqu'à modification ou suppression.
 
-**Transferts internationaux :** Google peut traiter des données analytiques sur des serveurs hors UE/EEE (y compris aux États-Unis). Le traitement Google est décrit dans la [politique de confidentialité de Google](https://policies.google.com/privacy) et les conditions Google Analytics. Le cas échéant, ces transferts s'appuient sur des garanties appropriées proposées par Google (par ex. clauses contractuelles types).
+**Transferts internationaux :** nous utilisons en principe PostHog Cloud en région UE. Selon la configuration, PostHog peut traiter des données analytiques comme décrit dans la [politique de confidentialité de PostHog](https://posthog.com/privacy). En cas de transferts hors UE/EEE, ils s'appuient sur des garanties appropriées proposées par PostHog (par ex. clauses contractuelles types).
 
 **Vos choix :** Accepter ou Refuser dans la bannière ; modifier plus tard via Paramètres cookies ; utiliser aussi les contrôles du navigateur / extensions d'opt-out. Bloquer l'analytique n'empêche pas l'accès aux pages Confidentialité, Conditions ou liens de téléchargement.
 
@@ -165,7 +165,8 @@ Nous utilisons **Supabase** pour l'authentification, le stockage en base, l'héb
 
 Nous pouvons aussi nous appuyer sur :
 
-- **Google** — connexion Google et Google Maps (app) ; Google Analytics 4 sur ce site **uniquement avec votre consentement**
+- **Google** — connexion Google et Google Maps (app)
+- **PostHog** — analytique produit du site **uniquement avec votre consentement**
 - **Stripe** — paiements optionnels Early Founder
 - **Apple / Google** — distribution de l'app, rapports de plantage et services des stores, selon la configuration de ces plateformes
 - **Hébergement du site** — notre hébergeur web (par ex. Vercel) peut traiter des journaux techniques de connexion (IP, user-agent, horodatages) pour servir le site et sécuriser l'infrastructure
@@ -228,7 +229,7 @@ Dans l'app, vous pouvez déjà :
 
 Sur ce site, vous pouvez :
 
-- Accepter ou refuser Google Analytics via la bannière cookies
+- Accepter ou refuser PostHog via la bannière cookies
 - Modifier ce choix à tout moment via **Paramètres cookies** dans le pied de page
 - Lire cette politique et les Conditions d'utilisation sans accepter l'analytique
 

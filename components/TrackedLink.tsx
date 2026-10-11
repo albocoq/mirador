@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import type { ComponentProps } from "react";
-import { trackEvent, type GaEventParams } from "@/lib/analytics";
+import { trackEvent, type AnalyticsEventParams } from "@/lib/analytics";
 
 type Props = ComponentProps<typeof Link> & {
   event: string;
-  eventParams?: GaEventParams;
+  eventParams?: AnalyticsEventParams;
 };
 
 export function TrackedLink({

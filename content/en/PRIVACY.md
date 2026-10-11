@@ -116,22 +116,22 @@ Map tiles and related map services are provided by Google Maps (via `react-nativ
 This website is separate from the mobile app. On the website we may use:
 
 - **Strictly necessary storage** — for example remembering your analytics cookie choice in your browser (`localStorage`). This is required to respect your decision and does not track you across sites.
-- **Google Analytics 4 (GA4)** — **only if you accept** via the cookie banner. If you reject (or before you choose), we do **not** load Google Analytics scripts and we do **not** send analytics events.
+- **PostHog** — **only if you accept** via the cookie banner. If you reject (or before you choose), we do **not** initialize PostHog and we do **not** send analytics events.
 
-When analytics is accepted, Google may process data such as:
+When analytics is accepted, PostHog may process data such as:
 
 - Pages viewed and approximate navigation paths on this site
 - Events we configure (for example opening the APK download menu, clicking the Drive or VirusTotal links, navigating to Privacy/Terms, or contacting us)
 - Approximate location derived from IP (country / region level), device / browser technical info, and referral source
-- Online identifiers (including cookie or similar client identifiers used by Google Analytics)
+- Online identifiers (including cookie or similar client identifiers used by PostHog)
 
-**Purpose:** understand how visitors use this website (traffic, engagement, which links are useful) so we can improve it. We do **not** use Google Analytics on this site for personalized advertising.
+**Purpose:** understand how visitors use this website (traffic, engagement, which links are useful) so we can improve it. We do **not** use PostHog on this site for personalized advertising.
 
 **Legal basis (EU/EEA/UK where applicable):** consent. You can withdraw consent at any time via **Cookie settings** in the website footer (or by clearing site data in your browser). Withdrawal does not affect the lawfulness of processing before withdrawal.
 
-**Retention:** Google Analytics retention follows the retention setting configured in our GA4 property (typically measured in months). Our consent choice is stored locally in your browser until you change or clear it.
+**Retention:** PostHog retention follows the retention setting configured in our PostHog project. Our consent choice is stored locally in your browser until you change or clear it.
 
-**International transfers:** Google may process analytics data on servers outside the EU/EEA (including the United States). Google’s processing is described in [Google’s privacy policy](https://policies.google.com/privacy) and Google Analytics terms. Where required, such transfers rely on appropriate safeguards offered by Google (for example Standard Contractual Clauses).
+**International transfers:** We typically use PostHog Cloud in the EU region. Depending on configuration, PostHog may process analytics data as described in [PostHog’s privacy policy](https://posthog.com/privacy). Where transfers outside the EU/EEA occur, they rely on appropriate safeguards offered by PostHog (for example Standard Contractual Clauses).
 
 **Your choices:** Accept or Reject in the banner; change later via Cookie settings; also use browser controls / opt-out extensions. Blocking analytics will not break core access to Privacy, Terms, or download links.
 
@@ -165,7 +165,8 @@ We use **Supabase** for authentication, database storage, photo hosting, and UGC
 
 We may also rely on:
 
-- **Google** — Google sign-in and Google Maps (app); Google Analytics 4 on this website **only with your consent**
+- **Google** — Google sign-in and Google Maps (app)
+- **PostHog** — website product analytics **only with your consent**
 - **Stripe** — optional Early Founder support payments
 - **Apple / Google** — app distribution, crash reporting, and store services, as configured by those platforms
 - **Website hosting** — our web host (for example Vercel) may process technical connection logs (IP, user-agent, timestamps) as part of serving the site and securing infrastructure
@@ -228,7 +229,7 @@ In the app you can already:
 
 On this website you can:
 
-- Accept or reject Google Analytics via the cookie banner
+- Accept or reject PostHog analytics via the cookie banner
 - Change that choice anytime via **Cookie settings** in the footer
 - Read this Privacy Policy and the Terms of Use without accepting analytics
 

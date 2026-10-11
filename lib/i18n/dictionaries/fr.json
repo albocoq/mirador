@@ -35,7 +35,7 @@
   },
   "cookies": {
     "title": "Cookies et analytique",
-    "body": "Nous utilisons Google Analytics uniquement si vous acceptez — pour comprendre les visites et clics sur ce site. Pas de pubs. Vous pouvez changer d'avis à tout moment.",
+    "body": "Nous utilisons PostHog uniquement si vous acceptez — pour comprendre les visites et clics sur ce site. Pas de pubs. Vous pouvez changer d'avis à tout moment.",
     "privacyLink": "Politique de confidentialité",
     "reject": "Refuser",
     "accept": "Accepter l'analytique"

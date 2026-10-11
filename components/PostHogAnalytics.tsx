@@ -1,9 +1,13 @@
 "use client";
 
-import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
-import { GA_MEASUREMENT_ID, trackPageView } from "@/lib/analytics";
+import {
+  disableAnalytics,
+  initAnalytics,
+  POSTHOG_KEY,
+  trackPageView,
+} from "@/lib/analytics";
 import { readConsent, type ConsentStatus } from "@/lib/consent";
 
 function PageViewTracker() {
@@ -18,43 +22,31 @@ function PageViewTracker() {
   return null;
 }
 
-export function GoogleAnalytics() {
+export function PostHogAnalytics() {
   const [consent, setConsent] = useState<ConsentStatus | null>(null);
 
   useEffect(() => {
-    setConsent(readConsent());
+    const current = readConsent();
+    setConsent(current);
+    if (current === "granted") initAnalytics();
+    else disableAnalytics();
 
     function onConsent(event: Event) {
       const detail = (event as CustomEvent<ConsentStatus | null>).detail;
       setConsent(detail ?? null);
+      if (detail === "granted") initAnalytics();
+      else disableAnalytics();
     }
 
     window.addEventListener("altalaya:consent", onConsent);
     return () => window.removeEventListener("altalaya:consent", onConsent);
   }, []);
 
-  if (!GA_MEASUREMENT_ID || consent !== "granted") return null;
+  if (!POSTHOG_KEY || consent !== "granted") return null;
 
   return (
-    <>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="ga-init" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_MEASUREMENT_ID}', {
-            send_page_view: false,
-            anonymize_ip: true
-          });
-        `}
-      </Script>
-      <Suspense fallback={null}>
-        <PageViewTracker />
-      </Suspense>
-    </>
+    <Suspense fallback={null}>
+      <PageViewTracker />
+    </Suspense>
   );
 }

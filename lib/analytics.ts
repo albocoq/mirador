@@ -1,47 +1,67 @@
+import posthog from "posthog-js";
 import { readConsent } from "@/lib/consent";
 
-/** GA4 measurement ID (`G-…`). Empty = analytics disabled. */
-export const GA_MEASUREMENT_ID =
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || "";
+/** PostHog project API key. Empty = analytics disabled. */
+export const POSTHOG_KEY =
+  process.env.NEXT_PUBLIC_POSTHOG_KEY?.trim() || "";
 
-export type GaEventParams = Record<
+/** Ingestion host — default EU Cloud. */
+export const POSTHOG_HOST =
+  process.env.NEXT_PUBLIC_POSTHOG_HOST?.trim() || "https://eu.i.posthog.com";
+
+export type AnalyticsEventParams = Record<
   string,
   string | number | boolean | undefined
 >;
-
-declare global {
-  interface Window {
-    dataLayer?: unknown[];
-    gtag?: (...args: unknown[]) => void;
-  }
-}
 
 function hasAnalyticsConsent() {
   return readConsent() === "granted";
 }
 
-function gtag(...args: unknown[]) {
-  if (typeof window.gtag === "function") {
-    window.gtag(...args);
-    return;
-  }
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(args);
+function isLoaded() {
+  return Boolean((posthog as { __loaded?: boolean }).__loaded);
 }
 
-/** Fire a GA4 event only after analytics consent. */
-export function trackEvent(name: string, params?: GaEventParams) {
-  if (!GA_MEASUREMENT_ID || typeof window === "undefined") return;
+/** Init PostHog after analytics consent. Idempotent. */
+export function initAnalytics() {
+  if (!POSTHOG_KEY || typeof window === "undefined") return;
   if (!hasAnalyticsConsent()) return;
-  gtag("event", name, params);
+
+  if (!isLoaded()) {
+    posthog.init(POSTHOG_KEY, {
+      api_host: POSTHOG_HOST,
+      person_profiles: "identified_only",
+      capture_pageview: false,
+      capture_pageleave: true,
+      persistence: "localStorage+cookie",
+    });
+  }
+
+  posthog.opt_in_capturing();
+}
+
+/** Stop capturing and clear PostHog identity (reject / withdraw). */
+export function disableAnalytics() {
+  if (typeof window === "undefined" || !POSTHOG_KEY) return;
+  if (!isLoaded()) return;
+  posthog.opt_out_capturing();
+  posthog.reset();
+}
+
+/** Fire an event only after analytics consent. */
+export function trackEvent(name: string, params?: AnalyticsEventParams) {
+  if (!POSTHOG_KEY || typeof window === "undefined") return;
+  if (!hasAnalyticsConsent()) return;
+  initAnalytics();
+  posthog.capture(name, params);
 }
 
 export function trackPageView(pagePath: string) {
-  if (!GA_MEASUREMENT_ID || typeof window === "undefined") return;
+  if (!POSTHOG_KEY || typeof window === "undefined") return;
   if (!hasAnalyticsConsent()) return;
-  gtag("event", "page_view", {
-    page_path: pagePath,
-    page_location: window.location.href,
-    page_title: document.title,
+  initAnalytics();
+  posthog.capture("$pageview", {
+    $current_url: window.location.origin + pagePath,
+    path: pagePath,
   });
 }

@@ -129,7 +129,7 @@ Refunds, if any, follow Stripe’s process and applicable consumer law. We may r
 
 ## 9. Third-party services
 
-Altalaya relies on third parties such as Supabase (auth, database, storage), Google (sign-in / maps; Analytics on the website only with consent), Stripe (optional payments), and our website host. Their own terms and privacy policies apply to their services. We are not responsible for outages or decisions made solely by those providers.
+Altalaya relies on third parties such as Supabase (auth, database, storage), Google (sign-in / maps), PostHog (website analytics only with consent), Stripe (optional payments), and our website host. Their own terms and privacy policies apply to their services. We are not responsible for outages or decisions made solely by those providers.
 
 Website analytics cookies are optional. See the Privacy Policy and the on-site cookie banner for details.
 

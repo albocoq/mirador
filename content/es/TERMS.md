@@ -129,7 +129,7 @@ Los reembolsos, si los hay, siguen el proceso de Stripe y la ley de consumo apli
 
 ## 9. Servicios de terceros
 
-Altalaya depende de terceros como Supabase (auth, base de datos, almacenamiento), Google (inicio de sesión / mapas; Analytics en el sitio solo con consentimiento), Stripe (pagos opcionales) y nuestro host web. Sus propios términos y políticas de privacidad aplican a sus servicios. No somos responsables de caídas o decisiones tomadas únicamente por esos proveedores.
+Altalaya depende de terceros como Supabase (auth, base de datos, almacenamiento), Google (inicio de sesión / mapas), PostHog (analítica del sitio solo con consentimiento), Stripe (pagos opcionales) y nuestro host web. Sus propios términos y políticas de privacidad aplican a sus servicios. No somos responsables de caídas o decisiones tomadas únicamente por esos proveedores.
 
 Las cookies de analítica del sitio son opcionales. Consulta la Política de privacidad y el banner de cookies del sitio para más detalles.
 

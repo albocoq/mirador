@@ -129,7 +129,7 @@ Les remboursements, le cas échéant, suivent le processus Stripe et le droit de
 
 ## 9. Services tiers
 
-Altalaya s'appuie sur des tiers comme Supabase (auth, base, stockage), Google (connexion / cartes ; Analytics sur le site uniquement avec consentement), Stripe (paiements optionnels) et notre hébergeur web. Leurs propres conditions et politiques de confidentialité s'appliquent à leurs services. Nous ne sommes pas responsables des pannes ou décisions prises uniquement par ces prestataires.
+Altalaya s'appuie sur des tiers comme Supabase (auth, base, stockage), Google (connexion / cartes), PostHog (analytique du site uniquement avec consentement), Stripe (paiements optionnels) et notre hébergeur web. Leurs propres conditions et politiques de confidentialité s'appliquent à leurs services. Nous ne sommes pas responsables des pannes ou décisions prises uniquement par ces prestataires.
 
 Les cookies analytiques du site sont optionnels. Voir la Politique de confidentialité et la bannière cookies pour les détails.
 
