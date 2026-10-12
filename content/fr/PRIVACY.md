@@ -202,6 +202,8 @@ Nous ne **vendons pas** vos informations personnelles.
 
 **Suppression de compte dans l'app :** depuis Réglages, vous pouvez supprimer définitivement votre compte. Ce processus retire votre profil, vos spots, les photos associées en stockage (au mieux), vos blocages, et vous déconnecte. Les signalements que vous avez déposés ou concernant votre contenu peuvent être conservés lorsque la loi, la sécurité ou un litige l'exigent. Des sauvegardes résiduelles peuvent exister brièvement pour la sécurité et la récupération.
 
+**Suppression de compte sur le web :** vous pouvez aussi supprimer votre compte sur [/delete-account](/delete-account) (connexion avec le même compte Google ou email, puis confirmation). Les mêmes règles de suppression s'appliquent.
+
 Vous pouvez aussi nous écrire (voir ci-dessous) pour demander une suppression ou d'autres droits sur vos données.
 
 ---
@@ -231,6 +233,7 @@ Sur ce site, vous pouvez :
 
 - Accepter ou refuser PostHog via la bannière cookies
 - Modifier ce choix à tout moment via **Paramètres cookies** dans le pied de page
+- Supprimer votre compte Altalaya via **Supprimer le compte** dans le pied de page
 - Lire cette politique et les Conditions d'utilisation sans accepter l'analytique
 
 Pour exercer d'autres droits, écrivez-nous à l'adresse ci-dessous. Nous pourrons d'abord vérifier votre identité.

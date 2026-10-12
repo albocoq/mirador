@@ -202,6 +202,8 @@ Compartimos datos personales solo cuando:
 
 **Eliminación de cuenta en la app:** desde Ajustes puedes eliminar permanentemente tu cuenta. Ese proceso elimina tu perfil, tus spots, fotos asociadas en almacenamiento (mejor esfuerzo), tus bloqueos y cierra tu sesión. Los reportes que presentaste o que afectan a tu contenido pueden conservarse cuando lo exijan motivos legales, de seguridad o de disputa. Pueden existir copias de seguridad residuales brevemente por seguridad y recuperación.
 
+**Eliminación de cuenta en la web:** también puedes eliminar tu cuenta en [/delete-account](/delete-account) (inicia sesión con la misma cuenta de Google o email y confirma). Aplican las mismas reglas de borrado.
+
 También puedes escribirnos (ver abajo) para solicitar eliminación u otros derechos sobre tus datos.
 
 ---
@@ -231,6 +233,7 @@ En este sitio puedes:
 
 - Aceptar o rechazar PostHog vía el banner de cookies
 - Cambiar esa elección en cualquier momento vía **Ajustes de cookies** en el pie
+- Eliminar tu cuenta de Altalaya vía **Eliminar cuenta** en el pie
 - Leer esta Política de privacidad y los Términos de uso sin aceptar la analítica
 
 Para ejercer otros derechos, escríbenos a la dirección de contacto abajo. Podemos necesitar verificar tu identidad primero.

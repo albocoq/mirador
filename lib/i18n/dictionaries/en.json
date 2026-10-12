@@ -4,11 +4,14 @@
     "privacyTitle": "Privacy Policy",
     "privacyDescription": "Altalaya Privacy Policy — what data we collect and how we use it.",
     "termsTitle": "Terms of Use",
-    "termsDescription": "Altalaya Terms of Use — rules for using the community map of viewpoints."
+    "termsDescription": "Altalaya Terms of Use — rules for using the community map of viewpoints.",
+    "deleteAccountTitle": "Delete account",
+    "deleteAccountDescription": "Permanently delete your Altalaya account and associated personal data."
   },
   "nav": {
     "privacy": "Privacy",
     "terms": "Terms",
+    "deleteAccount": "Delete account",
     "language": "Language"
   },
   "home": {
@@ -23,7 +26,39 @@
     "contact": "Contact:",
     "privacy": "Privacy",
     "terms": "Terms",
+    "deleteAccount": "Delete account",
     "cookieSettings": "Cookie settings"
+  },
+  "deleteAccount": {
+    "title": "Delete your Altalaya account",
+    "intro": "Everything happens here — no app required. Sign in with your Altalaya account (Google or email), then confirm permanent deletion. This cannot be undone.",
+    "removesProfile": "Your profile and username are removed",
+    "removesSpots": "Your viewpoints (spots) and related content are removed",
+    "removesPhotos": "Associated photos in storage are removed (best effort)",
+    "keepsReports": "Spot reports may be retained when required for legal, security, or dispute reasons",
+    "inAppHint": "You don’t need the app. Details in our",
+    "privacyLink": "Privacy Policy",
+    "continueGoogle": "Continue with Google",
+    "orEmail": "or email & password",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signedInAs": "Signed in as",
+    "confirmLabel": "Type",
+    "confirmWord": "DELETE",
+    "deleteCta": "Permanently delete my account",
+    "signOut": "Sign out instead",
+    "emailFallback": "Can't sign in? Email a deletion request to",
+    "emailSubject": "Altalaya account deletion request",
+    "doneTitle": "Account deleted",
+    "doneBody": "Your Altalaya account and associated personal data have been deleted as described in our Privacy Policy.",
+    "backHome": "Back to home",
+    "errors": {
+      "confirm": "Type DELETE exactly to confirm.",
+      "auth": "You must sign in to delete your account.",
+      "oauth": "Google sign-in failed. Try again or use email.",
+      "photos": "Could not delete photos. Try again before deleting the account."
+    }
   },
   "legal": {
     "back": "← Back",

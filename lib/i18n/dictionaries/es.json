@@ -4,11 +4,14 @@
     "privacyTitle": "Política de privacidad",
     "privacyDescription": "Política de privacidad de Altalaya — qué datos recopilamos y cómo los usamos.",
     "termsTitle": "Términos de uso",
-    "termsDescription": "Términos de uso de Altalaya — reglas para usar el mapa comunitario de miradores."
+    "termsDescription": "Términos de uso de Altalaya — reglas para usar el mapa comunitario de miradores.",
+    "deleteAccountTitle": "Eliminar cuenta",
+    "deleteAccountDescription": "Elimina permanentemente tu cuenta de Altalaya y los datos personales asociados."
   },
   "nav": {
     "privacy": "Privacidad",
     "terms": "Términos",
+    "deleteAccount": "Eliminar cuenta",
     "language": "Idioma"
   },
   "home": {
@@ -23,7 +26,39 @@
     "contact": "Contacto:",
     "privacy": "Privacidad",
     "terms": "Términos",
+    "deleteAccount": "Eliminar cuenta",
     "cookieSettings": "Ajustes de cookies"
+  },
+  "deleteAccount": {
+    "title": "Eliminar tu cuenta de Altalaya",
+    "intro": "Todo ocurre aquí, sin abrir la app. Inicia sesión con tu cuenta de Altalaya (Google o email) y confirma el borrado permanente. No se puede deshacer.",
+    "removesProfile": "Se elimina tu perfil y nombre de usuario",
+    "removesSpots": "Se eliminan tus miradores (spots) y el contenido relacionado",
+    "removesPhotos": "Se eliminan las fotos asociadas en almacenamiento (mejor esfuerzo)",
+    "keepsReports": "Los reportes pueden conservarse cuando lo exijan motivos legales, de seguridad o de disputa",
+    "inAppHint": "No necesitas la app. Detalles en nuestra",
+    "privacyLink": "Política de privacidad",
+    "continueGoogle": "Continuar con Google",
+    "orEmail": "o email y contraseña",
+    "email": "Email",
+    "password": "Contraseña",
+    "signIn": "Iniciar sesión",
+    "signedInAs": "Sesión iniciada como",
+    "confirmLabel": "Escribe",
+    "confirmWord": "DELETE",
+    "deleteCta": "Eliminar permanentemente mi cuenta",
+    "signOut": "Cerrar sesión en su lugar",
+    "emailFallback": "¿No puedes iniciar sesión? Envía una solicitud de eliminación a",
+    "emailSubject": "Solicitud de eliminación de cuenta Altalaya",
+    "doneTitle": "Cuenta eliminada",
+    "doneBody": "Tu cuenta de Altalaya y los datos personales asociados se han eliminado según nuestra Política de privacidad.",
+    "backHome": "Volver al inicio",
+    "errors": {
+      "confirm": "Escribe DELETE exactamente para confirmar.",
+      "auth": "Debes iniciar sesión para eliminar tu cuenta.",
+      "oauth": "Falló el inicio con Google. Inténtalo de nuevo o usa el email.",
+      "photos": "No se pudieron borrar las fotos. Inténtalo de nuevo antes de eliminar la cuenta."
+    }
   },
   "legal": {
     "back": "← Volver",

@@ -37,6 +37,12 @@ export function SiteFooter() {
         >
           {dict.footer.terms}
         </Link>
+        <Link
+          href={localePath(locale, "/delete-account")}
+          className="underline decoration-white/20 underline-offset-2 hover:text-sand"
+        >
+          {dict.footer.deleteAccount}
+        </Link>
         <CookieSettingsButton className="underline decoration-white/20 underline-offset-2 hover:text-sand" />
       </p>
     </footer>

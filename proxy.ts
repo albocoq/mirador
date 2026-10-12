@@ -20,6 +20,25 @@ function isAdminPath(pathname: string) {
   return pathname === "/admin" || pathname.startsWith("/admin/");
 }
 
+function isAuthCallbackPath(pathname: string) {
+  return pathname === "/auth/callback" || pathname.startsWith("/auth/");
+}
+
+function isDeleteAccountPath(pathname: string) {
+  return locales.some(
+    (locale) =>
+      pathname === `/${locale}/delete-account` ||
+      pathname.startsWith(`/${locale}/delete-account/`),
+  );
+}
+
+function canRefreshSession() {
+  return Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+  );
+}
+
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -35,13 +54,18 @@ export async function proxy(request: NextRequest) {
       return NextResponse.rewrite(url);
     }
 
-    if (
-      process.env.NEXT_PUBLIC_SUPABASE_URL &&
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
-    ) {
+    if (canRefreshSession()) {
       return updateSession(request);
     }
 
+    return NextResponse.next();
+  }
+
+  // OAuth callback — no locale prefix; refresh session cookies.
+  if (isAuthCallbackPath(pathname)) {
+    if (canRefreshSession()) {
+      return updateSession(request);
+    }
     return NextResponse.next();
   }
 
@@ -62,7 +86,12 @@ export async function proxy(request: NextRequest) {
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   );
 
-  if (pathnameHasLocale) return;
+  if (pathnameHasLocale) {
+    if (isDeleteAccountPath(pathname) && canRefreshSession()) {
+      return updateSession(request);
+    }
+    return;
+  }
 
   const locale = getLocale(request) ?? defaultLocale;
   request.nextUrl.pathname = `/${locale}${pathname === "/" ? "" : pathname}`;

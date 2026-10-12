@@ -4,11 +4,14 @@
     "privacyTitle": "Politique de confidentialité",
     "privacyDescription": "Politique de confidentialité d'Altalaya — quelles données nous collectons et comment nous les utilisons.",
     "termsTitle": "Conditions d'utilisation",
-    "termsDescription": "Conditions d'utilisation d'Altalaya — règles d'usage de la carte communautaire des points de vue."
+    "termsDescription": "Conditions d'utilisation d'Altalaya — règles d'usage de la carte communautaire des points de vue.",
+    "deleteAccountTitle": "Supprimer le compte",
+    "deleteAccountDescription": "Supprimer définitivement votre compte Altalaya et les données personnelles associées."
   },
   "nav": {
     "privacy": "Confidentialité",
     "terms": "Conditions",
+    "deleteAccount": "Supprimer le compte",
     "language": "Langue"
   },
   "home": {
@@ -23,7 +26,39 @@
     "contact": "Contact :",
     "privacy": "Confidentialité",
     "terms": "Conditions",
+    "deleteAccount": "Supprimer le compte",
     "cookieSettings": "Paramètres cookies"
+  },
+  "deleteAccount": {
+    "title": "Supprimer ton compte Altalaya",
+    "intro": "Tout se passe ici, sans ouvrir l'app. Connecte-toi avec ton compte Altalaya (Google ou email), puis confirme la suppression définitive. Irréversible.",
+    "removesProfile": "Ton profil et ton pseudo sont retirés",
+    "removesSpots": "Tes points de vue (spots) et le contenu associé sont retirés",
+    "removesPhotos": "Les photos associées en stockage sont retirées (au mieux)",
+    "keepsReports": "Les signalements peuvent être conservés si la loi, la sécurité ou un litige l'exigent",
+    "inAppHint": "Pas besoin de l'application. Détails dans notre",
+    "privacyLink": "Politique de confidentialité",
+    "continueGoogle": "Continuer avec Google",
+    "orEmail": "ou email & mot de passe",
+    "email": "Email",
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "signedInAs": "Connecté en tant que",
+    "confirmLabel": "Tape",
+    "confirmWord": "DELETE",
+    "deleteCta": "Supprimer définitivement mon compte",
+    "signOut": "Se déconnecter à la place",
+    "emailFallback": "Impossible de te connecter ? Envoie une demande de suppression à",
+    "emailSubject": "Demande de suppression de compte Altalaya",
+    "doneTitle": "Compte supprimé",
+    "doneBody": "Ton compte Altalaya et les données personnelles associées ont été supprimés comme décrit dans notre Politique de confidentialité.",
+    "backHome": "Retour à l'accueil",
+    "errors": {
+      "confirm": "Tape DELETE exactement pour confirmer.",
+      "auth": "Tu dois te connecter pour supprimer ton compte.",
+      "oauth": "Connexion Google échouée. Réessaie ou utilise l'email.",
+      "photos": "Impossible de supprimer les photos. Réessaie avant de supprimer le compte."
+    }
   },
   "legal": {
     "back": "← Retour",

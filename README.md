@@ -7,8 +7,20 @@ Public privacy policy and terms of use for the Altalaya mobile app.
 - `/` — home
 - `/privacy` — Privacy Policy
 - `/terms` — Terms of Use
+- `/delete-account` — account deletion (Google Play / web); uses the same Supabase `delete_own_account` RPC as the app
 
-Source markdown lives in `content/PRIVACY.md` and `content/TERMS.md`.
+Source markdown lives in `content/{en,fr,es}/PRIVACY.md` and `TERMS.md`.
+
+For Google OAuth on `/delete-account`, add **web** callbacks in Supabase → Authentication → URL configuration → Redirect URLs (keep `altalaya://**` for the mobile app):
+
+```
+http://localhost:3000/auth/callback
+http://127.0.0.1:3000/auth/callback
+https://YOUR_DOMAIN/auth/callback
+altalaya://**
+```
+
+If the web redirect is missing, Supabase falls back to the app deep link and the browser shows “Open xdg-open?”.
 
 ## APK download
 

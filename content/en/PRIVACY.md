@@ -202,6 +202,8 @@ We do **not** sell your personal information.
 
 **In-app account deletion:** from Settings you can permanently delete your account. That process removes your profile, your spots, associated photos in storage (best effort), your blocks, and signs you out. Spot reports you filed or that concern your content may be retained where required for legal, security, or dispute reasons. Residual backups may exist briefly for security and recovery.
 
+**Web account deletion:** you can also delete your account at [/delete-account](/delete-account) on this site (sign in with the same Google or email account, then confirm). The same data removal rules apply.
+
 You can also email us (see below) to request deletion or other data rights.
 
 ---
@@ -231,6 +233,7 @@ On this website you can:
 
 - Accept or reject PostHog analytics via the cookie banner
 - Change that choice anytime via **Cookie settings** in the footer
+- Delete your Altalaya account via **Delete account** in the footer
 - Read this Privacy Policy and the Terms of Use without accepting analytics
 
 To exercise other rights, email us at the contact address below. We may need to verify your identity first.
