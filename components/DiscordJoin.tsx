@@ -3,7 +3,7 @@
 import { useEffect, useId, useState } from "react";
 import { useI18n } from "@/components/I18nProvider";
 import { trackEvent } from "@/lib/analytics";
-import { DISCORD_INVITE_URL } from "@/lib/config";
+import { DISCORD_INVITE_URL, PLAY_STORE_URL } from "@/lib/config";
 
 type Props = {
   className?: string;
@@ -34,7 +34,7 @@ export function DiscordJoin({ className = "" }: Props) {
           setOpen(true);
           trackEvent("discord_modal_open");
         }}
-        className="inline-flex items-center justify-center bg-[#5865F2] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#4752C4]"
+        className="inline-flex items-center justify-center border border-white/15 px-6 py-3 text-sm font-semibold text-sand transition hover:border-[#5865F2]/50 hover:text-[#7289DA]"
       >
         {dict.discord.cta}
       </button>
@@ -65,6 +65,21 @@ export function DiscordJoin({ className = "" }: Props) {
             </h2>
             <p className="mt-3 text-sm leading-6 text-mist sm:text-base sm:leading-7">
               {dict.discord.body}
+            </p>
+            <p className="mt-3 text-sm leading-6 text-mist sm:text-base sm:leading-7">
+              {dict.discord.playHint}{" "}
+              <a
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-ember underline decoration-ember/40 underline-offset-2 hover:text-[#ff8f2a]"
+                onClick={() =>
+                  trackEvent("play_store_click", { location: "discord_modal" })
+                }
+              >
+                {dict.home.playStoreCta}
+              </a>
+              .
             </p>
 
             <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3">

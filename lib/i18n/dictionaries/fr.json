@@ -1,6 +1,6 @@
 {
   "meta": {
-    "description": "Pages légales d'Altalaya — politique de confidentialité et conditions d'utilisation de la carte communautaire des points de vue.",
+    "description": "Altalaya — découvre et partage les meilleurs points de vue. Télécharge l'app sur Google Play.",
     "privacyTitle": "Politique de confidentialité",
     "privacyDescription": "Politique de confidentialité d'Altalaya — quelles données nous collectons et comment nous les utilisons.",
     "termsTitle": "Conditions d'utilisation",
@@ -12,10 +12,12 @@
     "privacy": "Confidentialité",
     "terms": "Conditions",
     "deleteAccount": "Supprimer le compte",
-    "language": "Langue"
+    "language": "Langue",
+    "getApp": "Télécharger"
   },
   "home": {
-    "tagline": "Politique de confidentialité et conditions d'utilisation de l'application mobile Altalaya — la carte communautaire des points de vue.",
+    "tagline": "Trouve et partage les meilleurs points de vue — paysages, golden hour et coins tranquilles près de chez toi.",
+    "playStoreCta": "Télécharger sur Google Play",
     "privacyCta": "Politique de confidentialité",
     "termsCta": "Conditions d'utilisation",
     "followUs": "Suivez-nous",
@@ -23,6 +25,7 @@
   },
   "footer": {
     "tagline": "Carte communautaire des points de vue.",
+    "getApp": "Disponible sur Google Play",
     "contact": "Contact :",
     "privacy": "Confidentialité",
     "terms": "Conditions",
@@ -76,10 +79,11 @@
     "accept": "Accepter l'analytique"
   },
   "discord": {
-    "cta": "Rejoindre le Discord pour la Beta",
+    "cta": "Rejoindre le Discord",
     "close": "Fermer",
-    "title": "Discord · Beta",
-    "body": "Vous êtes sur le point d'entrer sur le serveur Discord d'Altalaya. Pour pouvoir télécharger l'application, écrivez-moi en message privé ou dans le canal général que vous souhaitez être « beta tester ». Ainsi je pourrai vous attribuer le bon rôle et vous donner accès à la zone de téléchargements.",
+    "title": "Discord Altalaya",
+    "body": "Tu vas rejoindre le Discord Altalaya — échanges avec la communauté, partages et actus.",
+    "playHint": "Pour installer l'app, c'est ici :",
     "cancel": "Annuler",
     "confirm": "Compris, aller sur Discord"
   }

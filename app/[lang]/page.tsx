@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { DiscordJoin } from "@/components/DiscordJoin";
+import { PlayStoreButton } from "@/components/PlayStoreButton";
 import { SocialLinks } from "@/components/SocialLinks";
 import { TrackedLink } from "@/components/TrackedLink";
 import { isLocale, localePath } from "@/lib/i18n/config";
@@ -35,6 +36,7 @@ export default async function HomePage({
         {dict.home.tagline}
       </p>
       <div className="mt-6 flex flex-wrap items-start gap-3">
+        <PlayStoreButton location="home_cta" />
         <DiscordJoin />
         <TrackedLink
           href={privacyHref}

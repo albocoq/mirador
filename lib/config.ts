@@ -1,4 +1,9 @@
-/** Discord invite URL for the Altalaya beta server. */
+/** Google Play listing for the Altalaya Android app. */
+export const PLAY_STORE_URL =
+  process.env.NEXT_PUBLIC_PLAY_STORE_URL?.trim() ||
+  "https://play.google.com/store/apps/details?id=com.altalaya.app";
+
+/** Discord invite URL for the Altalaya community server. */
 export const DISCORD_INVITE_URL =
   process.env.NEXT_PUBLIC_DISCORD_INVITE_URL?.trim() ||
   "https://discord.gg/t5n3TmgvrJ";

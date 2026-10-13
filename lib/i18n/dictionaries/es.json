@@ -1,6 +1,6 @@
 {
   "meta": {
-    "description": "Páginas legales de Altalaya — política de privacidad y términos de uso del mapa comunitario de miradores.",
+    "description": "Altalaya — descubre y comparte los mejores miradores. Descarga la app en Google Play.",
     "privacyTitle": "Política de privacidad",
     "privacyDescription": "Política de privacidad de Altalaya — qué datos recopilamos y cómo los usamos.",
     "termsTitle": "Términos de uso",
@@ -12,10 +12,12 @@
     "privacy": "Privacidad",
     "terms": "Términos",
     "deleteAccount": "Eliminar cuenta",
-    "language": "Idioma"
+    "language": "Idioma",
+    "getApp": "Descargar"
   },
   "home": {
-    "tagline": "Política de privacidad y términos de uso de la app móvil Altalaya — el mapa comunitario de miradores.",
+    "tagline": "Encuentra y comparte los mejores miradores — paisajes, hora dorada y rincones tranquilos cerca de ti.",
+    "playStoreCta": "Descargar en Google Play",
     "privacyCta": "Política de privacidad",
     "termsCta": "Términos de uso",
     "followUs": "Síguenos",
@@ -23,6 +25,7 @@
   },
   "footer": {
     "tagline": "Mapa comunitario de miradores.",
+    "getApp": "Disponible en Google Play",
     "contact": "Contacto:",
     "privacy": "Privacidad",
     "terms": "Términos",
@@ -76,10 +79,11 @@
     "accept": "Aceptar analítica"
   },
   "discord": {
-    "cta": "Únete al Discord para la Beta",
+    "cta": "Únete al Discord",
     "close": "Cerrar",
-    "title": "Discord · Beta",
-    "body": "Estás a punto de entrar al servidor de Discord de Altalaya. Para poder descargar la aplicación, por favor avísame por mensaje privado o en el canal general que quieres ser un 'beta tester'. Así podré asignarte el rol correcto y darte acceso a la zona de descargas.",
+    "title": "Discord Altalaya",
+    "body": "Vas a unirte al Discord de Altalaya — habla con la comunidad, comparte hallazgos y sigue las novedades.",
+    "playHint": "Para instalar la app, descárgala en",
     "cancel": "Cancelar",
     "confirm": "Entendido, ir a Discord"
   }

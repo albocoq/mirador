@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { CookieSettingsButton } from "@/components/CookieConsent";
+import { PlayStoreButton } from "@/components/PlayStoreButton";
 import { useI18n } from "@/components/I18nProvider";
 import { trackEvent } from "@/lib/analytics";
 import { localePath } from "@/lib/i18n/config";
@@ -15,6 +16,7 @@ export function SiteFooter() {
         © {new Date().getFullYear()} Altalaya. {dict.footer.tagline}
       </p>
       <p className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1">
+        <PlayStoreButton location="footer" variant="footer" />
         <span>
           {dict.footer.contact}{" "}
           <a

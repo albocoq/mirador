@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { PlayStoreButton } from "@/components/PlayStoreButton";
 import { TrackedLink } from "@/components/TrackedLink";
 import { useI18n } from "@/components/I18nProvider";
 import { localePath } from "@/lib/i18n/config";
@@ -14,25 +15,25 @@ export function SiteHeader() {
   ] as const;
 
   return (
-    <header className="relative z-10 mx-auto flex w-full max-w-5xl shrink-0 items-center justify-between gap-4 px-6 py-4">
+    <header className="relative z-10 mx-auto flex w-full max-w-5xl shrink-0 items-center justify-between gap-3 px-6 py-4 sm:gap-4">
       <TrackedLink
         href={localePath(locale)}
         event="navigate"
         eventParams={{ to: "/", location: "header" }}
-        className="flex items-center gap-3 text-sand transition hover:text-ember"
+        className="flex min-w-0 items-center gap-3 text-sand transition hover:text-ember"
       >
         <Image
           src="/logo.png"
           alt=""
           width={36}
           height={36}
-          className="size-9"
+          className="size-9 shrink-0"
           priority
         />
         <span className="font-display text-lg tracking-tight">Altalaya</span>
       </TrackedLink>
-      <div className="flex items-center gap-4 sm:gap-6">
-        <nav className="flex items-center gap-4 text-sm text-mist sm:gap-6">
+      <div className="flex items-center gap-3 sm:gap-5">
+        <nav className="hidden items-center gap-4 text-sm text-mist sm:flex sm:gap-6">
           {links.map((link) => (
             <TrackedLink
               key={link.href}
@@ -45,6 +46,7 @@ export function SiteHeader() {
             </TrackedLink>
           ))}
         </nav>
+        <PlayStoreButton location="header" variant="header" />
         <LanguageSwitcher />
       </div>
     </header>
