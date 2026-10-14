@@ -1,6 +1,6 @@
 # Política de privacidad de Altalaya
 
-**Última actualización:** 22 de septiembre de 2026
+**Última actualización:** 14 de octubre de 2026
 
 Altalaya es un mapa comunitario de miradores. Esta política explica qué datos recopilamos, por qué y cómo puedes controlarlos.
 
@@ -85,6 +85,25 @@ Para mantener el servicio fiable y seguro, podemos procesar:
 - Estado básico de conectividad de red (p. ej. banner offline)
 - Tokens de sesión necesarios para mantenerte conectado
 
+### Analítica de producto en la app (PostHog)
+
+Para entender cómo se usa la app y mejorar la fiabilidad, usamos **PostHog** (normalmente PostHog Cloud en la región **UE**) como encargado del tratamiento para analítica de producto. Cuando inicias sesión, podemos enviar a PostHog:
+
+- Tu identificador de usuario
+- Dirección de correo electrónico
+- Nombre visible
+- URL de la foto de perfil (`avatar_url`), si tienes una
+- Metadatos de cuenta como la fecha de creación (`created_at`), cuando estén disponibles
+- Eventos de producto / uso (por ejemplo pantallas abiertas, uso de funciones y acciones in-app que configuremos)
+
+**Finalidad:** analítica y fiabilidad del producto (corregir errores, ver qué funciona, mejorar la experiencia). **No** usamos PostHog en la app para publicidad personalizada ni para vender tus datos.
+
+**Compartición:** PostHog procesa estos datos en nuestro nombre como proveedor de servicios / encargado. Los datos se transmiten por conexiones cifradas (HTTPS). La retención sigue el ajuste configurado en nuestro proyecto PostHog.
+
+**Tus opciones:** Si la app ofrece una exclusión de analítica en Ajustes, desactivarla detiene los eventos analíticos posteriores hacia PostHog (no anula el tratamiento ya realizado). También puedes solicitar eliminación u otros derechos vía privacy@altalaya.app (ver Contacto). La eliminación de cuenta retira los datos de cuenta de Altalaya como se describe abajo; también tomamos medidas razonables para que los datos de persona de PostHog asociados no se conserven para analítica, o puedes pedírnoslo por correo.
+
+La analítica del sitio (banner de cookies / consentimiento) es independiente y se describe en « Este sitio — cookies y analítica » más abajo.
+
 ### Comentarios que envías
 
 Si usas «Enviar comentarios» en Ajustes, tu dispositivo abre el cliente de correo. Lo que escribas y envíes se trata como correspondencia de correo ordinaria. No rastreamos tu buzón en silencio.
@@ -152,7 +171,7 @@ Usamos tus datos para:
 - Aplicar el estado Early Founder cuando apoyas el proyecto
 - Moderar contenido dañino o ilegal
 - Procesar reportes de spots y bloqueos para ocultar contenido en tu mapa y revisar abusos
-- Corregir errores y mejorar la fiabilidad
+- Corregir errores y mejorar la fiabilidad, incluida la analítica de producto (PostHog) descrita arriba
 - Cumplir la ley cuando sea necesario
 
 **No** usamos tus datos para reventa publicitaria dirigida y no vendemos datos personales.
@@ -166,7 +185,7 @@ Usamos **Supabase** para autenticación, base de datos, alojamiento de fotos y t
 También podemos apoyarnos en:
 
 - **Google** — inicio de sesión con Google y Google Maps (app)
-- **PostHog** — analítica de producto del sitio **solo con tu consentimiento**
+- **PostHog** — analítica de producto en la **app móvil** (id de usuario, correo, nombre, URL de avatar, metadatos de cuenta como `created_at`, y eventos de uso; Cloud UE según configuración), y analítica del sitio **solo con tu consentimiento de cookies**
 - **Stripe** — pagos opcionales Early Founder
 - **Apple / Google** — distribución de la app, informes de fallos y servicios de las tiendas, según configuración de esas plataformas
 - **Alojamiento web** — nuestro host (p. ej. Vercel) puede procesar registros técnicos de conexión (IP, user-agent, marcas de tiempo) al servir el sitio y asegurar la infraestructura
@@ -182,7 +201,7 @@ El inicio de sesión OAuth puede volver a la app mediante deep links (p. ej. esq
 Compartimos datos personales solo cuando:
 
 - Publicas contenido destinado a ser público (spots, fotos, campos de perfil que eliges mostrar)
-- Un proveedor de servicios lo necesita para operar Altalaya (p. ej. alojamiento Supabase, Stripe para pagos voluntarios)
+- Un proveedor de servicios lo necesita para operar Altalaya (p. ej. alojamiento Supabase, PostHog para analítica de producto, Stripe para pagos voluntarios)
 - Lo exige la ley (solicitud legal válida)
 - Es necesario para proteger a usuarios, al público o la integridad del servicio (fraude, abuso, seguridad), incluida la revisión de reportes
 
@@ -199,8 +218,9 @@ Compartimos datos personales solo cuando:
 - Reportes: el tiempo razonablemente necesario para moderación, seguridad y disputas
 - Sesiones / tokens de auth: hasta que cierres sesión o caduquen
 - Registros: solo el tiempo razonablemente necesario para seguridad y depuración
+- Analítica de la app (PostHog): según el ajuste de retención de nuestro proyecto PostHog
 
-**Eliminación de cuenta en la app:** desde Ajustes puedes eliminar permanentemente tu cuenta. Ese proceso elimina tu perfil, tus spots, fotos asociadas en almacenamiento (mejor esfuerzo), tus bloqueos y cierra tu sesión. Los reportes que presentaste o que afectan a tu contenido pueden conservarse cuando lo exijan motivos legales, de seguridad o de disputa. Pueden existir copias de seguridad residuales brevemente por seguridad y recuperación.
+**Eliminación de cuenta en la app:** desde Ajustes puedes eliminar permanentemente tu cuenta. Ese proceso elimina tu perfil, tus spots, fotos asociadas en almacenamiento (mejor esfuerzo), tus bloqueos y cierra tu sesión. Los reportes que presentaste o que afectan a tu contenido pueden conservarse cuando lo exijan motivos legales, de seguridad o de disputa. Pueden existir copias de seguridad residuales brevemente por seguridad y recuperación. También tomamos medidas razonables respecto a los datos de persona / analítica de PostHog vinculados a tu cuenta; si queda algo, escribe a privacy@altalaya.app.
 
 **Eliminación de cuenta en la web:** también puedes eliminar tu cuenta en [/delete-account](/delete-account) (inicia sesión con la misma cuenta de Google o email y confirma). Aplican las mismas reglas de borrado.
 
@@ -217,7 +237,7 @@ Según dónde vivas (p. ej. UE/EEE, UK, California), puedes tener derecho a:
 - Eliminar tus datos
 - Exportar datos que aportaste
 - Oponerte o restringir ciertos tratamientos
-- Retirar el consentimiento (p. ej. ubicación o biblioteca de fotos, o cookies de analítica del sitio)
+- Retirar el consentimiento (p. ej. ubicación o biblioteca de fotos, cookies de analítica del sitio, o analítica in-app cuando haya exclusión)
 
 En la app ya puedes:
 
@@ -228,6 +248,7 @@ En la app ya puedes:
 - Cerrar sesión
 - Eliminar tu cuenta desde Ajustes
 - Revocar permisos de ubicación o medios en los ajustes del sistema
+- Cuando esté disponible, desactivar la analítica de producto en Ajustes (detiene eventos posteriores de PostHog)
 
 En este sitio puedes:
 

@@ -1,6 +1,6 @@
 # Altalaya Privacy Policy
 
-**Last updated:** 22 September 2026
+**Last updated:** 14 October 2026
 
 Altalaya is a community map of viewpoints (miradors). This policy explains what data we collect, why we collect it, and how you can control it.
 
@@ -85,6 +85,25 @@ To keep the service reliable and secure, we may process:
 - Basic network connectivity status (e.g. offline banner)
 - Session tokens needed to keep you signed in
 
+### Product analytics in the app (PostHog)
+
+To understand how the app is used and improve reliability, we use **PostHog** (typically PostHog Cloud in the **EU** region) as a processor for product analytics. When you are signed in, we may send PostHog:
+
+- Your user id
+- Email address
+- Display name
+- Profile photo URL (`avatar_url`), if you have one
+- Account-related metadata such as account creation time (`created_at`), when available
+- Product / usage events (for example screens opened, feature usage, and similar in-app actions we configure)
+
+**Purpose:** analytics and product reliability (fix bugs, see which features work, improve the experience). We do **not** use PostHog in the app for personalized advertising or to sell your data.
+
+**Sharing:** PostHog processes this data on our behalf as a service provider / processor. Data is transmitted over encrypted connections (HTTPS). Retention follows the retention setting configured in our PostHog project.
+
+**Your choices:** If the app offers an analytics opt-out in Settings, turning it off stops further analytics events to PostHog (it does not undo processing that already occurred). You can also request deletion or other rights via privacy@altalaya.app (see Contact). Account deletion removes your Altalaya account data as described below; we also take reasonable steps so that associated PostHog person data is no longer retained for analytics, or you may ask us to do so by email.
+
+Website analytics (cookie banner / consent) is separate and described under “This website — cookies and analytics” below.
+
 ### Feedback you send
 
 If you use “Enviar comentarios” in Settings, your device opens your email client. Whatever you write and send is processed as ordinary email correspondence. We do not silently scrape your mailbox.
@@ -152,7 +171,7 @@ We use your data to:
 - Apply Early Founder status when you support the project
 - Moderate harmful or illegal content
 - Process spot reports and user blocks so you can hide content on your map and so we can review abuse
-- Fix bugs and improve reliability
+- Fix bugs and improve reliability, including via product analytics (PostHog) as described above
 - Comply with law when required
 
 We do **not** use your data for targeted advertising resale, and we do not sell personal data.
@@ -166,7 +185,7 @@ We use **Supabase** for authentication, database storage, photo hosting, and UGC
 We may also rely on:
 
 - **Google** — Google sign-in and Google Maps (app)
-- **PostHog** — website product analytics **only with your consent**
+- **PostHog** — product analytics in the **mobile app** (user id, email, name, avatar URL, account metadata such as `created_at`, and usage events; EU Cloud where configured), and website analytics **only with your cookie consent**
 - **Stripe** — optional Early Founder support payments
 - **Apple / Google** — app distribution, crash reporting, and store services, as configured by those platforms
 - **Website hosting** — our web host (for example Vercel) may process technical connection logs (IP, user-agent, timestamps) as part of serving the site and securing infrastructure
@@ -182,7 +201,7 @@ OAuth sign-in may return to the app via deep links (e.g. custom URL schemes such
 We share personal data only when:
 
 - You publish content that is meant to be public (spots, photos, profile fields you choose to show)
-- A service provider needs it to run Altalaya (e.g. Supabase hosting, Stripe for voluntary payments)
+- A service provider needs it to run Altalaya (e.g. Supabase hosting, PostHog for product analytics, Stripe for voluntary payments)
 - The law requires it (valid legal request)
 - Needed to protect users, the public, or the integrity of the service (fraud, abuse, safety), including reviewing spot reports
 
@@ -199,8 +218,9 @@ We do **not** sell your personal information.
 - Spot reports: kept as reasonably needed for moderation, security, and dispute handling
 - Auth sessions / tokens: kept until you sign out or they expire
 - Logs: kept only as long as reasonably needed for security and debugging
+- App analytics (PostHog): kept according to our PostHog project retention setting
 
-**In-app account deletion:** from Settings you can permanently delete your account. That process removes your profile, your spots, associated photos in storage (best effort), your blocks, and signs you out. Spot reports you filed or that concern your content may be retained where required for legal, security, or dispute reasons. Residual backups may exist briefly for security and recovery.
+**In-app account deletion:** from Settings you can permanently delete your account. That process removes your profile, your spots, associated photos in storage (best effort), your blocks, and signs you out. Spot reports you filed or that concern your content may be retained where required for legal, security, or dispute reasons. Residual backups may exist briefly for security and recovery. We also take reasonable steps regarding PostHog person / analytics data linked to your account; if anything remains, email privacy@altalaya.app.
 
 **Web account deletion:** you can also delete your account at [/delete-account](/delete-account) on this site (sign in with the same Google or email account, then confirm). The same data removal rules apply.
 
@@ -217,7 +237,7 @@ Depending on where you live (for example EU/EEA, UK, California), you may have r
 - Delete your data
 - Export data you provided
 - Object to or restrict certain processing
-- Withdraw consent (e.g. location or photo-library permission, or website analytics cookies)
+- Withdraw consent (e.g. location or photo-library permission, website analytics cookies, or in-app analytics where an opt-out is offered)
 
 In the app you can already:
 
@@ -228,6 +248,7 @@ In the app you can already:
 - Sign out
 - Delete your account from Settings
 - Revoke location or media permissions in system settings
+- Where available, turn off product analytics in Settings (stops further PostHog events)
 
 On this website you can:
 
