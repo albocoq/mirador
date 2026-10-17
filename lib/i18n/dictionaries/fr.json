@@ -1,12 +1,23 @@
 {
   "meta": {
-    "description": "Altalaya — découvre et partage les meilleurs points de vue. Télécharge l'app sur Google Play.",
+    "title": "Altalaya — Trouve et partage les meilleurs points de vue",
+    "description": "Altalaya est une carte communautaire gratuite des points de vue : paysages, golden hour et coins tranquilles près de chez toi. Télécharge l'app Android sur Google Play.",
+    "keywords": [
+      "Altalaya",
+      "points de vue",
+      "miradors",
+      "paysages",
+      "golden hour",
+      "photographie",
+      "carte communautaire",
+      "application Android"
+    ],
     "privacyTitle": "Politique de confidentialité",
-    "privacyDescription": "Politique de confidentialité d'Altalaya — quelles données nous collectons et comment nous les utilisons.",
+    "privacyDescription": "Politique de confidentialité d'Altalaya — quelles données personnelles nous collectons, comment nous les utilisons, et vos droits dont la suppression de compte.",
     "termsTitle": "Conditions d'utilisation",
-    "termsDescription": "Conditions d'utilisation d'Altalaya — règles d'usage de la carte communautaire des points de vue.",
+    "termsDescription": "Conditions d'utilisation d'Altalaya — règles d'usage de la carte communautaire des points de vue et de partage des spots.",
     "deleteAccountTitle": "Supprimer le compte",
-    "deleteAccountDescription": "Supprimer définitivement votre compte Altalaya et les données personnelles associées."
+    "deleteAccountDescription": "Supprimer définitivement votre compte Altalaya et les données personnelles associées. Requis pour la suppression de compte Google Play."
   },
   "nav": {
     "privacy": "Confidentialité",
@@ -17,11 +28,17 @@
   },
   "home": {
     "tagline": "Trouve et partage les meilleurs points de vue — paysages, golden hour et coins tranquilles près de chez toi.",
+    "about": "Altalaya aide explorateurs et photographes à découvrir des belvédères et à les partager sur une carte communautaire. Une crête au coucher du soleil, un lac tranquille ou un panorama urbain — ouvre-le sur ton téléphone.",
+    "features": [
+      "Carte communautaire des points de vue près de toi",
+      "Partage spots, photos et trouvailles golden hour",
+      "App Android gratuite sur Google Play"
+    ],
     "playStoreCta": "Télécharger sur Google Play",
     "privacyCta": "Politique de confidentialité",
     "termsCta": "Conditions d'utilisation",
     "followUs": "Suivez-nous",
-    "logoAlt": "Altalaya"
+    "logoAlt": "Logo de l'application Altalaya"
   },
   "footer": {
     "tagline": "Carte communautaire des points de vue.",

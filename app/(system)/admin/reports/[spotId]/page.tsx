@@ -4,7 +4,7 @@ import {
   setReportStatusAction,
   setSpotRemovedAction,
   setUserBannedAction,
-} from "@/app/admin/actions";
+} from "@/app/(system)/admin/actions";
 import { requireAdmin } from "@/lib/admin/auth";
 import type { Profile, Spot, SpotReport } from "@/lib/admin/types";
 import { createClient } from "@/lib/supabase/server";

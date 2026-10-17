@@ -9,6 +9,7 @@ import {
 import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 import { isLocale, localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
+import { buildPageMetadata } from "@/lib/seo";
 import { createClient } from "@/lib/supabase/server";
 
 export async function generateMetadata({
@@ -19,10 +20,12 @@ export async function generateMetadata({
   const { lang } = await params;
   if (!isLocale(lang)) return {};
   const dict = await getDictionary(lang);
-  return {
+  return buildPageMetadata({
+    locale: lang,
+    path: "/delete-account",
     title: dict.meta.deleteAccountTitle,
     description: dict.meta.deleteAccountDescription,
-  };
+  });
 }
 
 function errorMessage(

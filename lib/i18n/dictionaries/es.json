@@ -1,12 +1,23 @@
 {
   "meta": {
-    "description": "Altalaya — descubre y comparte los mejores miradores. Descarga la app en Google Play.",
+    "title": "Altalaya — Encuentra y comparte los mejores miradores",
+    "description": "Altalaya es un mapa comunitario gratuito de miradores: paisajes, hora dorada y rincones tranquilos cerca de ti. Descarga la app Android en Google Play.",
+    "keywords": [
+      "Altalaya",
+      "miradores",
+      "puntos de vista",
+      "paisajes",
+      "hora dorada",
+      "fotografía",
+      "mapa comunitario",
+      "app Android"
+    ],
     "privacyTitle": "Política de privacidad",
-    "privacyDescription": "Política de privacidad de Altalaya — qué datos recopilamos y cómo los usamos.",
+    "privacyDescription": "Política de privacidad de Altalaya — qué datos personales recopilamos, cómo los usamos y tus derechos, incluida la eliminación de cuenta.",
     "termsTitle": "Términos de uso",
-    "termsDescription": "Términos de uso de Altalaya — reglas para usar el mapa comunitario de miradores.",
+    "termsDescription": "Términos de uso de Altalaya — reglas para usar el mapa comunitario de miradores y compartir spots con seguridad.",
     "deleteAccountTitle": "Eliminar cuenta",
-    "deleteAccountDescription": "Elimina permanentemente tu cuenta de Altalaya y los datos personales asociados."
+    "deleteAccountDescription": "Elimina permanentemente tu cuenta de Altalaya y los datos personales asociados. Requerido para la eliminación de cuenta de Google Play."
   },
   "nav": {
     "privacy": "Privacidad",
@@ -17,11 +28,17 @@
   },
   "home": {
     "tagline": "Encuentra y comparte los mejores miradores — paisajes, hora dorada y rincones tranquilos cerca de ti.",
+    "about": "Altalaya ayuda a exploradores y fotógrafos a descubrir miradores y compartirlos en un mapa comunitario. Una cresta al atardecer, un lago tranquilo o un panorama urbano — ábrelo en el móvil.",
+    "features": [
+      "Mapa comunitario de miradores cerca de ti",
+      "Comparte spots, fotos y hallazgos de hora dorada",
+      "App Android gratis en Google Play"
+    ],
     "playStoreCta": "Descargar en Google Play",
     "privacyCta": "Política de privacidad",
     "termsCta": "Términos de uso",
     "followUs": "Síguenos",
-    "logoAlt": "Altalaya"
+    "logoAlt": "Logo de la aplicación Altalaya"
   },
   "footer": {
     "tagline": "Mapa comunitario de miradores.",

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { signOutAction } from "@/app/admin/actions";
+import { signOutAction } from "@/app/(system)/admin/actions";
 import { getOptionalAdminSession } from "@/lib/admin/auth";
 
 export const metadata: Metadata = {

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { signInAction } from "@/app/admin/actions";
+import { signInAction } from "@/app/(system)/admin/actions";
 import { getOptionalAdminSession } from "@/lib/admin/auth";
 
 export default async function AdminLoginPage({

@@ -1,12 +1,23 @@
 {
   "meta": {
-    "description": "Altalaya — find and share the best viewpoints. Download the app on Google Play.",
+    "title": "Altalaya — Find & share the best viewpoints",
+    "description": "Altalaya is a free community map of viewpoints: landscapes, golden hour spots, and quiet places near you. Download the Android app on Google Play.",
+    "keywords": [
+      "Altalaya",
+      "viewpoints",
+      "scenic views",
+      "lookouts",
+      "golden hour",
+      "landscape photography",
+      "community map",
+      "Android app"
+    ],
     "privacyTitle": "Privacy Policy",
-    "privacyDescription": "Altalaya Privacy Policy — what data we collect and how we use it.",
+    "privacyDescription": "Altalaya Privacy Policy — what personal data we collect, how we use it, and your rights including account deletion.",
     "termsTitle": "Terms of Use",
-    "termsDescription": "Altalaya Terms of Use — rules for using the community map of viewpoints.",
+    "termsDescription": "Altalaya Terms of Use — rules for using the community map of viewpoints and sharing spots safely.",
     "deleteAccountTitle": "Delete account",
-    "deleteAccountDescription": "Permanently delete your Altalaya account and associated personal data."
+    "deleteAccountDescription": "Permanently delete your Altalaya account and associated personal data. Required for Google Play account deletion."
   },
   "nav": {
     "privacy": "Privacy",
@@ -17,11 +28,17 @@
   },
   "home": {
     "tagline": "Find and share the best viewpoints — landscapes, golden hour, and quiet places near you.",
+    "about": "Altalaya helps explorers and photographers discover scenic lookouts and share them with a local community map. Spot a ridge at sunset, a quiet lake, or a city panorama — then open it on your phone.",
+    "features": [
+      "Community map of viewpoints near you",
+      "Share spots, photos, and golden-hour finds",
+      "Free Android app on Google Play"
+    ],
     "playStoreCta": "Download on Google Play",
     "privacyCta": "Privacy Policy",
     "termsCta": "Terms of Use",
     "followUs": "Follow us",
-    "logoAlt": "Altalaya"
+    "logoAlt": "Altalaya app logo"
   },
   "footer": {
     "tagline": "Community map of viewpoints.",

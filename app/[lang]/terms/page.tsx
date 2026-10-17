@@ -5,6 +5,7 @@ import { Markdown } from "@/components/Markdown";
 import { isLocale, localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLegalMarkdown } from "@/lib/legal";
+import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -14,10 +15,12 @@ export async function generateMetadata({
   const { lang } = await params;
   if (!isLocale(lang)) return {};
   const dict = await getDictionary(lang);
-  return {
+  return buildPageMetadata({
+    locale: lang,
+    path: "/terms",
     title: dict.meta.termsTitle,
     description: dict.meta.termsDescription,
-  };
+  });
 }
 
 export default async function TermsPage({

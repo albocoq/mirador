@@ -1,4 +1,4 @@
-import { setUserBannedAction } from "@/app/admin/actions";
+import { setUserBannedAction } from "@/app/(system)/admin/actions";
 import { requireAdmin } from "@/lib/admin/auth";
 import type { Profile } from "@/lib/admin/types";
 import { createClient } from "@/lib/supabase/server";
