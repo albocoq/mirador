@@ -8,7 +8,7 @@ import {
 
 export const SITE_NAME = "Altalaya";
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://altalaya.app"
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.altalaya.app"
 ).replace(/\/$/, "");
 
 export const ANDROID_PACKAGE = "com.altalaya.app";
@@ -19,21 +19,21 @@ const ogLocaleByLang: Record<Locale, string> = {
   es: "es_ES",
 };
 
-/** Absolute URL for a locale-prefixed path. */
+/** Absolute URL for a locale-prefixed path (no double slashes). */
 export function absoluteUrl(locale: Locale, path = "/"): string {
   return `${SITE_URL}${localePath(locale, path)}`;
 }
 
-/** Canonical + hreflang alternates (relative; resolved via metadataBase). */
+/** Canonical + hreflang alternates as absolute URLs. */
 export function localeAlternates(locale: Locale, path = "/") {
   const languages: Record<string, string> = {
-    "x-default": localePath(defaultLocale, path),
+    "x-default": absoluteUrl(defaultLocale, path),
   };
   for (const l of locales) {
-    languages[l] = localePath(l, path);
+    languages[l] = absoluteUrl(l, path);
   }
   return {
-    canonical: localePath(locale, path),
+    canonical: absoluteUrl(locale, path),
     languages,
   };
 }
