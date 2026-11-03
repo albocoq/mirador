@@ -1,23 +1,13 @@
 {
-    "headers": [
-      {
-        "source": "/.well-known/apple-app-site-association",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ]
-      }
-    ],
-    "rewrites": [
-      {
-        "source": "/spot/:id",
-        "destination": "/open-app.html"
-      },
-      {
-        "source": "/:lang/spot/:id",
-        "destination": "/open-app.html"
-      }
-    ]
-  }
+  "headers": [
+    {
+      "source": "/.well-known/apple-app-site-association",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    }
+  ]
+}

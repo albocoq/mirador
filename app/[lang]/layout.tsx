@@ -2,11 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { ConsentProvider } from "@/components/ConsentProvider";
-import { PostHogAnalytics } from "@/components/PostHogAnalytics";
 import { I18nProvider } from "@/components/I18nProvider";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
 import { isLocale, locales, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import {
@@ -119,17 +115,9 @@ export default async function LangRootLayout({
       className={`${display.variable} ${sans.variable} h-full antialiased`}
     >
       <body className="m-0 min-h-dvh font-sans text-sand">
-        <div className="flex h-dvh flex-col overflow-hidden">
-          <I18nProvider locale={locale} dict={dict}>
-            <SiteHeader />
-            <main className="relative z-10 min-h-0 flex-1 overflow-y-auto">
-              {children}
-            </main>
-            <SiteFooter />
-            <ConsentProvider />
-            <PostHogAnalytics />
-          </I18nProvider>
-        </div>
+        <I18nProvider locale={locale} dict={dict}>
+          {children}
+        </I18nProvider>
       </body>
     </html>
   );
