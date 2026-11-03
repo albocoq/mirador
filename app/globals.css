@@ -60,3 +60,25 @@ body {
 *::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+.spot-map .maplibregl-ctrl-attrib {
+  background: rgb(16 16 15 / 78%);
+  color: #c9bdb0;
+  font-size: 10px;
+}
+
+.spot-map .maplibregl-ctrl-attrib a {
+  color: #f3ebe2;
+}
+
+.spot-map .maplibregl-ctrl-scale {
+  border-color: rgb(243 235 226 / 55%);
+  background: rgb(16 16 15 / 78%);
+  color: #f3ebe2;
+  font-size: 10px;
+}
+
+.spot-map .maplibregl-ctrl-bottom-left,
+.spot-map .maplibregl-ctrl-bottom-right {
+  z-index: 1;
+}
