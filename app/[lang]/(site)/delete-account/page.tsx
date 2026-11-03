@@ -5,7 +5,7 @@ import {
   deleteOwnAccountAction,
   signInWithPasswordAction,
   signOutDeleteAccountAction,
-} from "@/app/[lang]/delete-account/actions";
+} from "./actions";
 import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 import { isLocale, localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
